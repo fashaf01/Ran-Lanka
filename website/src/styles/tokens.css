@@ -1,40 +1,46 @@
-/* Ranlanka design tokens.
-   The palette is the logo's own: the gold of the lamp-flame mark, the silver of its crescent and
-   the ink of the wordmark, on white and ivory. Chapters are set on champagne gold; only films and
-   photographs carry a deep bronze shade. No red, no black panels. There is no dark-mode swap. */
+/* Ranlanka design tokens, from the Ranlanka Brand Identity
+   (https://claude.ai/artifact/8BucNALJRqV6LFRu96gcGV).
+   A jeweller's studio: a moss wall, a sage table, emerald and kundan gold under one warm light,
+   pearl for everything that is read. Moss replaces black everywhere. One look, no dark-mode swap. */
 :root{
   color-scheme: light;
 
-  /* Paper */
-  --ivory:#fbf8f1;
-  --ivory-2:#f3ecdd;
-  --champagne:#eee3c6;
-  --sand:#e3d5b2;
-  --rule:#e4d8bd;
+  /* Brand palette */
+  --moss:#2f3921;
+  --moss-deep:#1f2716;
+  --moss-raised:#434d2a;
+  --sage:#707a55;
+  --sage-mist:#dfe0cd;
+  --emerald:#396b38;
+  --emerald-deep:#18521f;
+  --emerald-light:#81bf76;
+  --kundan:#c48c4f;
+  --kundan-light:#d9ab6d;
+  --kundan-deep:#77613a;
+  --pearl:#f8eacf;
+  --pearl-light:#fdf7ea;
 
-  /* Ink: the wordmark, softened */
-  --ink:#25211a;
-  --ink-2:#6e6655;
-
-  /* Gold, from the mark */
-  --gold:#c2a653;
-  --gold-hi:#ead99f;
-  --gold-pale:#f6edcf;
-  --gold-deep:#8a7330;
-  --bronze:#5b4820;      /* headlines and accents on light paper */
-  --accent:#7d6527;      /* lines, chips, fields, the gauge */
-  --gilt:linear-gradient(178deg,#f6eab4 0%,#d9c06e 38%,#a88d3c 62%,#e6d184 82%,#b39a48 100%);
-  --gold-surface:radial-gradient(120% 90% at 50% 0%,#fdf7e3 0%,#f1e5c2 46%,#e1cc93 100%);
-
-  /* Silver, from the crescent */
+  /* Roles (the names the stylesheets use) */
+  --ivory:var(--pearl-light);          /* page ground */
+  --ivory-2:var(--pearl);              /* quiet fills on pages */
+  --champagne:#f1e2c2;                 /* a deeper pearl for bars and wells */
+  --sand:#e3d3b0;
+  --rule:#e3d3b0;                      /* hairlines on pearl */
+  --ink:var(--moss-deep);              /* text on pearl */
+  --ink-2:#5a5f45;                     /* secondary text on pearl, 5.6:1 */
+  --bronze:var(--moss);                /* headlines and strong accents on pearl */
+  --accent:var(--emerald);             /* links, selected states, fields, the gauge */
+  --gold:var(--kundan);
+  --gold-hi:var(--kundan-light);       /* gold type on moss, 5.8:1 */
+  --gold-deep:var(--kundan-deep);      /* gold type on pearl, 5.0:1 */
+  --gold-pale:var(--pearl);
+  --gilt:linear-gradient(178deg,#f3dcae 0%,#d9ab6d 38%,#a8733d 62%,#e2b878 82%,#b98447 100%);
+  --moss-surface:radial-gradient(120% 90% at 50% 0%,var(--moss-raised) 0%,var(--moss) 48%,var(--moss-deep) 100%);
+  --gold-surface:var(--moss-surface);
   --silver:#babfc3;
-  --silver-hi:#eef0f2;
-  --pewter:#7e838a;
-
-  /* Films and photographs: a warm bronze shade, never black */
-  --shade:#2a2316;
-  --on-dark:#fbf6ea;
-  --on-dark-2:rgba(251,246,234,.8);
+  --shade:var(--moss-deep);            /* films and photographs */
+  --on-dark:var(--pearl);              /* text on moss, 10.2:1 */
+  --on-dark-2:rgba(248,234,207,.78);
 
   /* Type: three royal serifs; the wordmark itself is drawn in SVG */
   --mast:'Bodoni Moda',Didot,'Bodoni 72','Times New Roman',serif;

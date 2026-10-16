@@ -25,7 +25,7 @@ float noise(vec2 p){
 void main(){
   float a = texture2D(uMask, vUv).a;
   float sh = texture2D(uHeight, vUv - vec2(0., uShadowOff)).a * uShadow;
-  vec4 shadow = vec4(vec3(.165, .137, .086) * sh, sh);
+  vec4 shadow = vec4(vec3(.122, .153, .086) * sh, sh);
   if (a < .004) { gl_FragColor = shadow; return; }
   vec2 e = uTexel * 1.5;
   float H0 = h(vUv);
@@ -50,10 +50,10 @@ void main(){
   lum *= mix(.45, 1., smoothstep(0., .75, H0));
 
   // Twenty-two karat: brown in the shadows, warm yellow in the body, champagne in the light.
-  vec3 col = mix(vec3(.08, .05, .015), vec3(.42, .32, .1), smoothstep(0., .3, lum));
-  col = mix(col, vec3(.8, .67, .31), smoothstep(.3, .62, lum));
-  col = mix(col, vec3(.97, .9, .6), smoothstep(.62, .88, lum));
-  col = mix(col, vec3(1., .98, .86), smoothstep(.88, 1.15, lum));
+  vec3 col = mix(vec3(.09, .05, .015), vec3(.45, .29, .11), smoothstep(0., .3, lum));
+  col = mix(col, vec3(.8, .57, .3), smoothstep(.3, .62, lum));
+  col = mix(col, vec3(.95, .79, .52), smoothstep(.62, .88, lum));
+  col = mix(col, vec3(1., .95, .84), smoothstep(.88, 1.15, lum));
 
   // A soft box that follows the pointer.
   vec3 L = normalize(vec3(uLight.x + .2, uLight.y - .6, .75));
@@ -129,7 +129,7 @@ class GoldType {
     gl.uniform1i(this.u.uMask, 0);
     gl.uniform1i(this.u.uHeight, 1);
     this.light = [0, 0];
-    // A soft bronze shadow is drawn in the shader; dark scenes get a deeper one.
+    // A soft moss shadow is drawn in the shader; dark scenes get a deeper one.
     this.shadow = /drop-shadow/.test(getComputedStyle(el).filter) ? 0.5 : 0.2;
     this.ready = false;
     this.visible = false;

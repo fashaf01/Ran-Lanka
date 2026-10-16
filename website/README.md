@@ -17,7 +17,7 @@ npm run preview    # serve dist/ locally
 
 | Path | What it holds |
 | --- | --- |
-| `index.html` | All page markup, top to bottom: hero film, statement, cover story, collection, services, bridal chapter, 916, made to order, the scale, maison, viewing, appointment, footer, quick view, menu |
+| `index.html` | All page markup, top to bottom: hero film, statement, cover story, collection, services, bridal chapter, 916, made to order, the tray, maison, viewing, appointment, footer, quick view, menu |
 | `src/styles/tokens.css` | Colours (wine, ivory, gold), the three serif families, spacing and easing |
 | `src/styles/base.css` | Type roles, buttons and links, the header |
 | `src/styles/sections.css` | Every section in page order |
@@ -25,7 +25,7 @@ npm run preview    # serve dist/ locally
 | `src/modules/core.js` | Smooth scrolling (Lenis), the per-frame scroll bus, **gold rates** |
 | `src/modules/loader.js` | The intro: the mark is drawn in gold while a counter runs to 916 |
 | `src/modules/goldtype.js` | WebGL liquid-gold headlines (`data-goldtype`) |
-| `src/modules/scale.js` | The tharasu: coins, pawn weights and the swinging beam |
+| `src/modules/tray.js` | The jewellery tray: choose bridal pieces, see them laid in gold on moss velvet, and read the weight and value |
 | `src/modules/pointer.js` | Cursor label (`data-cursor`), loupe (`data-loupe`), magnetic buttons (`data-magnetic`) |
 | `src/modules/page.js` | Hero film, header, statement, scroll scrubs, the 916 chapter, bokeh |
 | `src/modules/bridal.js` | Chapter I, the pinned bridal set |
@@ -44,11 +44,15 @@ The Ranlanka logo (the lamp flame in a gold swirl, held by a silver crescent, be
 
 ## Brand colours
 
-The palette is the logo's own: the gold of the mark (`--gold`, with `--bronze` and `--accent` for type and lines on light paper), the silver of the crescent (`--silver`) and the ink of the wordmark (`--ink`), on white and ivory. Chapters sit on champagne gold (`--gold-surface`); only films and photographs carry a warm bronze shade (`--shade`). There are no red or black panels. All of these are tokens in `src/styles/tokens.css`.
+The site follows the Ranlanka Brand Identity (https://claude.ai/artifact/8BucNALJRqV6LFRu96gcGV): moss (`--moss`, in place of black) for chapters and film shades, sage for quiet fields, emerald (`--accent`) for links and selected states, kundan gold for the one primary action and the gold type, and pearl for every page that is read. The brand palette and the roles the stylesheets use are tokens in `src/styles/tokens.css`.
+
+## The tray
+
+The gold-rate section lays a bridal set on a moss-velvet tray. Each piece is an SVG symbol in `index.html` (`#pc-tikka`, `#pc-nath`, `#pc-jhumka`, `#pc-choker`, `#pc-bangles`, `#pc-ring`), drawn in kundan gold with emerald, pearl and polki stones. A compartment's weight in pawn is its `data-pawn`; the value uses `RATE` in `src/modules/core.js`.
 
 ## Update the gold rate
 
-The rates are in `src/modules/core.js` (`RATE`, in rupees for one pawn of 8 g) and in the two `.kr` rows of the scale section in `index.html`. The exchange table is in the same section. The rate bar at the top of the header reads the same `RATE`. All of them are sample figures until they are connected to a live source.
+The rates are in `src/modules/core.js` (`RATE`, in rupees for one pawn of 8 g) and in the two `.kr` rows of the gold-rate section in `index.html`. The exchange table is in the same section. The rate bar at the top of the header reads the same `RATE`. All of them are sample figures until they are connected to a live source.
 
 ## Media credits
 

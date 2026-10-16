@@ -16,6 +16,7 @@ import { initVisit } from './modules/visit.js';
 import { initScale } from './modules/scale.js';
 import { initGoldType } from './modules/goldtype.js';
 import { initSizer } from './modules/sizer.js';
+import { initServices } from './modules/services.js';
 
 const loading = document.documentElement.classList.contains('is-loading');
 
@@ -29,5 +30,6 @@ initSound();
 initVisit();
 initScale();
 initSizer();
+initServices();
 initGoldType();
 initLoader(() => { if (loading) lockScroll(false); });

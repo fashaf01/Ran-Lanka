@@ -1,4 +1,4 @@
-// Fine pointers only: a crimson cursor disc that names the action, the jeweller's loupe over
+// Fine pointers only: a bronze cursor disc that names the action, the jeweller's loupe over
 // the jewellery photographs, and buttons that lean towards the pointer.
 import { $, $$, reduce, finePointer } from './core.js';
 

@@ -1,33 +1,40 @@
 /* Ranlanka design tokens.
-   The palette is the maison's own: Ranlanka crimson (#8D1B3D, from ranlankanegombo.com), the gold
-   of the lamp-flame mark and the silver of its crescent. Pages are warm ivory; dark chapters are
-   crimson, never black. One look, chosen deliberately: there is no dark-mode swap. */
+   The palette is the logo's own: the gold of the lamp-flame mark, the silver of its crescent and
+   the ink of the wordmark, on white and ivory. Chapters are set on champagne gold; only films and
+   photographs carry a deep bronze shade. No red, no black panels. There is no dark-mode swap. */
 :root{
   color-scheme: light;
 
-  /* Ivory pages */
-  --ivory:#f7f0e7;
-  --ivory-2:#efe5d8;
-  --sand:#e6d7c6;
-  --ink:#2b1a20;
-  --ink-2:#76616a;
-  --rule:#e2d2c3;
+  /* Paper */
+  --ivory:#fbf8f1;
+  --ivory-2:#f3ecdd;
+  --champagne:#eee3c6;
+  --sand:#e3d5b2;
+  --rule:#e4d8bd;
 
-  /* Ranlanka crimson */
-  --crimson:#8d1b3d;
-  --crimson-hi:#a62a50;
-  --crimson-deep:#5e1029;
-  --on-crimson:#f9efe7;
-  --on-crimson-2:rgba(249,239,231,.78);
-  --crimson-surface:radial-gradient(120% 90% at 50% 0%,var(--crimson-hi) 0%,var(--crimson) 46%,var(--crimson-deep) 100%);
+  /* Ink: the wordmark, softened */
+  --ink:#25211a;
+  --ink-2:#6e6655;
 
-  /* The mark's gold and silver */
+  /* Gold, from the mark */
   --gold:#c2a653;
-  --gold-hi:#efe2a4;
-  --gold-deep:#8b7331;
+  --gold-hi:#ead99f;
+  --gold-pale:#f6edcf;
+  --gold-deep:#8a7330;
+  --bronze:#5b4820;      /* headlines and accents on light paper */
+  --accent:#7d6527;      /* lines, chips, fields, the gauge */
   --gilt:linear-gradient(178deg,#f6eab4 0%,#d9c06e 38%,#a88d3c 62%,#e6d184 82%,#b39a48 100%);
+  --gold-surface:radial-gradient(120% 90% at 50% 0%,#fdf7e3 0%,#f1e5c2 46%,#e1cc93 100%);
+
+  /* Silver, from the crescent */
   --silver:#babfc3;
   --silver-hi:#eef0f2;
+  --pewter:#7e838a;
+
+  /* Films and photographs: a warm bronze shade, never black */
+  --shade:#2a2316;
+  --on-dark:#fbf6ea;
+  --on-dark-2:rgba(251,246,234,.8);
 
   /* Type: three royal serifs; the wordmark itself is drawn in SVG */
   --mast:'Bodoni Moda',Didot,'Bodoni 72','Times New Roman',serif;

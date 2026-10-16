@@ -32,6 +32,7 @@ npm run preview    # serve dist/ locally
 | `src/modules/overlays.js` | Menu and the quick view (piece details and weights are here) |
 | `src/modules/visit.js` | Live opening status in Colombo time, the appointment planner, copy buttons |
 | `src/modules/sound.js` | The score, off until asked for |
+| `src/modules/services.js` | The five service panels and the split-flap exchange board (it reads the rates from the exchange table) |
 | `src/modules/sizer.js` | Find your size: the on-screen ring and bangle gauge, calibrated with a bank card |
 | `src/styles/fonts.css`, `src/fonts/` | Self-hosted, subset fonts |
 | `public/m/` | Films (AV1 WebM + H.264 MP4), WebP images in several widths, posters and the score |
@@ -43,7 +44,7 @@ The Ranlanka logo (the lamp flame in a gold swirl, held by a silver crescent, be
 
 ## Brand colours
 
-Ranlanka crimson `#8D1B3D` (from their website), the mark's gold and its silver `#BABFC3`. They are tokens in `src/styles/tokens.css`.
+The palette is the logo's own: the gold of the mark (`--gold`, with `--bronze` and `--accent` for type and lines on light paper), the silver of the crescent (`--silver`) and the ink of the wordmark (`--ink`), on white and ivory. Chapters sit on champagne gold (`--gold-surface`); only films and photographs carry a warm bronze shade (`--shade`). There are no red or black panels. All of these are tokens in `src/styles/tokens.css`.
 
 ## Update the gold rate
 

@@ -25,7 +25,7 @@ float noise(vec2 p){
 void main(){
   float a = texture2D(uMask, vUv).a;
   float sh = texture2D(uHeight, vUv - vec2(0., uShadowOff)).a * uShadow;
-  vec4 shadow = vec4(vec3(.227, .031, .102) * sh, sh);
+  vec4 shadow = vec4(vec3(.165, .137, .086) * sh, sh);
   if (a < .004) { gl_FragColor = shadow; return; }
   vec2 e = uTexel * 1.5;
   float H0 = h(vUv);
@@ -129,7 +129,7 @@ class GoldType {
     gl.uniform1i(this.u.uMask, 0);
     gl.uniform1i(this.u.uHeight, 1);
     this.light = [0, 0];
-    // A soft crimson shadow is drawn in the shader; dark scenes get a deeper one.
+    // A soft bronze shadow is drawn in the shader; dark scenes get a deeper one.
     this.shadow = /drop-shadow/.test(getComputedStyle(el).filter) ? 0.5 : 0.2;
     this.ready = false;
     this.visible = false;

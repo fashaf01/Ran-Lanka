@@ -8,9 +8,9 @@ body::after{content:"";position:fixed;inset:0;z-index:150;pointer-events:none;op
 /* ---------- Intro: the lamp is lit. Gold pours along the swirl, the silver crescent follows,
    the flame catches, then the wordmark is drawn while the counter weighs the gold to 916. ---------- */
 .intro{display:none}
-.js .intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--crimson);background-image:var(--crimson-surface);color:var(--on-crimson);clip-path:inset(0 0 0 0);transition:clip-path 1.25s var(--ease-out),visibility 0s 1.25s}
+.js .intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--ivory);background-image:radial-gradient(80% 70% at 50% 40%,#fffdf6 0%,var(--ivory) 55%,var(--champagne) 100%);color:var(--ink);clip-path:inset(0 0 0 0);transition:clip-path 1.25s var(--ease-out),visibility 0s 1.25s}
 .js .intro.done{clip-path:inset(0 0 100% 0);visibility:hidden}
-.intro::before{content:"";position:absolute;inset:0;background:radial-gradient(30% 26% at 50% 42%,rgba(246,233,174,.3),transparent 70%);opacity:0;animation:fadeIn 1.4s var(--ease) 1s forwards;pointer-events:none}
+.intro::before{content:"";position:absolute;inset:0;background:radial-gradient(26% 22% at 50% 40%,rgba(234,217,159,.55),transparent 70%);opacity:0;animation:fadeIn 1.4s var(--ease) 1s forwards;pointer-events:none}
 .intro-in{position:relative;display:grid;justify-items:center;gap:30px;transition:transform 1.25s var(--ease-out),opacity .7s var(--ease)}
 .intro.done .intro-in{transform:translateY(-70px);opacity:0}
 .intro-mark{width:clamp(78px,8vw,108px);height:auto;overflow:visible}
@@ -24,9 +24,9 @@ body::after{content:"";position:fixed;inset:0;z-index:150;pointer-events:none;op
 .intro-word{width:clamp(220px,24vw,330px);aspect-ratio:895/84;height:auto;clip-path:inset(0 100% 0 0);animation:wipe 1s var(--ease) 1.2s forwards}
 @keyframes wipe{to{clip-path:inset(0 0 0 0)}}
 .intro-count{display:grid;justify-items:center;gap:8px;opacity:0;animation:fadeIn 1s var(--ease) .4s forwards}
-#intro-n{font:500 clamp(13px,1vw,15px)/1 var(--mast);letter-spacing:.32em;margin-right:-.32em;font-variant-numeric:tabular-nums lining-nums;color:var(--gold-hi)}
-.intro-count small{font:italic 500 11px/1 var(--disp);letter-spacing:.24em;text-transform:uppercase;color:var(--on-crimson-2)}
-.intro-count::before{content:"";width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-hi),transparent);transform:scaleX(var(--p,0));transition:transform .2s linear;order:2}
+#intro-n{font:500 clamp(13px,1vw,15px)/1 var(--mast);letter-spacing:.32em;margin-right:-.32em;font-variant-numeric:tabular-nums lining-nums;color:var(--bronze)}
+.intro-count small{font:italic 500 11px/1 var(--disp);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
+.intro-count::before{content:"";width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(var(--p,0));transition:transform .2s linear;order:2}
 .intro-count small{order:3}
 html.is-loading{overflow:hidden}
 .is-loading .line>span,.is-loading .fade-in{animation-play-state:paused}
@@ -38,8 +38,8 @@ html.is-loading{overflow:hidden}
 
 /* ---------- Cursor: a crimson disc that names the action ---------- */
 .cursor{position:fixed;left:0;top:0;z-index:130;pointer-events:none;transform:translate3d(var(--cx,-300px),var(--cy,-300px),0)}
-.cursor::before{content:"";position:absolute;left:-48px;top:-48px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 34% 28%,var(--crimson-hi),var(--crimson) 62%,var(--crimson-deep));box-shadow:inset 0 0 0 1px rgba(239,226,164,.55),0 20px 40px -14px rgba(94,16,41,.55);transform:scale(0);transition:transform .7s var(--ease-out)}
-.cursor-label{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font-size:10.5px;letter-spacing:.26em;margin-left:.13em;text-transform:uppercase;white-space:nowrap;color:var(--gold-hi);opacity:0;transition:opacity .3s}
+.cursor::before{content:"";position:absolute;left:-48px;top:-48px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#f6eab4,var(--gold) 55%,var(--gold-deep));box-shadow:inset 0 0 0 1px rgba(255,250,232,.7),0 20px 40px -14px rgba(91,72,32,.5);transform:scale(0);transition:transform .7s var(--ease-out)}
+.cursor-label{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font-size:10.5px;letter-spacing:.26em;margin-left:.13em;text-transform:uppercase;white-space:nowrap;color:var(--ink);opacity:0;transition:opacity .3s}
 .cursor.on::before{transform:scale(1)}
 .cursor.on .cursor-label{opacity:1;transition-delay:.12s}
 .has-cursor [data-cursor]{cursor:none}
@@ -48,9 +48,9 @@ html.is-loading{overflow:hidden}
 .loupe{position:fixed;left:0;top:0;z-index:129;pointer-events:none;transform:translate3d(var(--lx,-400px),var(--ly,-400px),0)}
 .loupe::before,.loupe::after{content:"";position:absolute;left:-105px;top:-105px;width:210px;height:210px;border-radius:50%;transform:scale(.2);opacity:0;transition:transform .55s var(--ease-out),opacity .35s var(--ease)}
 .loupe::before{background-color:var(--ivory-2);background-image:var(--img,none);background-repeat:no-repeat;background-size:var(--bs,100% 100%);background-position:var(--bp,50% 50%);
-  box-shadow:0 0 0 1px rgba(246,234,180,.95),0 0 0 8px var(--crimson),0 0 0 9px rgba(239,226,164,.8),0 34px 60px -18px rgba(58,8,26,.65)}
-.loupe::after{background:radial-gradient(circle at 32% 24%,rgba(255,250,235,.38),rgba(255,250,235,0) 34%),radial-gradient(circle at 50% 50%,transparent 62%,rgba(58,8,26,.38) 100%)}
-.loupe-tag{position:absolute;left:0;top:118px;transform:translateX(-50%);font-size:10px;letter-spacing:.26em;margin-left:.13em;text-transform:uppercase;color:var(--gold-hi);background:var(--crimson);padding:5px 10px 4px;opacity:0;transition:opacity .3s}
+  box-shadow:0 0 0 1px rgba(246,234,180,.95),0 0 0 8px var(--accent),0 0 0 9px rgba(239,226,164,.8),0 34px 60px -18px rgba(42,35,22,.65)}
+.loupe::after{background:radial-gradient(circle at 32% 24%,rgba(255,250,235,.38),rgba(255,250,235,0) 34%),radial-gradient(circle at 50% 50%,transparent 62%,rgba(42,35,22,.38) 100%)}
+.loupe-tag{position:absolute;left:0;top:118px;transform:translateX(-50%);font-size:10px;letter-spacing:.26em;margin-left:.13em;text-transform:uppercase;color:var(--gold-pale);background:var(--bronze);padding:5px 10px 4px;opacity:0;transition:opacity .3s}
 .loupe.on::before,.loupe.on::after{transform:none;opacity:1}
 .loupe.on .loupe-tag{opacity:1;transition-delay:.15s}
 .has-loupe [data-loupe]{cursor:none}
@@ -78,15 +78,16 @@ html.is-loading{overflow:hidden}
   .js .line>span,.js .fade-in{animation:none}
   .js [data-rise]{transform:none;opacity:1;transition:none}
   .media>img,.media>video{transition:none}
+  .sp,.sp-body,.board,.sp-media img,.sp-media video{transition:none}
 }
 
 /* Sections focused after an in-page jump do not need a ring. */
 [tabindex="-1"]:focus{outline:none}
 .no-intro .intro{display:none!important}
 
-/* Photographs never fall to black: their deepest shadows are lifted into crimson. */
-.cover-photo::after,.viewing>.media::after,.set-media figure::after,.mto .media::after,.svc .media:not(.fx-tile)::after{
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:#5e1029;mix-blend-mode:screen;opacity:.5}
+/* Photographs never fall to black: their deepest shadows are lifted into warm bronze. */
+.cover-photo::after,.viewing>.media::after,.set-media figure::after,.mto .media::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:#3a2f1a;mix-blend-mode:screen;opacity:.5}
 
 /* The gold canvases carry a margin for their shadow; it must never widen the page. */
 main,.foot{overflow-x:clip}

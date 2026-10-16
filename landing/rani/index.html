@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Ranlanka Royal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Rani by Ranlanka. 22 karat gold high jewellery, made in Negombo since 2008.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Tenor+Sans&family=Noto+Serif+Sinhala:wght@500&display=swap">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  /* Layout: a quiet maison. Full-bleed films carry the drama; between them, wide limestone pages
+     with one serif, hairline rules and generous air. One look, chosen deliberately: no dark-mode swap. */
+  color-scheme: light;
+  --paper:#f3efe9;
+  --paper-2:#e8e2d8;
+  --ink:#191714;
+  --ink-2:#6a6259;
+  --rule:#d5ccbf;
+  --night:#0f1412;
+  --on-night:#efe8dc;
+  --on-night-2:rgba(239,232,220,.66);
+  --gold:#b8935a;
+  --jade:#1f3b34;
+  --serif:'Bodoni Moda','Bodoni 72',Didot,'Times New Roman',serif;
+  --sans:'Tenor Sans','Gill Sans','Optima',system-ui,sans-serif;
+  --si:'Noto Serif Sinhala','Iskoola Pota','Nirmala UI',serif;
+  --gl:max(clamp(16px,4vw,56px), env(safe-area-inset-left, 0px));
+  --gr:max(clamp(16px,4vw,56px), env(safe-area-inset-right, 0px));
+  --ease:cubic-bezier(.22,.8,.18,1);
+  --slow:1.6s;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:90;background:var(--night)}
+h1,h2,h3,p,figure,ol,ul,dl,dd{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+img,video{display:block;max-width:100%}
+:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+.wrap{width:100%;max-width:1360px;margin-inline:auto;padding-left:var(--gl);padding-right:var(--gr)}
+.skip{position:absolute;left:-9999px;top:10px;z-index:100;background:var(--ink);color:var(--paper);padding:12px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none}
+.skip:focus{left:var(--gl)}
+
+/* ---------- Type ---------- */
+.kicker{font-size:11.5px;line-height:1.4;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-2)}
+.dark .kicker{color:var(--on-night-2)}
+.h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.2vw,76px);line-height:1.04;letter-spacing:-.015em;text-wrap:balance}
+.h2 em{font-style:italic}
+.body{font-size:16.5px;line-height:1.75;color:var(--ink-2);max-width:31em;text-wrap:pretty}
+.dark .body{color:var(--on-night-2)}
+
+/* ---------- Links and buttons ---------- */
+.cta-line{position:relative;display:inline-flex;align-items:center;gap:14px;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;padding-block:10px}
+.cta-line::before{content:"";position:absolute;left:0;right:0;bottom:4px;height:1px;background:currentColor;opacity:.35}
+.cta-line::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .9s var(--ease)}
+.cta-line:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 38px;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer;background:var(--ink);color:var(--paper);transition:background-color .6s var(--ease),color .6s var(--ease)}
+.btn:hover{background:var(--jade)}
+.btn.ghost{background:transparent;color:var(--on-night);box-shadow:inset 0 0 0 1px rgba(239,232,220,.5)}
+.btn.ghost:hover{background:var(--on-night);color:var(--night)}
+
+/* ---------- Header (Cartier-style centred maison mark) ---------- */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:60;color:var(--on-night);padding-top:env(safe-area-inset-top,0px);transition:background-color .8s var(--ease),color .8s var(--ease),transform .8s var(--ease),box-shadow .8s var(--ease)}
+.hdr::before{content:"";position:absolute;inset:0 0 -40px;background:linear-gradient(rgba(10,12,11,.55),rgba(10,12,11,0));pointer-events:none;transition:opacity .8s var(--ease)}
+.hdr.solid{background:var(--paper);color:var(--ink);box-shadow:0 1px 0 var(--rule)}
+.hdr.solid::before{opacity:0}
+.hdr.tuck{transform:translateY(-100%)}
+.hdr-row{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;height:84px;transition:height .8s var(--ease)}
+.hdr.compact .hdr-row{height:64px}
+.hdr-l,.hdr-r{display:flex;align-items:center;gap:26px}
+.hdr-r{justify-content:flex-end}
+.hdr-link{font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;opacity:.86;transition:opacity .4s}
+.hdr-link:hover{opacity:1}
+.menu-btn{display:inline-flex;align-items:center;gap:12px;background:none;border:0;padding:8px 0;cursor:pointer;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.menu-btn i{display:grid;gap:5px;width:20px}
+.menu-btn i::before,.menu-btn i::after{content:"";height:1px;background:currentColor}
+.menu-btn i::after{width:13px}
+.logo{display:grid;justify-items:center;gap:4px;text-decoration:none;text-align:center}
+.logo b{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2vw,27px);letter-spacing:.42em;margin-right:-.42em;line-height:1}
+.logo small{font-size:9.5px;letter-spacing:.34em;margin-right:-.34em;text-transform:uppercase;opacity:.7;max-height:20px;transition:opacity .6s,max-height .8s var(--ease)}
+.hdr.compact .logo small{opacity:0;max-height:0}
+.hdr-nav{display:flex;justify-content:center;gap:clamp(22px,3vw,44px);overflow:hidden;max-height:44px;transition:max-height .8s var(--ease),opacity .6s}
+.hdr-nav a{font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;padding:4px 0 18px;opacity:.82;transition:opacity .4s}
+.hdr-nav a:hover{opacity:1}
+.hdr.compact .hdr-nav{max-height:0;opacity:0}
+.ig{width:18px;height:18px}
+@media (max-width:860px){.hdr-nav,.hdr-link.hide-s{display:none}.hdr-row{height:68px}.menu-btn span{display:none}}
+
+/* ---------- Hero film ---------- */
+.hero{position:relative;height:min(100svh,1000px);min-height:600px;overflow:hidden;background:var(--night);color:var(--on-night)}
+.hero-film{position:absolute;inset:0}
+.hero-film img,.hero-film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.hero-film video{opacity:0;transition:opacity 1.8s var(--ease)}
+.hero-film video.on{opacity:1}
+.hero-film::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,10,.22) 0%,rgba(8,11,10,0) 28%,rgba(8,11,10,0) 50%,rgba(8,11,10,.82) 100%)}
+.hero-copy{position:absolute;left:0;right:0;bottom:clamp(40px,6vh,76px);display:grid;justify-items:center;text-align:center;gap:14px;z-index:2;padding-inline:var(--gl) var(--gr)}
+.hero-title{font-family:var(--serif);font-weight:400;font-size:clamp(84px,12.5vw,188px);line-height:.86;letter-spacing:-.02em;text-shadow:0 6px 40px rgba(0,0,0,.25)}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:clamp(19px,1.7vw,24px);line-height:1.35;color:var(--on-night);max-width:30em;text-wrap:balance}
+.hero .kicker{color:var(--on-night-2)}
+.line{display:block;overflow:hidden;padding-bottom:.06em}
+.line>span{display:inline-block}
+.js .line>span{animation:lineUp 1.7s var(--ease) var(--d,0s) both}
+@keyframes lineUp{from{transform:translateY(105%)}to{transform:none}}
+.js .fade-in{animation:fadeIn 1.6s var(--ease) var(--d,0s) both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.film-ctl{position:absolute;right:calc(var(--gr) - 6px);bottom:calc(clamp(40px,6vh,76px) - 6px);z-index:3;width:48px;height:48px;border:0;background:none;color:var(--on-night);cursor:pointer;display:grid;place-items:center}
+.film-ctl svg{position:absolute;inset:0}
+.film-ctl .track{fill:none;stroke:rgba(239,232,220,.25);stroke-width:1}
+.film-ctl .prog{fill:none;stroke:currentColor;stroke-width:1;stroke-dasharray:138.2;stroke-dashoffset:138.2;transform:rotate(-90deg);transform-origin:center}
+.film-ctl b{width:10px;height:12px;border-left:2px solid currentColor;border-right:2px solid currentColor}
+.film-ctl.paused b{width:0;height:0;border:0;border-left:10px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
+.scroll-cue{position:absolute;left:var(--gl);bottom:clamp(40px,6vh,76px);z-index:2;display:flex;align-items:center;gap:14px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--on-night-2)}
+.scroll-cue i{position:relative;width:1px;height:46px;background:rgba(239,232,220,.25);overflow:hidden}
+.scroll-cue i::after{content:"";position:absolute;left:0;top:-100%;width:1px;height:100%;background:var(--on-night);animation:cue 2.6s var(--ease) infinite}
+@keyframes cue{to{top:100%}}
+@media (max-width:700px){.scroll-cue{display:none}.hero-copy{bottom:84px}.film-ctl{bottom:20px}}
+
+/* ---------- Intro statement ---------- */
+.intro{padding-block:clamp(110px,15vw,210px) clamp(90px,12vw,170px);text-align:center}
+.intro .wrap{display:grid;justify-items:center;gap:36px}
+.statement{font-family:var(--serif);font-weight:400;font-size:clamp(27px,3.3vw,46px);line-height:1.32;letter-spacing:-.01em;max-width:23em;text-wrap:balance}
+.js .statement .w{color:#b9b0a4;transition:color .7s var(--ease)}
+.js .statement .w.on{color:var(--ink)}
+
+/* ---------- Collection ---------- */
+.coll{padding-bottom:clamp(110px,14vw,190px)}
+.coll-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding-bottom:28px;margin-bottom:clamp(36px,4vw,56px);border-bottom:1px solid var(--rule)}
+.coll-head>div{display:grid;gap:18px}
+.coll-head .count{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2)}
+.pieces{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);list-style:none;padding:0}
+.piece a{display:grid;gap:22px;text-decoration:none}
+.piece:nth-child(2){margin-top:clamp(40px,7vw,110px)}
+.media{position:relative;overflow:hidden;background:var(--paper-2);clip-path:inset(var(--clip,0%) var(--clip,0%) var(--clip,0%) var(--clip,0%))}
+.media>img,.media>video{width:100%;height:100%;object-fit:cover;transform:scale(var(--zoom,1));transition:transform 1.6s var(--ease)}
+.piece .media{aspect-ratio:3/4;max-width:100%}
+.piece a:hover .media>img{transform:scale(calc(var(--zoom,1) * 1.045))}
+.piece-cap{display:grid;justify-items:center;text-align:center;gap:6px}
+.piece h3{font-family:var(--serif);font-weight:400;font-size:clamp(21px,1.8vw,26px);line-height:1.2;letter-spacing:-.005em}
+.piece p{font-size:13.5px;color:var(--ink-2);letter-spacing:.02em}
+.piece .tag{margin-top:8px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);padding-bottom:4px;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .9s var(--ease)}
+.piece a:hover .tag{background-size:100% 1px}
+@media (max-width:860px){
+  .pieces{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:calc(var(--gr) * -1);padding-right:var(--gr)}
+  .pieces::-webkit-scrollbar{display:none}
+  .piece{scroll-snap-align:start}
+  .piece:nth-child(2){margin-top:0}
+}
+
+/* ---------- Chapters on night ---------- */
+.dark{background:var(--night);color:var(--on-night)}
+.chapter{padding-block:clamp(100px,13vw,180px)}
+.split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(40px,8vw,140px);align-items:center}
+.split .media{aspect-ratio:4/5;max-width:100%}
+.split-copy{display:grid;gap:28px;justify-items:start;max-width:30em}
+.forms{display:flex;flex-wrap:wrap;gap:8px 0;list-style:none;padding:0;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--on-night)}
+.forms li+li::before{content:"·";margin-inline:14px;color:var(--gold)}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+
+/* ---------- 916: the gold itself ---------- */
+.pure{position:relative;height:220vh;background:var(--night);color:var(--on-night)}
+.pure-stick{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
+.pure-stick video,.pure-stick img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(var(--pz,1.1))}
+.pure-stick::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 50%,rgba(8,6,4,.38),rgba(8,6,4,0) 100%),rgba(8,6,4,var(--shade,.5))}
+.pure-copy{position:relative;z-index:2;display:grid;justify-items:center;text-align:center;gap:26px;padding-inline:var(--gl) var(--gr)}
+.pure-num{font-family:var(--serif);font-weight:400;font-size:clamp(130px,25vw,400px);line-height:.8;letter-spacing:calc(var(--ls,0) * 1em);transform:scale(var(--ns,1));text-shadow:0 10px 60px rgba(0,0,0,.35)}
+.pure-copy .body{max-width:28em;color:var(--on-night);font-size:clamp(16px,1.4vw,19px);opacity:var(--to,1);transform:translateY(calc((1 - var(--to,1)) * 30px))}
+
+/* ---------- Made to order ---------- */
+.mto{padding-block:clamp(110px,14vw,190px)}
+.mto-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(40px,7vw,120px);align-items:center}
+.mto-copy{display:grid;gap:28px;justify-items:start}
+.steps{list-style:none;padding:0;width:100%;border-top:1px solid var(--rule)}
+.steps li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding-block:20px;border-bottom:1px solid var(--rule)}
+.steps .n{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--gold);line-height:1.4}
+.steps b{display:block;font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.35}
+.steps span{font-size:14.5px;color:var(--ink-2)}
+.mto .media{aspect-ratio:16/11;max-width:100%}
+@media (max-width:860px){.mto-grid{grid-template-columns:1fr}.mto .media{order:-1}}
+
+/* ---------- Gold rate ---------- */
+.rate{padding-block:clamp(100px,12vw,160px);background:var(--paper-2)}
+.rate-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,120px);align-items:start}
+.rate-copy{display:grid;gap:22px;justify-items:start}
+.karats{width:100%;border-top:1px solid var(--rule);margin-top:10px}
+.kr{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;gap:4px 20px;padding-block:22px;border-bottom:1px solid var(--rule)}
+.kr dt{font-family:var(--serif);font-size:34px;line-height:1;grid-row:span 2}
+.kr .v{text-align:right;font-family:var(--serif);font-size:clamp(28px,2.8vw,38px);line-height:1.1;font-variant-numeric:lining-nums tabular-nums}
+.kr .v small{font-family:var(--sans);font-size:11px;letter-spacing:.2em;margin-right:10px;color:var(--ink-2)}
+.kr .g{text-align:right;font-size:13.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--ink-2)}
+.weigh{display:grid;gap:30px;padding:clamp(28px,3.4vw,48px);background:var(--paper)}
+.weigh h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.2}
+.kseg{display:flex;gap:28px}
+.kseg button{background:none;border:0;padding:6px 0;cursor:pointer;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid transparent;transition:color .4s,border-color .4s}
+.kseg button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
+.field input{width:100%;border:0;border-bottom:1px solid var(--ink);background:transparent;border-radius:0;padding:8px 0 10px;font-family:var(--serif);font-size:30px;color:var(--ink);font-variant-numeric:lining-nums tabular-nums}
+.field input:focus{outline:none;border-bottom-width:2px;padding-bottom:9px}
+.result{display:grid;gap:4px;padding-top:22px;border-top:1px solid var(--rule)}
+.result span{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
+.result output{font-family:var(--serif);font-size:clamp(34px,3.4vw,48px);line-height:1.1;font-variant-numeric:lining-nums tabular-nums;overflow-wrap:anywhere}
+details.fx{width:100%;border-bottom:1px solid var(--rule)}
+details.fx summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding-block:20px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase}
+details.fx summary::-webkit-details-marker{display:none}
+details.fx summary i{position:relative;width:12px;height:12px}
+details.fx summary i::before,details.fx summary i::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:currentColor;transition:transform .5s var(--ease)}
+details.fx summary i::after{transform:rotate(90deg)}
+details.fx[open] summary i::after{transform:rotate(0)}
+.fx-scroll{overflow-x:auto;padding-bottom:20px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:lining-nums tabular-nums}
+th{font-weight:400;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);text-align:right;padding:8px 0 8px 16px;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+td{padding:10px 0 10px 16px;text-align:right;border-top:1px solid var(--rule);white-space:nowrap;font-size:15px}
+td:first-child{white-space:normal}
+td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);font-size:12px}
+@media (max-width:860px){.rate-grid{grid-template-columns:1fr}}
+@media (max-width:420px){.fields{grid-template-columns:1fr}}
+
+/* ---------- Maison ---------- */
+.maison{padding-block:clamp(110px,14vw,190px)}
+.maison-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,7vw,120px);align-items:center}
+.ran{font-family:var(--si);font-weight:500;font-size:clamp(150px,22vw,320px);line-height:1.1;text-align:center;background:linear-gradient(170deg,#ead19a 0%,#b8935a 45%,#7b5c2e 75%,#c9a76a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.maison-copy{display:grid;gap:28px;justify-items:start}
+.years{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;border-top:1px solid rgba(239,232,220,.18)}
+.years li{display:grid;gap:4px;padding:20px 14px 0 0;min-width:0}
+.years b{font-family:var(--serif);font-weight:400;font-size:26px;color:var(--gold)}
+.years span{font-size:13.5px;line-height:1.5;color:var(--on-night-2)}
+@media (max-width:860px){.maison-grid{grid-template-columns:1fr}.ran{text-align:left}}
+
+/* ---------- Appointment ---------- */
+.visit{padding-block:clamp(110px,14vw,190px);text-align:center}
+.visit-head{display:grid;justify-items:center;gap:22px;margin-bottom:clamp(50px,6vw,80px)}
+.visit-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-block:1px solid var(--rule);text-align:center}
+.visit-cols>div{display:grid;align-content:start;justify-items:center;gap:10px;padding:clamp(28px,3.4vw,44px) 16px;min-width:0}
+.visit-cols>div+div{border-left:1px solid var(--rule)}
+.visit-cols h3{font-size:10.5px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
+.visit-cols p,.visit-cols address{font-style:normal;font-family:var(--serif);font-size:clamp(19px,1.6vw,22px);line-height:1.5}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
+.status i{width:6px;height:6px;border-radius:50%;background:#4f8a6f}
+.status.closed i{background:#b0a596}
+.contact{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.contact span{font-family:var(--serif);font-size:clamp(19px,1.6vw,22px);font-variant-numeric:lining-nums;user-select:all;overflow-wrap:anywhere}
+.copy{background:none;border:0;padding:4px 0;cursor:pointer;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+.copy:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.visit-cta{display:flex;justify-content:center;align-items:center;gap:20px 34px;flex-wrap:wrap;margin-top:clamp(44px,5vw,64px)}
+@media (max-width:860px){.visit-cols{grid-template-columns:1fr}.visit-cols>div+div{border-left:0;border-top:1px solid var(--rule)}}
+
+/* ---------- Footer ---------- */
+.foot{background:var(--paper-2);color:var(--ink)}
+.foot-top{display:grid;grid-template-columns:1.3fr repeat(3,minmax(0,1fr));gap:32px;padding-block:clamp(60px,7vw,90px) 40px}
+.foot .logo{justify-items:start;text-align:left}
+.foot h4{margin:0 0 16px;font-weight:400;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
+.foot ul{list-style:none;padding:0;display:grid;gap:9px;font-size:14px}
+.foot a{text-decoration:none}
+.foot a:hover{text-decoration:underline;text-underline-offset:4px}
+.foot-note{padding-bottom:30px;font-size:12.5px;line-height:1.6;color:var(--ink-2);max-width:60em}
+.foot-bar{background:var(--jade);color:#e9e4d9;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+.foot-bar .wrap{display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;padding-block:20px calc(20px + env(safe-area-inset-bottom,0px))}
+@media (max-width:860px){.foot-top{grid-template-columns:1fr 1fr}.foot-top>:first-child{grid-column:1/-1}}
+
+/* ---------- Menu ---------- */
+.menu{position:fixed;inset:0;z-index:95;background:var(--night);color:var(--on-night);display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 8px) var(--gr) calc(env(safe-area-inset-bottom,0px) + 32px) var(--gl);overflow-y:auto}
+.menu[hidden]{display:none}
+.menu-top{display:flex;justify-content:space-between;align-items:center;min-height:68px}
+.menu nav{display:grid;gap:6px;margin-top:clamp(30px,8vh,80px)}
+.menu nav a{font-family:var(--serif);font-size:clamp(38px,6vw,72px);line-height:1.15;text-decoration:none;opacity:0;transform:translateY(24px);animation:menuIn 1.1s var(--ease) forwards;animation-delay:calc(var(--i) * 70ms + 120ms)}
+.menu nav a:hover{font-style:italic}
+@keyframes menuIn{to{opacity:1;transform:none}}
+.menu .meta{margin-top:auto;padding-top:40px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--on-night-2)}
+
+/* ---------- Reveal (from a visible resting state) ---------- */
+.js [data-rise]{transform:translateY(28px);opacity:.55;transition:transform 1.6s var(--ease) var(--d,0s),opacity 1.6s var(--ease) var(--d,0s)}
+.js [data-rise].in{transform:none;opacity:1}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important}
+  .js [data-rise]{transform:none;opacity:1}
+  .pure{height:auto}.pure-stick{position:relative;height:90vh}
+}
+</style>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-row">
+    <div class="hdr-l">
+      <button class="menu-btn" id="menu-open" type="button" aria-expanded="false" aria-controls="menu"><i aria-hidden="true"></i><span>Menu</span></button>
+      <a class="hdr-link hide-s" href="#visit">Contact</a>
+    </div>
+    <a class="logo" href="#top" aria-label="Ranlanka, back to top"><b>RANLANKA</b><small>Negombo · Since 2008</small></a>
+    <div class="hdr-r">
+      <a class="hdr-link hide-s" href="#visit">Book an appointment</a>
+      <a class="hdr-link" href="https://www.instagram.com/ranlankanegombo/" target="_blank" rel="noopener" aria-label="Ranlanka on Instagram"><svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".8" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+  <nav class="hdr-nav" aria-label="Main">
+    <a href="#collection">High jewellery</a>
+    <a href="#bride">Bridal</a>
+    <a href="#made-to-order">Made to order</a>
+    <a href="#rate">Gold rate</a>
+    <a href="#maison">The maison</a>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- Hero film -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-film" id="hero-film">
+      <img src="media/hero.jpg" alt="" aria-hidden="true">
+      <video id="hero-video" muted loop playsinline preload="auto" aria-label="Film: a model in kundan jewellery, a gold nath, maang tikka and hathphool, as a green veil falls away">
+        <source src="media/hero.mp4" type="video/mp4" media="(min-width: 701px)">
+        <source src="media/hero-sm.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-copy">
+      <p class="kicker fade-in" style="--d:.5s">Ranlanka High Jewellery</p>
+      <h1 class="hero-title" id="hero-title"><span class="line"><span style="--d:.35s">Rani</span></span></h1>
+      <p class="hero-sub"><span class="line"><span style="--d:.75s">Twenty-two karat gold, worn the way queens wore it.</span></span></p>
+      <a class="cta-line fade-in" style="--d:1.2s" href="#collection">Discover the collection</a>
+    </div>
+    <div class="scroll-cue fade-in" style="--d:1.6s" aria-hidden="true"><i></i>Scroll</div>
+    <button class="film-ctl fade-in" style="--d:1.6s" id="film-ctl" type="button" aria-label="Pause the film">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="track" cx="24" cy="24" r="22"/><circle class="prog" id="film-prog" cx="24" cy="24" r="22"/></svg>
+      <b aria-hidden="true"></b>
+    </button>
+  </section>
+
+  <!-- Statement -->
+  <section class="intro" aria-label="About the Rani collection">
+    <div class="wrap">
+      <p class="kicker">The Rani collection</p>
+      <p class="statement" id="statement">Rani is made in Negombo in twenty-two karat gold. It is heavy and warm, and it is meant to be handed down. Every piece is weighed in front of you and priced at the day's gold rate.</p>
+      <a class="cta-line" href="#maison">The maison</a>
+    </div>
+  </section>
+
+  <!-- Collection -->
+  <section class="coll" id="collection" aria-labelledby="coll-title">
+    <div class="wrap">
+      <div class="coll-head" data-rise>
+        <div>
+          <p class="kicker">High jewellery</p>
+          <h2 class="h2" id="coll-title">Three creations</h2>
+        </div>
+        <p class="count">22 karat yellow gold</p>
+      </div>
+      <ul class="pieces">
+        <li class="piece" data-rise>
+          <a href="#visit">
+            <figure class="media" data-scrub><img src="media/jhumka.webp" width="1200" height="1600" loading="lazy" alt="A pair of 22 karat gold temple jhumkas with ruby flower studs, gold granulation and pearl fringes"></figure>
+            <div class="piece-cap"><h3>Rani temple jhumkas</h3><p>Yellow gold, rubies, pearls</p><span class="tag">See it in the showroom</span></div>
+          </a>
+        </li>
+        <li class="piece" data-rise style="--d:.12s">
+          <a href="#visit">
+            <figure class="media" data-scrub><img src="media/choker.webp" width="1200" height="1600" loading="lazy" alt="A 22 karat gold kundan choker with uncut diamonds, rubies, emerald drops and pearls"></figure>
+            <div class="piece-cap"><h3>Rani kundan choker</h3><p>Yellow gold, polki diamonds, rubies, emeralds</p><span class="tag">See it in the showroom</span></div>
+          </a>
+        </li>
+        <li class="piece" data-rise style="--d:.24s">
+          <a href="#visit">
+            <figure class="media" data-scrub><img src="media/hands.webp" width="1200" height="1600" loading="lazy" alt="A bride's hands with henna, wearing 22 karat gold bangles, an engraved kada and a ruby flower ring, on a red silk saree"></figure>
+            <div class="piece-cap"><h3>Rani bangles &amp; kada</h3><p>Yellow gold, engraved and beaded</p><span class="tag">See it in the showroom</span></div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Chapter I: the bride -->
+  <section class="dark chapter" id="bride" aria-labelledby="bride-title">
+    <div class="wrap split">
+      <figure class="media" data-scrub>
+        <video data-auto muted loop playsinline preload="metadata" poster="media/bride.jpg" aria-label="Film: close-up of a model wearing a kundan nath, maang tikka and hathphool rings">
+          <source src="media/bride.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <div class="split-copy" data-rise>
+        <p class="kicker">Chapter I · The bride</p>
+        <h2 class="h2" id="bride-title">Gold from brow <em>to fingertip.</em></h2>
+        <p class="body">The maang tikka, the nath, the jhumkas, the choker and the hathphool are chosen together at our counter. Bring your family and take your time. We bring out the trays and weigh every piece in front of you.</p>
+        <ul class="forms" aria-label="The bridal set">
+          <li>Maang tikka</li><li>Nath</li><li>Jhumkas</li><li>Choker</li><li>Hathphool</li>
+        </ul>
+        <a class="btn ghost" href="#visit">Book a bridal appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 916 -->
+  <section class="pure" id="pure" aria-labelledby="pure-title">
+    <div class="pure-stick">
+      <video data-auto muted loop playsinline preload="metadata" poster="media/gold.jpg" aria-label="Film: molten gold poured into a mould">
+        <source src="media/gold.mp4" type="video/mp4">
+      </video>
+      <div class="pure-copy">
+        <p class="kicker" style="color:var(--on-night-2)">Twenty-two karat</p>
+        <h2 class="pure-num" id="pure-title" aria-label="916">916</h2>
+        <p class="body">Nine hundred and sixteen parts pure gold in every thousand. It is the only gold we sell, and in Sri Lanka it is weighed by the pawn of eight grams.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter II: made to order -->
+  <section class="mto" id="made-to-order" aria-labelledby="mto-title">
+    <div class="wrap mto-grid">
+      <div class="mto-copy" data-rise>
+        <p class="kicker">Chapter II · Made to order</p>
+        <h2 class="h2" id="mto-title">Your design, made by hand <em>on Main Street.</em></h2>
+        <p class="body">Bring a sketch, a photograph or a family piece you want remade. Nothing is made until you have seen the drawing and agreed the price.</p>
+        <ol class="steps">
+          <li><span class="n">i.</span><div><b>Bring your idea</b><span>A drawing, a photo or an heirloom.</span></div></li>
+          <li><span class="n">ii.</span><div><b>See it drawn and weighed</b><span>We give you its weight in pawn and its price at the day's rate.</span></div></li>
+          <li><span class="n">iii.</span><div><b>Collect your piece</b><span>Finished in 22 karat gold, at the showroom.</span></div></li>
+        </ol>
+      </div>
+      <figure class="media" data-scrub>
+        <video data-auto muted loop playsinline preload="metadata" poster="media/kada.jpg" aria-label="Film: a kundan kada set with uncut stones, turning slowly in warm light">
+          <source src="media/kada.mp4" type="video/mp4">
+        </video>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Gold rate -->
+  <section class="rate" id="rate" aria-labelledby="rate-title">
+    <div class="wrap rate-grid">
+      <div class="rate-copy" data-rise>
+        <p class="kicker">Services</p>
+        <h2 class="h2" id="rate-title">Today's gold rate</h2>
+        <dl class="karats">
+          <div class="kr"><dt>22K</dt><dd class="v"><small>LKR</small>312,000</dd><dd class="g">a pawn · LKR 39,000 a gram</dd></div>
+          <div class="kr"><dt>24K</dt><dd class="v"><small>LKR</small>340,000</dd><dd class="g">a pawn · LKR 42,500 a gram</dd></div>
+        </dl>
+        <p class="note">Sample figures. The rate follows the world gold price and is posted each morning.</p>
+        <details class="fx" id="fx">
+          <summary>Money exchange, no commission <i aria-hidden="true"></i></summary>
+          <div class="fx-scroll">
+            <table>
+              <thead><tr><th scope="col">Currency</th><th scope="col">We buy</th><th scope="col">We sell</th></tr></thead>
+              <tbody>
+                <tr><td><b>USD</b>US Dollar</td><td>297.40</td><td>303.10</td></tr>
+                <tr><td><b>EUR</b>Euro</td><td>344.80</td><td>352.60</td></tr>
+                <tr><td><b>GBP</b>Pound Sterling</td><td>397.20</td><td>406.50</td></tr>
+                <tr><td><b>AUD</b>Australian Dollar</td><td>194.30</td><td>199.80</td></tr>
+                <tr><td><b>AED</b>UAE Dirham</td><td>80.70</td><td>83.10</td></tr>
+                <tr><td><b>INR</b>Indian Rupee</td><td>3.36</td><td>3.52</td></tr>
+              </tbody>
+            </table>
+            <p class="note" style="margin-top:12px">Sample figures, rupees for one unit.</p>
+          </div>
+        </details>
+      </div>
+      <div class="weigh" data-rise style="--d:.1s">
+        <h3>Weigh your gold</h3>
+        <div class="kseg" role="group" aria-label="Karat">
+          <button type="button" data-k="22" aria-pressed="true">22 karat</button>
+          <button type="button" data-k="24" aria-pressed="false">24 karat</button>
+        </div>
+        <div class="fields">
+          <div class="field"><label for="grams">Grams</label><input id="grams" type="number" inputmode="decimal" min="0" step="0.1" value="24"></div>
+          <div class="field"><label for="pawn">Pawn</label><input id="pawn" type="number" inputmode="decimal" min="0" step="0.125" value="3"></div>
+        </div>
+        <div class="result"><span>Gold value at the sample rate</span><output id="value" for="grams pawn">LKR 936,000</output></div>
+        <p class="note">One pawn is eight grams. Making charges are quoted separately.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The maison -->
+  <section class="dark maison" id="maison" aria-labelledby="maison-title">
+    <div class="wrap maison-grid">
+      <p class="ran" lang="si" aria-hidden="true" data-rise>රන්</p>
+      <div class="maison-copy" data-rise style="--d:.1s">
+        <p class="kicker">The maison</p>
+        <h2 class="h2" id="maison-title">Ran is the Sinhala word <em>for gold.</em></h2>
+        <p class="body">Mr. Anas opened a small gold shop in Negombo town in 2008. By 2011 it had become the showroom on Main Street. The promise has not changed: honest gold, fair rates, and designs that last longer than fashion.</p>
+        <ol class="years" style="list-style:none;padding:0">
+          <li><b>2008</b><span>The first shop, Negombo town</span></li>
+          <li><b>2011</b><span>The showroom on Main Street</span></li>
+          <li><b>Today</b><span>Jewellery, made to order and money exchange</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment -->
+  <section class="visit" id="visit" aria-labelledby="visit-title">
+    <div class="wrap">
+      <div class="visit-head" data-rise>
+        <p class="kicker">Ranlanka, Negombo</p>
+        <h2 class="h2" id="visit-title">Book an appointment</h2>
+        <p class="body" style="margin-inline:auto">Call ahead and we will keep the trays ready and a seat for each of you at the counter.</p>
+      </div>
+      <div class="visit-cols" data-rise>
+        <div><h3>The showroom</h3><address>192 Main Street<br>Negombo 11500</address></div>
+        <div><h3>Hours</h3><p>Monday to Saturday<br>10 am to 7:30 pm</p><span class="status" id="status"><i></i><span id="status-text">Closed Sundays and Poya days</span></span></div>
+        <div>
+          <h3>Call or write</h3>
+          <div class="contact"><span>031 222 2202</span><button class="copy" type="button" data-copy="031 222 2202">Copy</button></div>
+          <div class="contact"><span>031 223 8383</span><button class="copy" type="button" data-copy="031 223 8383">Copy</button></div>
+          <div class="contact"><span>ranlankanegombo@gmail.com</span><button class="copy" type="button" data-copy="ranlankanegombo@gmail.com">Copy</button></div>
+        </div>
+      </div>
+      <div class="visit-cta">
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Ranlanka%2C%20192%20Main%20Street%2C%20Negombo" target="_blank" rel="noopener">Get directions</a>
+        <a class="cta-line" href="https://www.instagram.com/ranlankanegombo/" target="_blank" rel="noopener">Follow on Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-top">
+    <div><a class="logo" href="#top"><b>RANLANKA</b><small>Negombo · Since 2008</small></a></div>
+    <div><h4>Collections</h4><ul><li><a href="#collection">Rani high jewellery</a></li><li><a href="#bride">Bridal</a></li><li><a href="#made-to-order">Made to order</a></li></ul></div>
+    <div><h4>Services</h4><ul><li><a href="#rate">Gold rate</a></li><li><a href="#fx">Money exchange</a></li><li><a href="#visit">Book an appointment</a></li></ul></div>
+    <div><h4>Follow</h4><ul><li><a href="https://www.instagram.com/ranlankanegombo/" target="_blank" rel="noopener">Instagram</a></li><li>031 222 2202</li><li>ranlankanegombo@gmail.com</li></ul></div>
+  </div>
+  <div class="wrap"><p class="foot-note">Gold and exchange rates on this page are sample figures. Films are Mixkit stock footage and the product photographs are AI-generated for this concept, so the pieces shown are not Ranlanka stock.</p></div>
+  <div class="foot-bar"><div class="wrap"><span>Ranlanka · 192 Main Street, Negombo</span><span>© 2026 Ranlanka Jewellery (Pvt) Ltd</span></div></div>
+</footer>
+
+<div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="menu-top">
+    <span class="logo" style="justify-items:start"><b>RANLANKA</b></span>
+    <button class="menu-btn" id="menu-close" type="button">Close</button>
+  </div>
+  <nav aria-label="Menu">
+    <a href="#collection" style="--i:0">High jewellery</a>
+    <a href="#bride" style="--i:1">Bridal</a>
+    <a href="#made-to-order" style="--i:2">Made to order</a>
+    <a href="#rate" style="--i:3">Gold rate</a>
+    <a href="#maison" style="--i:4">The maison</a>
+    <a href="#visit" style="--i:5">Book an appointment</a>
+  </nav>
+  <p class="meta">192 Main Street, Negombo · 031 222 2202</p>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const ease = t => 1 - Math.pow(1 - t, 3);
+
+  /* ---------- Hero film ---------- */
+  const heroV = $('#hero-video'), ctl = $('#film-ctl'), prog = $('#film-prog');
+  let userPaused = false;
+  const reveal = () => heroV.classList.add('on');
+  heroV.addEventListener('playing', reveal);
+  heroV.addEventListener('timeupdate', () => {
+    if (heroV.duration) prog.style.strokeDashoffset = (138.2 * (1 - heroV.currentTime / heroV.duration)).toFixed(1);
+  });
+  const setCtl = paused => { ctl.classList.toggle('paused', paused); ctl.setAttribute('aria-label', paused ? 'Play the film' : 'Pause the film'); };
+  ctl.addEventListener('click', () => {
+    if (heroV.paused) { userPaused = false; heroV.play().then(reveal).catch(() => {}); setCtl(false); }
+    else { userPaused = true; heroV.pause(); setCtl(true); }
+  });
+  if (reduce) setCtl(true);
+
+  /* ---------- Films play only while on screen ---------- */
+  const films = [heroV, ...$$('video[data-auto]')];
+  const vio = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting && !reduce && !(v === heroV && userPaused)) v.play().catch(() => {});
+    else if (!e.isIntersecting) v.pause();
+  }), { threshold: 0.12 });
+  films.forEach(v => vio.observe(v));
+
+  /* ---------- Header ---------- */
+  const hdr = $('#hdr'), hero = $('#top');
+  let lastY = scrollY;
+  function header() {
+    const y = scrollY, past = y > hero.offsetHeight - 70;
+    hdr.classList.toggle('compact', y > 40);
+    hdr.classList.toggle('solid', past);
+    hdr.classList.toggle('tuck', past && y > lastY + 2 && menu.hidden);
+    if (y < lastY - 2) hdr.classList.remove('tuck');
+    lastY = y;
+  }
+
+  /* ---------- Statement: words fill in as you read ---------- */
+  const st = $('#statement'), words = [];
+  if (st) {
+    const parts = st.textContent.split(/(\s+)/);
+    st.textContent = '';
+    parts.forEach(t => {
+      if (/^\s+$/.test(t) || !t) { st.appendChild(document.createTextNode(t)); return; }
+      const s = document.createElement('span'); s.className = 'w'; s.textContent = t; st.appendChild(s); words.push(s);
+    });
+  }
+
+  /* ---------- Scroll choreography ---------- */
+  const scrubs = $$('[data-scrub]'), heroFilm = $('#hero-film'), heroCopy = $('.hero-copy');
+  const pure = $('#pure'), pureStick = $('.pure-stick'), pureNum = $('.pure-num'), pureBody = $('.pure-copy .body');
+  let ticking = false;
+  function frame() {
+    ticking = false;
+    header();
+    const vh = innerHeight;
+    if (!reduce) {
+      const hp = clamp(scrollY / Math.max(1, hero.offsetHeight), 0, 1);
+      heroFilm.style.transform = `translateY(${(hp * 18).toFixed(2)}%) scale(${(1 + hp * 0.08).toFixed(4)})`;
+      heroCopy.style.transform = `translateY(${(-hp * 60).toFixed(1)}px)`;
+      heroCopy.style.opacity = (1 - hp * 1.6).toFixed(3);
+      scrubs.forEach(el => {
+        const r = el.getBoundingClientRect();
+        const p = ease(clamp((vh - r.top) / (vh * 0.85), 0, 1));
+        el.style.setProperty('--clip', ((1 - p) * 6).toFixed(2) + '%');
+        el.style.setProperty('--zoom', (1 + (1 - p) * 0.14).toFixed(4));
+      });
+      const pr = pure.getBoundingClientRect();
+      const pp = clamp(-pr.top / Math.max(1, pr.height - vh), 0, 1);
+      pureStick.style.setProperty('--pz', (1.12 - pp * 0.12).toFixed(4));
+      pureStick.style.setProperty('--shade', (0.42 + pp * 0.26).toFixed(3));
+      pureNum.style.setProperty('--ns', (1.18 - ease(clamp(pp * 1.6, 0, 1)) * 0.18).toFixed(4));
+      pureNum.style.setProperty('--ls', (0.08 - ease(clamp(pp * 1.6, 0, 1)) * 0.1).toFixed(4));
+      pureBody.style.setProperty('--to', (0.35 + ease(clamp((pp - 0.15) * 2.2, 0, 1)) * 0.65).toFixed(3));
+    }
+    if (words.length) {
+      const r = st.getBoundingClientRect();
+      const p = clamp((vh * 0.82 - r.top) / (r.height + vh * 0.25), 0, 1);
+      const n = Math.round(p * words.length * 1.05);
+      words.forEach((w, i) => w.classList.toggle('on', i < n));
+    }
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+  addEventListener('resize', frame);
+
+  /* ---------- Rise on enter ---------- */
+  const rio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  $$('[data-rise]').forEach(el => rio.observe(el));
+
+  /* ---------- Menu ---------- */
+  const menu = $('#menu'), openBtn = $('#menu-open'), closeBtn = $('#menu-close');
+  function setMenu(on, focus = true) {
+    menu.hidden = !on;
+    openBtn.setAttribute('aria-expanded', String(on));
+    document.documentElement.style.overflow = on ? 'hidden' : '';
+    if (focus) (on ? closeBtn : openBtn).focus();
+  }
+  openBtn.addEventListener('click', () => setMenu(true));
+  closeBtn.addEventListener('click', () => setMenu(false));
+  $$('#menu a').forEach(a => a.addEventListener('click', () => setMenu(false, false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) setMenu(false); });
+  $$('a[href="#fx"]').forEach(a => a.addEventListener('click', () => { $('#fx').open = true; }));
+
+  frame();
+
+  /* ---------- Opening status, Sri Lanka time ---------- */
+  function updateStatus() {
+    let day, mins;
+    try {
+      const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Colombo', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+      const get = t => (parts.find(p => p.type === t) || {}).value;
+      day = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[get('weekday')];
+      mins = (Number(get('hour')) % 24) * 60 + Number(get('minute'));
+    } catch (e) { return; }
+    const work = day >= 1 && day <= 6, open = work && mins >= 600 && mins < 1170;
+    $('#status-text').textContent = open ? 'Open now, until 7:30 pm'
+      : work && mins < 600 ? 'Opens today at 10 am'
+      : day === 6 || day === 0 ? 'Closed now, opens Monday at 10 am' : 'Closed now, opens tomorrow at 10 am';
+    $('#status').classList.toggle('closed', !open);
+  }
+  updateStatus(); setInterval(updateStatus, 60000);
+
+  /* ---------- Weigh your gold (1 pawn = 8 g) ---------- */
+  const RATE = { 22: 312000, 24: 340000 }; // sample rates, LKR a pawn
+  let karat = 22;
+  const gIn = $('#grams'), pIn = $('#pawn'), out = $('#value');
+  const tidy = n => String(Number(n.toFixed(3)));
+  function convert(from) {
+    if (from === 'g') { const v = parseFloat(gIn.value); pIn.value = Number.isFinite(v) ? tidy(v / 8) : ''; }
+    if (from === 'p') { const v = parseFloat(pIn.value); gIn.value = Number.isFinite(v) ? tidy(v * 8) : ''; }
+    const pawn = parseFloat(pIn.value);
+    out.textContent = Number.isFinite(pawn) && pawn >= 0 ? 'LKR ' + Math.round(pawn * RATE[karat]).toLocaleString('en-US') : 'Enter a weight';
+  }
+  gIn.addEventListener('input', () => convert('g'));
+  pIn.addEventListener('input', () => convert('p'));
+  $$('.kseg button').forEach(b => b.addEventListener('click', () => {
+    karat = Number(b.dataset.k);
+    $$('.kseg button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    convert();
+  }));
+  convert('g');
+
+  /* ---------- Copy ---------- */
+  $$('[data-copy]').forEach(btn => btn.addEventListener('click', () => {
+    const flash = t => { btn.textContent = t; setTimeout(() => { btn.textContent = 'Copy'; }, 1600); };
+    const select = () => { const r = document.createRange(); r.selectNodeContents(btn.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); flash('Selected'); };
+    try { navigator.clipboard.writeText(btn.dataset.copy).then(() => flash('Copied'), select); } catch (e) { select(); }
+  }));
+})();
+</script>
+
+</body>
+</html>

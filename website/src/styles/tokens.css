@@ -1,0 +1,43 @@
+/* Ranlanka design tokens.
+   Layout: a royal fashion issue. Films and a magazine cover carry the drama; ivory pages are set
+   like a cover story in Didone capitals; dark chapters are wine and garnet, never black.
+   One look, chosen deliberately: there is no dark-mode swap. */
+:root{
+  color-scheme: light;
+
+  /* Ivory pages */
+  --ivory:#f5ede1;
+  --ivory-2:#ece0cd;
+  --sand:#e2cfb2;
+  --ink:#2c1416;
+  --ink-2:#76594a;
+  --rule:#dcc7a8;
+
+  /* Wine chapters */
+  --wine:#5a1622;
+  --wine-hi:#7c2333;
+  --wine-deep:#3f0f18;
+  --garnet:#8f2b3c;
+  --on-wine:#f7ecd9;
+  --on-wine-2:rgba(247,236,217,.76);
+  --wine-surface:radial-gradient(120% 90% at 50% 0%,var(--wine-hi) 0%,var(--wine) 46%,var(--wine-deep) 100%);
+
+  /* Gold */
+  --gold:#c9a45c;
+  --gold-hi:#ead296;
+  --gold-deep:#9a7432;
+  --gilt:linear-gradient(178deg,#f6e3a9 0%,#d8b36a 38%,#a97d34 62%,#e3c27c 82%,#b48a3e 100%);
+
+  /* Type: three royal serifs */
+  --mast:'Bodoni Moda',Didot,'Bodoni 72','Times New Roman',serif;
+  --disp:'Noto Serif Display',Didot,'Bodoni 72',Georgia,serif;
+  --text:'Cormorant Garamond','Cormorant',Garamond,Georgia,serif;
+  --si:'Noto Serif Sinhala','Iskoola Pota','Nirmala UI',serif;
+
+  /* Space and motion */
+  --gl:max(clamp(16px,4vw,56px), env(safe-area-inset-left, 0px));
+  --gr:max(clamp(16px,4vw,56px), env(safe-area-inset-right, 0px));
+  --sec:clamp(100px,13vw,180px);
+  --ease:cubic-bezier(.22,.8,.18,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}

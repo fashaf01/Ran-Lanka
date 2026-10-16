@@ -1,4 +1,4 @@
-// The intro: the maison mark is drawn in gold while a counter weighs the gold up to 916.
+// The intro: the Ranlanka lamp is lit while a counter weighs the gold up to 916.
 // It plays once per visit and never for reduced motion (the inline head script decides).
 import { $ } from './core.js';
 
@@ -6,26 +6,25 @@ export function initLoader(onDone) {
   const root = document.documentElement, intro = $('#intro');
   if (!intro || !root.classList.contains('is-loading')) { intro?.remove(); onDone(); return; }
 
-  // Copy the mark into the intro so its strokes can be drawn independently of the header logo.
-  const svg = $('.intro-mark', intro), sym = $('#mark');
+  // Light the lamp: copy the Ranlanka mark into the intro and pour its gold and silver in along
+  // their centre lines (masks), while CSS kindles the flame.
+  const svg = $('.intro-mark', intro), sym = $('#rl-mark');
   if (svg instanceof SVGElement && sym) {
     svg.setAttribute('viewBox', sym.getAttribute('viewBox'));
-    svg.textContent = '';
+    svg.innerHTML = `<defs>
+      <mask id="im-swirl" maskUnits="userSpaceOnUse" x="-10" y="-10" width="112" height="160"><path class="m-line m-swirl" pathLength="1" d="M69 5C56 26 30 48 18 70C8 88 6 104 12 114C18 124 30 122 40 122C54 122 66 114 68 100C69 94 68 89 66 85"/></mask>
+      <mask id="im-cres" maskUnits="userSpaceOnUse" x="-10" y="-10" width="112" height="160"><path class="m-line m-cres" pathLength="1" d="M53 62C72 64 86 80 86 99C86 118 70 135 48 136C38 136 29 133 21 131"/></mask>
+    </defs>`;
     for (const node of sym.children) {
       const c = node.cloneNode(true);
-      const stroked = c.hasAttribute('stroke') && c.getAttribute('fill') === 'none';
-      if (stroked || (c.hasAttribute('stroke') && !c.hasAttribute('fill') && c.tagName !== 'text')) {
-        c.classList.add('draw');
-        c.setAttribute('pathLength', '1');
-      } else {
-        c.classList.add('fill');
-      }
+      if (c.classList.contains('rl-swirl')) c.setAttribute('mask', 'url(#im-swirl)');
+      if (c.classList.contains('rl-crescent')) c.setAttribute('mask', 'url(#im-cres)');
       svg.appendChild(c);
     }
   }
 
   const n = $('#intro-n'), count = $('.intro-count', intro);
-  const t0 = performance.now(), dur = 2100;
+  const t0 = performance.now(), dur = 2200;
   let fast = false, done = false;
   const fonts = Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), new Promise(r => setTimeout(r, 2600))]);
   let fontsReady = false;

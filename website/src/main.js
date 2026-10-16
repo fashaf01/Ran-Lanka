@@ -1,4 +1,5 @@
 // Ranlanka: Rani high jewellery. Entry point.
+import './styles/fonts.css';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/sections.css';
@@ -14,6 +15,7 @@ import { initSound } from './modules/sound.js';
 import { initVisit } from './modules/visit.js';
 import { initScale } from './modules/scale.js';
 import { initGoldType } from './modules/goldtype.js';
+import { initSizer } from './modules/sizer.js';
 
 const loading = document.documentElement.classList.contains('is-loading');
 
@@ -26,5 +28,6 @@ initPointer();
 initSound();
 initVisit();
 initScale();
+initSizer();
 initGoldType();
 initLoader(() => { if (loading) lockScroll(false); });

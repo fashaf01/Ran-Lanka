@@ -5,22 +5,27 @@
 body::after{content:"";position:fixed;inset:0;z-index:150;pointer-events:none;opacity:.07;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .08 0 0 0 0 .1 0 0 0 1.6 -.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* ---------- Intro: the mark drawn in gold while the counter weighs to 916 ---------- */
+/* ---------- Intro: the lamp is lit. Gold pours along the swirl, the silver crescent follows,
+   the flame catches, then the wordmark is drawn while the counter weighs the gold to 916. ---------- */
 .intro{display:none}
-.js .intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--wine);background-image:var(--wine-surface);color:var(--gold-hi);clip-path:inset(0 0 0 0);transition:clip-path 1.25s var(--ease-out),visibility 0s 1.25s}
+.js .intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--crimson);background-image:var(--crimson-surface);color:var(--on-crimson);clip-path:inset(0 0 0 0);transition:clip-path 1.25s var(--ease-out),visibility 0s 1.25s}
 .js .intro.done{clip-path:inset(0 0 100% 0);visibility:hidden}
-.intro::before{content:"";position:absolute;inset:0;background:radial-gradient(38% 30% at 50% 46%,rgba(234,210,150,.16),transparent 70%);pointer-events:none}
-.intro-in{position:relative;display:grid;justify-items:center;gap:26px;transition:transform 1.25s var(--ease-out),opacity .7s var(--ease)}
+.intro::before{content:"";position:absolute;inset:0;background:radial-gradient(30% 26% at 50% 42%,rgba(246,233,174,.3),transparent 70%);opacity:0;animation:fadeIn 1.4s var(--ease) 1s forwards;pointer-events:none}
+.intro-in{position:relative;display:grid;justify-items:center;gap:30px;transition:transform 1.25s var(--ease-out),opacity .7s var(--ease)}
 .intro.done .intro-in{transform:translateY(-70px);opacity:0}
-.intro-mark{width:clamp(74px,8vw,100px);height:auto;overflow:visible;filter:drop-shadow(0 0 18px rgba(234,210,150,.25))}
-.intro-mark .draw{stroke:url(#g-gilt);stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.9s var(--ease) .15s forwards}
-.intro-mark .fill{fill:url(#g-gilt);opacity:0;transform:translateY(8px);transform-box:fill-box;animation:markFill 1.1s var(--ease) 1s forwards}
+.intro-mark{width:clamp(78px,8vw,108px);height:auto;overflow:visible}
+.intro-mark .m-line{fill:none;stroke:#fff;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.intro-mark .m-swirl{stroke-width:26;animation:draw 1.2s cubic-bezier(.55,.1,.3,1) .1s forwards}
+.intro-mark .m-cres{stroke-width:15;animation:draw .9s var(--ease) .7s forwards}
+.intro-mark .rl-flame{transform-box:fill-box;transform-origin:50% 100%;transform:scale(0);filter:drop-shadow(0 0 5px rgba(246,233,174,.85));animation:ignite .9s var(--ease-out) 1s forwards,flicker 2.6s ease-in-out 1.9s infinite}
 @keyframes draw{to{stroke-dashoffset:0}}
-@keyframes markFill{to{opacity:1;transform:none}}
-.intro-name{font:600 clamp(20px,2.3vw,30px)/1 var(--mast);font-variation-settings:"opsz" 34;letter-spacing:.46em;margin-right:-.46em;background:var(--gilt);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;animation:fadeIn 1.2s var(--ease) .5s forwards}
-.intro-count{display:grid;justify-items:center;gap:8px;opacity:0;animation:fadeIn 1s var(--ease) .7s forwards}
+@keyframes ignite{0%{transform:scale(0)}60%{transform:scale(1.06,1.14)}100%{transform:scale(1)}}
+@keyframes flicker{0%,100%{transform:scale(1)}40%{transform:scale(.97,1.04)}70%{transform:scale(1.02,.98)}}
+.intro-word{width:clamp(220px,24vw,330px);aspect-ratio:895/84;height:auto;clip-path:inset(0 100% 0 0);animation:wipe 1s var(--ease) 1.2s forwards}
+@keyframes wipe{to{clip-path:inset(0 0 0 0)}}
+.intro-count{display:grid;justify-items:center;gap:8px;opacity:0;animation:fadeIn 1s var(--ease) .4s forwards}
 #intro-n{font:500 clamp(13px,1vw,15px)/1 var(--mast);letter-spacing:.32em;margin-right:-.32em;font-variant-numeric:tabular-nums lining-nums;color:var(--gold-hi)}
-.intro-count small{font:italic 500 11px/1 var(--disp);letter-spacing:.24em;text-transform:uppercase;color:var(--on-wine-2)}
+.intro-count small{font:italic 500 11px/1 var(--disp);letter-spacing:.24em;text-transform:uppercase;color:var(--on-crimson-2)}
 .intro-count::before{content:"";width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-hi),transparent);transform:scaleX(var(--p,0));transition:transform .2s linear;order:2}
 .intro-count small{order:3}
 html.is-loading{overflow:hidden}
@@ -31,9 +36,9 @@ html.is-loading{overflow:hidden}
 .gt-on{background:none!important;filter:none!important;-webkit-text-fill-color:transparent;color:transparent}
 .gt-canvas{position:absolute;display:block;pointer-events:none;max-width:none}
 
-/* ---------- Cursor: a wine disc that names the action ---------- */
+/* ---------- Cursor: a crimson disc that names the action ---------- */
 .cursor{position:fixed;left:0;top:0;z-index:130;pointer-events:none;transform:translate3d(var(--cx,-300px),var(--cy,-300px),0)}
-.cursor::before{content:"";position:absolute;left:-48px;top:-48px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 34% 28%,var(--wine-hi),var(--wine) 62%,var(--wine-deep));box-shadow:inset 0 0 0 1px rgba(234,210,150,.55),0 20px 40px -14px rgba(63,15,24,.55);transform:scale(0);transition:transform .7s var(--ease-out)}
+.cursor::before{content:"";position:absolute;left:-48px;top:-48px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 34% 28%,var(--crimson-hi),var(--crimson) 62%,var(--crimson-deep));box-shadow:inset 0 0 0 1px rgba(239,226,164,.55),0 20px 40px -14px rgba(94,16,41,.55);transform:scale(0);transition:transform .7s var(--ease-out)}
 .cursor-label{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font-size:10.5px;letter-spacing:.26em;margin-left:.13em;text-transform:uppercase;white-space:nowrap;color:var(--gold-hi);opacity:0;transition:opacity .3s}
 .cursor.on::before{transform:scale(1)}
 .cursor.on .cursor-label{opacity:1;transition-delay:.12s}
@@ -43,21 +48,21 @@ html.is-loading{overflow:hidden}
 .loupe{position:fixed;left:0;top:0;z-index:129;pointer-events:none;transform:translate3d(var(--lx,-400px),var(--ly,-400px),0)}
 .loupe::before,.loupe::after{content:"";position:absolute;left:-105px;top:-105px;width:210px;height:210px;border-radius:50%;transform:scale(.2);opacity:0;transition:transform .55s var(--ease-out),opacity .35s var(--ease)}
 .loupe::before{background-color:var(--ivory-2);background-image:var(--img,none);background-repeat:no-repeat;background-size:var(--bs,100% 100%);background-position:var(--bp,50% 50%);
-  box-shadow:0 0 0 1px rgba(246,227,169,.95),0 0 0 8px var(--wine),0 0 0 9px rgba(234,210,150,.8),0 34px 60px -18px rgba(40,6,12,.65)}
-.loupe::after{background:radial-gradient(circle at 32% 24%,rgba(255,250,235,.38),rgba(255,250,235,0) 34%),radial-gradient(circle at 50% 50%,transparent 62%,rgba(40,6,12,.38) 100%)}
-.loupe-tag{position:absolute;left:0;top:118px;transform:translateX(-50%);font-size:10px;letter-spacing:.26em;margin-left:.13em;text-transform:uppercase;color:var(--gold-hi);background:var(--wine);padding:5px 10px 4px;opacity:0;transition:opacity .3s}
+  box-shadow:0 0 0 1px rgba(246,234,180,.95),0 0 0 8px var(--crimson),0 0 0 9px rgba(239,226,164,.8),0 34px 60px -18px rgba(58,8,26,.65)}
+.loupe::after{background:radial-gradient(circle at 32% 24%,rgba(255,250,235,.38),rgba(255,250,235,0) 34%),radial-gradient(circle at 50% 50%,transparent 62%,rgba(58,8,26,.38) 100%)}
+.loupe-tag{position:absolute;left:0;top:118px;transform:translateX(-50%);font-size:10px;letter-spacing:.26em;margin-left:.13em;text-transform:uppercase;color:var(--gold-hi);background:var(--crimson);padding:5px 10px 4px;opacity:0;transition:opacity .3s}
 .loupe.on::before,.loupe.on::after{transform:none;opacity:1}
 .loupe.on .loupe-tag{opacity:1;transition-delay:.15s}
 .has-loupe [data-loupe]{cursor:none}
 
 /* ---------- Candle glow and bokeh ---------- */
 .glow{position:absolute;inset:-15%;z-index:1;pointer-events:none;mix-blend-mode:screen;
-  background:radial-gradient(36% 30% at 28% 30%,rgba(246,227,169,.2),transparent 70%),radial-gradient(30% 26% at 76% 64%,rgba(201,164,92,.16),transparent 70%);
+  background:radial-gradient(36% 30% at 28% 30%,rgba(246,234,180,.2),transparent 70%),radial-gradient(30% 26% at 76% 64%,rgba(194,166,83,.16),transparent 70%);
   animation:glow 16s ease-in-out infinite alternate}
 @keyframes glow{0%{transform:translate3d(0,0,0) scale(1);opacity:.85}50%{opacity:1}100%{transform:translate3d(5%,-4%,0) scale(1.1);opacity:.8}}
 .bokeh{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none;mix-blend-mode:screen}
 .bokeh i{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;
-  background:radial-gradient(circle,rgba(246,227,169,.55) 0%,rgba(246,227,169,.22) 46%,rgba(246,227,169,0) 70%);
+  background:radial-gradient(circle,rgba(246,234,180,.55) 0%,rgba(246,234,180,.22) 46%,rgba(246,234,180,0) 70%);
   filter:blur(var(--b,1px));opacity:0;animation:float var(--t,18s) ease-in-out var(--dl,0s) infinite}
 @keyframes float{0%{transform:translate3d(0,30px,0);opacity:0}20%{opacity:var(--o,.7)}80%{opacity:var(--o,.7)}100%{transform:translate3d(var(--dx,20px),-90px,0);opacity:0}}
 
@@ -79,9 +84,9 @@ html.is-loading{overflow:hidden}
 [tabindex="-1"]:focus{outline:none}
 .no-intro .intro{display:none!important}
 
-/* Photographs never fall to black: their deepest shadows are lifted into wine. */
+/* Photographs never fall to black: their deepest shadows are lifted into crimson. */
 .cover-photo::after,.viewing>.media::after,.set-media figure::after,.mto .media::after,.svc .media:not(.fx-tile)::after{
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:#4a1220;mix-blend-mode:screen;opacity:.5}
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:#5e1029;mix-blend-mode:screen;opacity:.5}
 
 /* The gold canvases carry a margin for their shadow; it must never widen the page. */
 main,.foot{overflow-x:clip}

@@ -3,19 +3,19 @@ import { $, $$, reduce, lockScroll, RATE, lkr } from './core.js';
 
 const PIECES = {
   jhumka: {
-    img: 'media/jhumka.webp', title: 'Rani temple jhumkas', pawn: 3,
+    img: 'm/jhumka-1200.webp', title: 'Rani temple jhumkas', pawn: 3,
     alt: 'A pair of 22 karat gold temple jhumkas with ruby flower studs and pearl fringes',
     text: 'Domed temple bells covered in fine gold granulation, hung from ruby flower studs, with a fringe of seed pearls that moves as you turn your head.',
     specs: [['Gold', '22 karat yellow gold'], ['Stones', 'Rubies and seed pearls'], ['Weight', 'About 3 pawn (24 g), the pair'], ['Made', 'By hand in Negombo']],
   },
   choker: {
-    img: 'media/choker.webp', title: 'Rani kundan choker', pawn: 4.5,
+    img: 'm/choker-1200.webp', title: 'Rani kundan choker', pawn: 4.5,
     alt: 'A 22 karat gold kundan choker with uncut diamonds, rubies, emerald drops and pearls',
     text: 'Uncut polki diamonds and rubies set in gold, with an emerald drop and a pearl beneath every setting. It sits close at the base of the neck.',
     specs: [['Gold', '22 karat yellow gold'], ['Stones', 'Polki diamonds, rubies, emeralds, pearls'], ['Weight', 'About 4½ pawn (36 g)'], ['Made', 'By hand in Negombo']],
   },
   bangles: {
-    img: 'media/hands.webp', title: 'Rani bangles & kada', pawn: 8,
+    img: 'm/hands-1200.webp', title: 'Rani bangles & kada', pawn: 8,
     alt: "A bride's hands wearing 22 karat gold bangles, an engraved kada and a ruby ring",
     text: 'Beaded bangles worn in a stack with one wide, hand-engraved kada. Sold one by one or as a set, sized at the counter.',
     specs: [['Gold', '22 karat yellow gold'], ['Finish', 'Beaded and hand-engraved'], ['Weight', 'About 8 pawn (64 g), set of five'], ['Made', 'By hand in Negombo']],

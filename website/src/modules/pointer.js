@@ -1,4 +1,4 @@
-// Fine pointers only: a wine cursor disc that names the action, the jeweller's loupe over
+// Fine pointers only: a crimson cursor disc that names the action, the jeweller's loupe over
 // the jewellery photographs, and buttons that lean towards the pointer.
 import { $, $$, reduce, finePointer } from './core.js';
 
@@ -54,7 +54,9 @@ export function initPointer() {
       const img = $('img', el);
       if (!img) return;
       lens = el;
-      loupe.style.setProperty('--img', `url("${img.currentSrc || img.src}")`);
+      // The loupe always shows the largest file in the srcset, whatever size the page shows.
+      const largest = img.srcset ? new URL(img.srcset.split(',').pop().trim().split(/\s+/)[0], document.baseURI).href : '';
+      loupe.style.setProperty('--img', `url("${largest || img.currentSrc || img.src}")`);
       tx = e.clientX; ty = e.clientY;
       aim();
       loupe.classList.add('on');

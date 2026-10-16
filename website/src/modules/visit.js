@@ -1,5 +1,5 @@
 // Sri Lanka time: the live opening status, the appointment planner and copy buttons.
-import { $, $$ } from './core.js';
+import { $, $$, RATE, lkr } from './core.js';
 
 function colombo() {
   const parts = new Intl.DateTimeFormat('en-US', {
@@ -28,6 +28,8 @@ export function copyText(text, btn, fallbackEl) {
 }
 
 export function initVisit() {
+  $$('[data-rate]').forEach(el => { el.textContent = lkr(RATE[el.dataset.rate]); });
+
   /* ---------- Opening status (Monday to Saturday, 10 am to 7:30 pm) ---------- */
   function updateStatus() {
     let s;
@@ -37,6 +39,12 @@ export function initVisit() {
       : work && s.mins < 600 ? 'Opens today at 10 am'
       : s.day === 6 || s.day === 0 ? 'Closed now, opens Monday at 10 am' : 'Closed now, opens tomorrow at 10 am';
     $('#status').classList.toggle('closed', !open);
+    // The rate bar in the header carries a shorter version.
+    const rb = $('#rb-status');
+    if (rb) {
+      rb.textContent = open ? 'Open now until 7:30 pm' : work && s.mins < 600 ? 'Opens today at 10 am' : 'Closed now · opens 10 am';
+      rb.parentElement.classList.toggle('closed', !open);
+    }
   }
   updateStatus();
   setInterval(updateStatus, 60000);

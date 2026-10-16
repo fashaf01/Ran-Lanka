@@ -63,7 +63,7 @@ export function initScale() {
       const drop = el('g', { class: 'coin' });
       drop.append(
         el('path', { d: 'M-9.5 0v2.6a9.5 3.3 0 0 0 19 0V0', fill: '#8d6626' }),
-        el('ellipse', { rx: 9.5, ry: 3.3, fill: 'url(#g-coin)', stroke: '#9c7230', 'stroke-width': 0.4 }),
+        el('ellipse', { rx: 9.5, ry: 3.3, fill: 'url(#g-coin)', stroke: '#9a7f30', 'stroke-width': 0.4 }),
       );
       g.appendChild(drop);
       pile.appendChild(g);
@@ -195,7 +195,7 @@ export function initScale() {
   $$('.kseg button').forEach(b => b.addEventListener('click', () => {
     karat = Number(b.dataset.k);
     $$('.kseg button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-    const stops = karat === 24 ? ['#fff2b0', '#efc04a', '#a8741c'] : ['#fff0bd', '#e2bb63', '#9c7230'];
+    const stops = karat === 24 ? ['#fff3b8', '#eccb52', '#a8842a'] : ['#fff4c4', '#dcc265', '#9a7f30'];
     [...coinGrad.children].forEach((s, i) => s.setAttribute('stop-color', stops[i]));
     showValue();
   }));

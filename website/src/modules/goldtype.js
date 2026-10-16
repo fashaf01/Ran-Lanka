@@ -25,7 +25,7 @@ float noise(vec2 p){
 void main(){
   float a = texture2D(uMask, vUv).a;
   float sh = texture2D(uHeight, vUv - vec2(0., uShadowOff)).a * uShadow;
-  vec4 shadow = vec4(vec3(.157, .024, .047) * sh, sh);
+  vec4 shadow = vec4(vec3(.227, .031, .102) * sh, sh);
   if (a < .004) { gl_FragColor = shadow; return; }
   vec2 e = uTexel * 1.5;
   float H0 = h(vUv);
@@ -50,10 +50,10 @@ void main(){
   lum *= mix(.45, 1., smoothstep(0., .75, H0));
 
   // Twenty-two karat: brown in the shadows, warm yellow in the body, champagne in the light.
-  vec3 col = mix(vec3(.09, .045, .015), vec3(.46, .29, .1), smoothstep(0., .3, lum));
-  col = mix(col, vec3(.84, .64, .31), smoothstep(.3, .62, lum));
-  col = mix(col, vec3(.98, .86, .57), smoothstep(.62, .88, lum));
-  col = mix(col, vec3(1., .96, .84), smoothstep(.88, 1.15, lum));
+  vec3 col = mix(vec3(.08, .05, .015), vec3(.42, .32, .1), smoothstep(0., .3, lum));
+  col = mix(col, vec3(.8, .67, .31), smoothstep(.3, .62, lum));
+  col = mix(col, vec3(.97, .9, .6), smoothstep(.62, .88, lum));
+  col = mix(col, vec3(1., .98, .86), smoothstep(.88, 1.15, lum));
 
   // A soft box that follows the pointer.
   vec3 L = normalize(vec3(uLight.x + .2, uLight.y - .6, .75));
@@ -129,7 +129,7 @@ class GoldType {
     gl.uniform1i(this.u.uMask, 0);
     gl.uniform1i(this.u.uHeight, 1);
     this.light = [0, 0];
-    // A soft wine shadow is drawn in the shader; dark scenes get a deeper one.
+    // A soft crimson shadow is drawn in the shader; dark scenes get a deeper one.
     this.shadow = /drop-shadow/.test(getComputedStyle(el).filter) ? 0.5 : 0.2;
     this.ready = false;
     this.visible = false;
@@ -253,10 +253,8 @@ class GoldType {
 export function initGoldType() {
   const els = $$('[data-goldtype]');
   if (!els.length) return;
-  const items = [];
-  for (const el of els) {
-    try { items.push(new GoldType(el)); } catch (e) { return; } // no WebGL: keep the CSS gilt
-  }
+  const items = []; // built lazily, as each headline comes near
+  const idle = window.requestIdleCallback || (fn => setTimeout(fn, 1));
 
   let pointer = null;
   if (finePointer) addEventListener('pointermove', e => { pointer = [e.clientX, e.clientY]; }, { passive: true });
@@ -278,30 +276,38 @@ export function initGoldType() {
   };
   const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
 
+  const fontsFor = el => {
+    if (!document.fonts) return Promise.resolve();
+    const cs = getComputedStyle(el);
+    return document.fonts.load(`${cs.fontStyle} ${cs.fontWeight} 100px ${cs.fontFamily}`, el.textContent.trim()).catch(() => {});
+  };
+  const build = el => fontsFor(el).then(() => idle(() => {
+    let it = items.find(i => i.el === el);
+    if (!it) {
+      try { it = new GoldType(el); } catch (e) { return; } // no WebGL: the CSS gilt stays
+      items.push(it);
+      ro.observe(el);
+    }
+    try { it.layout(); } catch (e) { it.destroy(); }
+    it.visible = true;
+    kick();
+  }, { timeout: 800 }));
+
+  const pending = new Set(els);
   const io = new IntersectionObserver(es => {
     es.forEach(e => {
       const it = items.find(i => i.el === e.target);
       if (it) it.visible = e.isIntersecting;
+      if (e.isIntersecting && pending.has(e.target)) { pending.delete(e.target); build(e.target); }
     });
     kick();
-  }, { rootMargin: '120px 0px' });
+  }, { rootMargin: '300px 0px' });
 
-  const build = () => items.forEach(i => { try { i.layout(); } catch (e) { i.destroy(); } });
-  const fonts = document.fonts ? Promise.all(items.map(i => {
-    const cs = getComputedStyle(i.el);
-    return document.fonts.load(`${cs.fontStyle} ${cs.fontWeight} 100px ${cs.fontFamily}`, i.el.textContent.trim()).catch(() => {});
-  })).then(() => document.fonts.ready) : Promise.resolve();
-  fonts.then(() => {
-    build();
-    items.forEach(i => io.observe(i.el));
-    if (reduce) setTimeout(kick, 50);
-    let timer = 0, first = true;
-    const ro = new ResizeObserver(() => {
-      if (first) { first = false; return; }
-      clearTimeout(timer);
-      timer = setTimeout(() => { build(); kick(); }, 160);
-    });
-    items.forEach(i => ro.observe(i.el));
+  let timer = 0;
+  const ro = new ResizeObserver(() => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { items.forEach(i => { try { i.layout(); } catch (e) { i.destroy(); } }); kick(); }, 160);
   });
+  els.forEach(el => io.observe(el));
   if (reduce) addEventListener('scroll', kick, { passive: true });
 }

@@ -24,7 +24,18 @@ export function initPage() {
     if (e.isIntersecting && !reduce && !(v === heroV && userPaused)) v.play().catch(() => {});
     else if (!e.isIntersecting) v.pause();
   }), { threshold: 0.12 });
-  [heroV, ...$$('video[data-auto]')].forEach(v => vio.observe(v));
+  $$('video[data-auto]').forEach(v => vio.observe(v));
+  // The hero film waits until the page has loaded, so it never competes with the first paint.
+  const startHero = () => vio.observe(heroV);
+  if (document.readyState === 'complete') startHero(); else addEventListener('load', startHero, { once: true });
+
+  /* ---------- Posters arrive only as their film comes near ---------- */
+  const pio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.poster = e.target.dataset.poster;
+    pio.unobserve(e.target);
+  }), { rootMargin: '100% 0px' });
+  $$('video[data-poster]').forEach(v => pio.observe(v));
 
   /* ---------- Header: solid past the film, tucked while reading down ---------- */
   const hdr = $('#hdr'), hero = $('#top'), menu = $('#menu'), drawer = $('#drawer');

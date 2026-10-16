@@ -123,6 +123,18 @@ img,video{display:block;max-width:100%}
 @keyframes cue{to{top:100%}}
 @media (max-width:700px){.scroll-cue{display:none}.hero-copy{bottom:84px}.film-ctl{bottom:20px}}
 
+/* ---------- Sound toggle (header) ---------- */
+.sound{display:inline-flex;align-items:center;gap:10px;background:none;border:0;padding:8px 0;cursor:pointer;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.86;transition:opacity .4s}
+.sound:hover{opacity:1}
+.bars{display:flex;align-items:flex-end;gap:2px;width:14px;height:12px}
+.bars i{flex:1;height:3px;background:currentColor;transition:height .5s var(--ease)}
+.sound[aria-pressed="true"] .bars i{animation:eq 1.1s ease-in-out infinite alternate}
+.sound[aria-pressed="true"] .bars i:nth-child(2){animation-delay:-.4s}
+.sound[aria-pressed="true"] .bars i:nth-child(3){animation-delay:-.8s}
+.sound[aria-pressed="true"] .bars i:nth-child(4){animation-delay:-.2s}
+@keyframes eq{from{height:2px}to{height:12px}}
+@media (max-width:860px){.sound .lbl{display:none}}
+
 /* ---------- Intro statement ---------- */
 .intro{padding-block:clamp(110px,15vw,210px) clamp(90px,12vw,170px);text-align:center}
 .intro .wrap{display:grid;justify-items:center;gap:36px}
@@ -154,21 +166,71 @@ img,video{display:block;max-width:100%}
   .piece:nth-child(2){margin-top:0}
 }
 
-/* ---------- Chapters on night ---------- */
+/* Cursor label on desktop media */
+.cursor{position:fixed;left:0;top:0;z-index:70;width:88px;height:88px;margin:-44px 0 0 -44px;border-radius:50%;display:grid;place-items:center;background:rgba(243,239,233,.9);color:var(--ink);font-size:10px;letter-spacing:.22em;text-transform:uppercase;pointer-events:none;opacity:0;transform:translate3d(var(--cx,0),var(--cy,0),0) scale(.4);transition:opacity .5s var(--ease),transform .5s var(--ease);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.cursor.on{opacity:1;transform:translate3d(var(--cx,0),var(--cy,0),0) scale(1)}
+@media (hover:none),(pointer:coarse){.cursor{display:none}}
+
+/* Quick view drawer */
+.drawer{position:fixed;inset:0;z-index:92;display:grid;grid-template-columns:minmax(0,1fr) min(560px,100%)}
+.drawer[hidden]{display:none}
+.drawer-shade{background:rgba(15,20,18,.45);border:0;cursor:pointer;opacity:0;transition:opacity .7s var(--ease)}
+.drawer-panel{position:relative;background:var(--paper);overflow-y:auto;transform:translateX(100%);transition:transform .9s var(--ease);padding:calc(env(safe-area-inset-top,0px) + 22px) var(--gr) calc(env(safe-area-inset-bottom,0px) + 40px) clamp(24px,3vw,44px);display:flex;flex-direction:column;gap:26px}
+.drawer-panel>*{flex-shrink:0}
+.drawer.open .drawer-shade{opacity:1}
+.drawer.open .drawer-panel{transform:none}
+.drawer-top{display:flex;justify-content:space-between;align-items:center}
+.drawer-close{background:none;border:0;padding:8px 0;cursor:pointer;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.drawer-img{height:min(54vh,600px);max-width:100%;overflow:hidden;background:var(--paper-2)}
+.drawer-img img{width:100%;height:100%;object-fit:cover}
+.drawer h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3vw,40px);line-height:1.1}
+.specs{border-top:1px solid var(--rule)}
+.specs div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding-block:14px;border-bottom:1px solid var(--rule);font-size:14.5px}
+.specs dt{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);padding-top:3px}
+.worth{display:grid;gap:4px}
+.worth span{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
+.worth b{font-family:var(--serif);font-weight:400;font-size:34px;line-height:1.1;font-variant-numeric:lining-nums tabular-nums}
+.drawer .note{margin-top:-10px}
+@media (max-width:640px){.drawer{grid-template-columns:0 100%}}
+
+/* ---------- Chapter I: the bridal set, pinned ---------- */
 .dark{background:var(--night);color:var(--on-night)}
-.chapter{padding-block:clamp(100px,13vw,180px)}
-.split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(40px,8vw,140px);align-items:center}
-.split .media{aspect-ratio:4/5;max-width:100%}
-.split-copy{display:grid;gap:28px;justify-items:start;max-width:30em}
-.forms{display:flex;flex-wrap:wrap;gap:8px 0;list-style:none;padding:0;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--on-night)}
-.forms li+li::before{content:"·";margin-inline:14px;color:var(--gold)}
-@media (max-width:860px){.split{grid-template-columns:1fr}}
+.set{position:relative;background:var(--night);color:var(--on-night);height:calc(var(--n,5) * 85vh + 15vh)}
+.set-stick{position:sticky;top:0;height:100vh;display:grid;align-items:center;overflow:hidden}
+.set-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,120px);align-items:center}
+.set-copy{display:grid;gap:26px;justify-items:start;max-width:32em}
+.set-list{list-style:none;padding:0;width:100%;border-top:1px solid rgba(239,232,220,.16)}
+.set-list li{border-bottom:1px solid rgba(239,232,220,.16)}
+.set-list button{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:baseline;width:100%;gap:12px;padding:14px 0;background:none;border:0;cursor:pointer;text-align:left;color:var(--on-night-2);transition:color .6s var(--ease)}
+.set-list .n{font-size:10.5px;letter-spacing:.2em}
+.set-list .t{font-family:var(--serif);font-size:clamp(20px,1.7vw,24px);line-height:1.3}
+.set-list .bar{position:relative;width:48px;height:1px;background:rgba(239,232,220,.18);align-self:center;overflow:hidden}
+.set-list .bar::after{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(var(--p,0));transform-origin:left}
+.set-list li.on button{color:var(--on-night)}
+.set-list p{display:grid;grid-template-rows:0fr;font-size:14.5px;line-height:1.65;color:var(--on-night-2);padding-left:56px;transition:grid-template-rows .8s var(--ease),padding-bottom .8s var(--ease)}
+.set-list p>span{overflow:hidden}
+.set-list li.on p{grid-template-rows:1fr;padding-bottom:16px}
+.set-media{position:relative;aspect-ratio:4/5;max-height:78vh;max-width:100%;justify-self:center;width:100%}
+.set-media figure{position:absolute;inset:0;overflow:hidden;clip-path:inset(100% 0 0 0);transition:clip-path 1.25s var(--ease);z-index:1;background:#141917}
+.set-media figure.on{clip-path:inset(0 0 0 0);z-index:3}
+.set-media figure.was{clip-path:inset(0 0 0 0);z-index:2}
+.set-media video{width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 2.4s var(--ease)}
+.set-media figure.on video{transform:scale(1)}
+.set-media figcaption{position:absolute;left:18px;bottom:16px;z-index:2;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--on-night)}
+.set-count{position:absolute;right:0;top:calc(100% + 14px);font-size:10.5px;letter-spacing:.22em;color:var(--on-night-2);font-variant-numeric:tabular-nums}
+@media (max-width:860px){
+  .set{height:auto;padding-block:clamp(90px,12vw,140px)}
+  .set-stick{position:static;height:auto;overflow:visible}
+  .set-grid{grid-template-columns:1fr;gap:40px}
+  .set-media{order:-1;max-height:none}
+}
 
 /* ---------- 916: the gold itself ---------- */
 .pure{position:relative;height:220vh;background:var(--night);color:var(--on-night)}
 .pure-stick{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
-.pure-stick video,.pure-stick img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(var(--pz,1.1))}
-.pure-stick::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 50%,rgba(8,6,4,.38),rgba(8,6,4,0) 100%),rgba(8,6,4,var(--shade,.5))}
+.pure-frame{position:absolute;inset:0;clip-path:inset(var(--pi,0%) var(--pi2,0%) var(--pi,0%) var(--pi2,0%))}
+.pure-frame video,.pure-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(var(--pz,1.1))}
+.pure-frame::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 50%,rgba(8,6,4,.38),rgba(8,6,4,0) 100%),rgba(8,6,4,var(--shade,.5))}
 .pure-copy{position:relative;z-index:2;display:grid;justify-items:center;text-align:center;gap:26px;padding-inline:var(--gl) var(--gr)}
 .pure-num{font-family:var(--serif);font-weight:400;font-size:clamp(130px,25vw,400px);line-height:.8;letter-spacing:calc(var(--ls,0) * 1em);transform:scale(var(--ns,1));text-shadow:0 10px 60px rgba(0,0,0,.35)}
 .pure-copy .body{max-width:28em;color:var(--on-night);font-size:clamp(16px,1.4vw,19px);opacity:var(--to,1);transform:translateY(calc((1 - var(--to,1)) * 30px))}
@@ -199,8 +261,8 @@ img,video{display:block;max-width:100%}
 .weigh{display:grid;gap:30px;padding:clamp(28px,3.4vw,48px);background:var(--paper)}
 .weigh h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.2}
 .kseg{display:flex;gap:28px}
-.kseg button{background:none;border:0;padding:6px 0;cursor:pointer;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid transparent;transition:color .4s,border-color .4s}
-.kseg button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.kseg button,.chips button{background:none;border:0;padding:6px 0;cursor:pointer;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid transparent;transition:color .4s,border-color .4s}
+.kseg button[aria-pressed="true"],.chips button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .field{display:grid;gap:6px;min-width:0}
 .field label{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
@@ -231,15 +293,25 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
 .maison-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,7vw,120px);align-items:center}
 .ran{font-family:var(--si);font-weight:500;font-size:clamp(150px,22vw,320px);line-height:1.1;text-align:center;background:linear-gradient(170deg,#ead19a 0%,#b8935a 45%,#7b5c2e 75%,#c9a76a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .maison-copy{display:grid;gap:28px;justify-items:start}
-.years{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;border-top:1px solid rgba(239,232,220,.18)}
+.years{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;border-top:1px solid rgba(239,232,220,.18);list-style:none;padding:0}
 .years li{display:grid;gap:4px;padding:20px 14px 0 0;min-width:0}
 .years b{font-family:var(--serif);font-weight:400;font-size:26px;color:var(--gold)}
 .years span{font-size:13.5px;line-height:1.5;color:var(--on-night-2)}
 @media (max-width:860px){.maison-grid{grid-template-columns:1fr}.ran{text-align:left}}
 
 /* ---------- Appointment ---------- */
-.visit{padding-block:clamp(110px,14vw,190px);text-align:center}
-.visit-head{display:grid;justify-items:center;gap:22px;margin-bottom:clamp(50px,6vw,80px)}
+.visit{padding-block:clamp(110px,14vw,190px)}
+.visit-head{display:grid;justify-items:center;text-align:center;gap:22px;margin-bottom:clamp(50px,6vw,80px)}
+.planner{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(30px,6vw,96px);align-items:start;padding-block:clamp(36px,4vw,56px);border-top:1px solid var(--rule)}
+.plan-q{display:grid;gap:30px}
+.plan-q fieldset{border:0;margin:0;padding:0;display:grid;gap:12px;min-width:0}
+.plan-q legend{padding:0;margin-bottom:12px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px 26px}
+.plan-out{display:grid;gap:22px;padding:clamp(26px,3vw,40px);background:var(--paper-2)}
+.plan-out .kicker{color:var(--ink-2)}
+.plan-msg{font-family:var(--serif);font-size:clamp(23px,2.2vw,30px);line-height:1.35;text-wrap:pretty}
+.plan-act{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px}
+.plan-act .btn{min-height:48px;padding:0 28px}
 .visit-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-block:1px solid var(--rule);text-align:center}
 .visit-cols>div{display:grid;align-content:start;justify-items:center;gap:10px;padding:clamp(28px,3.4vw,44px) 16px;min-width:0}
 .visit-cols>div+div{border-left:1px solid var(--rule)}
@@ -253,7 +325,7 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
 .copy{background:none;border:0;padding:4px 0;cursor:pointer;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--rule)}
 .copy:hover{color:var(--ink);border-bottom-color:var(--ink)}
 .visit-cta{display:flex;justify-content:center;align-items:center;gap:20px 34px;flex-wrap:wrap;margin-top:clamp(44px,5vw,64px)}
-@media (max-width:860px){.visit-cols{grid-template-columns:1fr}.visit-cols>div+div{border-left:0;border-top:1px solid var(--rule)}}
+@media (max-width:860px){.planner{grid-template-columns:1fr}.visit-cols{grid-template-columns:1fr}.visit-cols>div+div{border-left:0;border-top:1px solid var(--rule)}}
 
 /* ---------- Footer ---------- */
 .foot{background:var(--paper-2);color:var(--ink)}
@@ -268,15 +340,22 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
 .foot-bar .wrap{display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;padding-block:20px calc(20px + env(safe-area-inset-bottom,0px))}
 @media (max-width:860px){.foot-top{grid-template-columns:1fr 1fr}.foot-top>:first-child{grid-column:1/-1}}
 
-/* ---------- Menu ---------- */
-.menu{position:fixed;inset:0;z-index:95;background:var(--night);color:var(--on-night);display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 8px) var(--gr) calc(env(safe-area-inset-bottom,0px) + 32px) var(--gl);overflow-y:auto}
+/* ---------- Menu, with a preview of where each link goes ---------- */
+.menu{position:fixed;inset:0;z-index:95;background:var(--night);color:var(--on-night);display:grid;grid-template-rows:auto 1fr auto;padding:calc(env(safe-area-inset-top,0px) + 8px) var(--gr) calc(env(safe-area-inset-bottom,0px) + 32px) var(--gl);overflow-y:auto}
 .menu[hidden]{display:none}
 .menu-top{display:flex;justify-content:space-between;align-items:center;min-height:68px}
-.menu nav{display:grid;gap:6px;margin-top:clamp(30px,8vh,80px)}
-.menu nav a{font-family:var(--serif);font-size:clamp(38px,6vw,72px);line-height:1.15;text-decoration:none;opacity:0;transform:translateY(24px);animation:menuIn 1.1s var(--ease) forwards;animation-delay:calc(var(--i) * 70ms + 120ms)}
-.menu nav a:hover{font-style:italic}
+.menu-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(30px,6vw,90px);align-items:center;padding-block:clamp(24px,5vh,60px)}
+.menu nav{display:grid;gap:6px}
+.menu nav a{display:flex;align-items:baseline;gap:22px;font-family:var(--serif);font-size:clamp(36px,5.4vw,68px);line-height:1.15;text-decoration:none;opacity:0;transform:translateY(24px);animation:menuIn 1.1s var(--ease) forwards;animation-delay:calc(var(--i) * 70ms + 120ms);transition:color .5s var(--ease)}
+.menu nav a small{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;color:var(--on-night-2)}
+.menu nav:hover a{color:rgba(239,232,220,.4)}
+.menu nav a:hover,.menu nav a:focus-visible{color:var(--on-night);font-style:italic}
 @keyframes menuIn{to{opacity:1;transform:none}}
-.menu .meta{margin-top:auto;padding-top:40px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--on-night-2)}
+.menu-peek{position:relative;aspect-ratio:4/5;max-height:70vh;max-width:100%;overflow:hidden;justify-self:end;width:100%;background:#161b19}
+.menu-peek img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .9s var(--ease),transform 1.6s var(--ease)}
+.menu-peek img.on{opacity:1;transform:none}
+.menu .meta{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--on-night-2)}
+@media (max-width:860px){.menu-body{grid-template-columns:1fr}.menu-peek{display:none}}
 
 /* ---------- Reveal (from a visible resting state) ---------- */
 .js [data-rise]{transform:translateY(28px);opacity:.55;transition:transform 1.6s var(--ease) var(--d,0s),opacity 1.6s var(--ease) var(--d,0s)}
@@ -286,6 +365,7 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
   *,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important}
   .js [data-rise]{transform:none;opacity:1}
   .pure{height:auto}.pure-stick{position:relative;height:90vh}
+  .set{height:auto;padding-block:120px}.set-stick{position:static;height:auto}
 }
 </style>
 
@@ -299,6 +379,7 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
     </div>
     <a class="logo" href="#top" aria-label="Ranlanka, back to top"><b>RANLANKA</b><small>Negombo · Since 2008</small></a>
     <div class="hdr-r">
+      <button class="sound" id="sound" type="button" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">Sound</span></button>
       <a class="hdr-link hide-s" href="#visit">Book an appointment</a>
       <a class="hdr-link" href="https://www.instagram.com/ranlankanegombo/" target="_blank" rel="noopener" aria-label="Ranlanka on Instagram"><svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".8" fill="currentColor" stroke="none"/></svg></a>
     </div>
@@ -356,43 +437,51 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
       </div>
       <ul class="pieces">
         <li class="piece" data-rise>
-          <a href="#visit">
+          <a href="#visit" data-piece="jhumka" data-cursor="View" aria-haspopup="dialog">
             <figure class="media" data-scrub><img src="media/jhumka.webp" width="1200" height="1600" loading="lazy" alt="A pair of 22 karat gold temple jhumkas with ruby flower studs, gold granulation and pearl fringes"></figure>
-            <div class="piece-cap"><h3>Rani temple jhumkas</h3><p>Yellow gold, rubies, pearls</p><span class="tag">See it in the showroom</span></div>
+            <div class="piece-cap"><h3>Rani temple jhumkas</h3><p>Yellow gold, rubies, pearls</p><span class="tag">View the piece</span></div>
           </a>
         </li>
         <li class="piece" data-rise style="--d:.12s">
-          <a href="#visit">
+          <a href="#visit" data-piece="choker" data-cursor="View" aria-haspopup="dialog">
             <figure class="media" data-scrub><img src="media/choker.webp" width="1200" height="1600" loading="lazy" alt="A 22 karat gold kundan choker with uncut diamonds, rubies, emerald drops and pearls"></figure>
-            <div class="piece-cap"><h3>Rani kundan choker</h3><p>Yellow gold, polki diamonds, rubies, emeralds</p><span class="tag">See it in the showroom</span></div>
+            <div class="piece-cap"><h3>Rani kundan choker</h3><p>Yellow gold, polki diamonds, rubies, emeralds</p><span class="tag">View the piece</span></div>
           </a>
         </li>
         <li class="piece" data-rise style="--d:.24s">
-          <a href="#visit">
+          <a href="#visit" data-piece="bangles" data-cursor="View" aria-haspopup="dialog">
             <figure class="media" data-scrub><img src="media/hands.webp" width="1200" height="1600" loading="lazy" alt="A bride's hands with henna, wearing 22 karat gold bangles, an engraved kada and a ruby flower ring, on a red silk saree"></figure>
-            <div class="piece-cap"><h3>Rani bangles &amp; kada</h3><p>Yellow gold, engraved and beaded</p><span class="tag">See it in the showroom</span></div>
+            <div class="piece-cap"><h3>Rani bangles &amp; kada</h3><p>Yellow gold, engraved and beaded</p><span class="tag">View the piece</span></div>
           </a>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- Chapter I: the bride -->
-  <section class="dark chapter" id="bride" aria-labelledby="bride-title">
-    <div class="wrap split">
-      <figure class="media" data-scrub>
-        <video data-auto muted loop playsinline preload="metadata" poster="media/bride.jpg" aria-label="Film: close-up of a model wearing a kundan nath, maang tikka and hathphool rings">
-          <source src="media/bride.mp4" type="video/mp4">
-        </video>
-      </figure>
-      <div class="split-copy" data-rise>
-        <p class="kicker">Chapter I · The bride</p>
-        <h2 class="h2" id="bride-title">Gold from brow <em>to fingertip.</em></h2>
-        <p class="body">The maang tikka, the nath, the jhumkas, the choker and the hathphool are chosen together at our counter. Bring your family and take your time. We bring out the trays and weigh every piece in front of you.</p>
-        <ul class="forms" aria-label="The bridal set">
-          <li>Maang tikka</li><li>Nath</li><li>Jhumkas</li><li>Choker</li><li>Hathphool</li>
-        </ul>
-        <a class="btn ghost" href="#visit">Book a bridal appointment</a>
+  <!-- Chapter I: the bridal set, from brow to fingertip -->
+  <section class="set" id="bride" aria-labelledby="bride-title" style="--n:5">
+    <div class="set-stick">
+      <div class="wrap set-grid">
+        <div class="set-copy">
+          <p class="kicker">Chapter I · The bride</p>
+          <h2 class="h2" id="bride-title">Gold from brow <em>to fingertip.</em></h2>
+          <ol class="set-list" id="set-list">
+            <li class="on"><button type="button" data-i="0" aria-current="true"><span class="n">01</span><span class="t">Maang tikka</span><span class="bar" aria-hidden="true"></span></button><p><span>Worn at the parting of the hair, with its pendant resting on the brow.</span></p></li>
+            <li><button type="button" data-i="1"><span class="n">02</span><span class="t">Nath</span><span class="bar" aria-hidden="true"></span></button><p><span>The bridal nose ring, its chain looped up to the ear.</span></p></li>
+            <li><button type="button" data-i="2"><span class="n">03</span><span class="t">Peacock pendant</span><span class="bar" aria-hidden="true"></span></button><p><span>A peacock in kundan and enamel, on a fine gold chain.</span></p></li>
+            <li><button type="button" data-i="3"><span class="n">04</span><span class="t">Hathphool</span><span class="bar" aria-hidden="true"></span></button><p><span>Rings joined to a bracelet across the back of the hand.</span></p></li>
+            <li><button type="button" data-i="4"><span class="n">05</span><span class="t">The full look</span><span class="bar" aria-hidden="true"></span></button><p><span>Every piece together, chosen at our counter with your family.</span></p></li>
+          </ol>
+          <a class="btn ghost" href="#visit">Book a bridal appointment</a>
+        </div>
+        <div class="set-media" id="set-media">
+          <figure class="on"><video muted loop playsinline preload="metadata" poster="media/tikka.jpg" aria-label="Film: a maang tikka and nath on the model's face"><source src="media/tikka.mp4" type="video/mp4"></video><figcaption>Maang tikka</figcaption></figure>
+          <figure><video muted loop playsinline preload="none" poster="media/nath.jpg" aria-label="Film: the model in profile wearing a gold nath"><source src="media/nath.mp4" type="video/mp4"></video><figcaption>Nath</figcaption></figure>
+          <figure><video muted loop playsinline preload="none" poster="media/necklace.jpg" aria-label="Film: a peacock pendant on a gold chain"><source src="media/necklace.mp4" type="video/mp4"></video><figcaption>Peacock pendant</figcaption></figure>
+          <figure><video muted loop playsinline preload="none" poster="media/hathphool.jpg" aria-label="Film: hands wearing kundan hathphool"><source src="media/hathphool.mp4" type="video/mp4"></video><figcaption>Hathphool</figcaption></figure>
+          <figure><video muted loop playsinline preload="none" poster="media/look.jpg" aria-label="Film: the full look, standing among marigolds"><source src="media/look.mp4" type="video/mp4"></video><figcaption>The full look</figcaption></figure>
+          <p class="set-count" aria-hidden="true"><span id="set-n">01</span> / 05</p>
+        </div>
       </div>
     </div>
   </section>
@@ -400,9 +489,11 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
   <!-- 916 -->
   <section class="pure" id="pure" aria-labelledby="pure-title">
     <div class="pure-stick">
-      <video data-auto muted loop playsinline preload="metadata" poster="media/gold.jpg" aria-label="Film: molten gold poured into a mould">
-        <source src="media/gold.mp4" type="video/mp4">
-      </video>
+      <div class="pure-frame" id="pure-frame">
+        <video data-auto muted loop playsinline preload="metadata" poster="media/gold.jpg" aria-label="Film: molten gold poured into a mould">
+          <source src="media/gold.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="pure-copy">
         <p class="kicker" style="color:var(--on-night-2)">Twenty-two karat</p>
         <h2 class="pure-num" id="pure-title" aria-label="916">916</h2>
@@ -485,7 +576,7 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
         <p class="kicker">The maison</p>
         <h2 class="h2" id="maison-title">Ran is the Sinhala word <em>for gold.</em></h2>
         <p class="body">Mr. Anas opened a small gold shop in Negombo town in 2008. By 2011 it had become the showroom on Main Street. The promise has not changed: honest gold, fair rates, and designs that last longer than fashion.</p>
-        <ol class="years" style="list-style:none;padding:0">
+        <ol class="years">
           <li><b>2008</b><span>The first shop, Negombo town</span></li>
           <li><b>2011</b><span>The showroom on Main Street</span></li>
           <li><b>Today</b><span>Jewellery, made to order and money exchange</span></li>
@@ -500,7 +591,40 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
       <div class="visit-head" data-rise>
         <p class="kicker">Ranlanka, Negombo</p>
         <h2 class="h2" id="visit-title">Book an appointment</h2>
-        <p class="body" style="margin-inline:auto">Call ahead and we will keep the trays ready and a seat for each of you at the counter.</p>
+        <p class="body" style="margin-inline:auto">Tell us what you would like to see and when. We will keep the trays ready and a seat for each of you at the counter.</p>
+      </div>
+      <div class="planner" data-rise>
+        <div class="plan-q">
+          <fieldset>
+            <legend>I would like to see</legend>
+            <div class="chips" id="plan-what">
+              <button type="button" aria-pressed="true" data-v="the bridal set">Bridal set</button>
+              <button type="button" aria-pressed="false" data-v="the Rani collection">Rani collection</button>
+              <button type="button" aria-pressed="false" data-v="a piece made to order">Made to order</button>
+              <button type="button" aria-pressed="false" data-v="the gold rate and money exchange">Gold rate &amp; exchange</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>On</legend>
+            <div class="chips" id="plan-day"></div>
+          </fieldset>
+          <fieldset>
+            <legend>Around</legend>
+            <div class="chips" id="plan-time">
+              <button type="button" aria-pressed="true" data-v="in the morning">Morning</button>
+              <button type="button" aria-pressed="false" data-v="in the afternoon">Afternoon</button>
+              <button type="button" aria-pressed="false" data-v="in the evening">Evening</button>
+            </div>
+          </fieldset>
+        </div>
+        <div class="plan-out" aria-live="polite">
+          <p class="kicker">Your message</p>
+          <p class="plan-msg" id="plan-msg">Hello Ranlanka, I would like to come in to see the bridal set, in the morning.</p>
+          <div class="plan-act">
+            <button class="btn" type="button" id="plan-copy">Copy message</button>
+            <span class="note">Then call 031 222 2202 or send it to ranlankanegombo@gmail.com to confirm.</span>
+          </div>
+        </div>
       </div>
       <div class="visit-cols" data-rise>
         <div><h3>The showroom</h3><address>192 Main Street<br>Negombo 11500</address></div>
@@ -527,25 +651,53 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
     <div><h4>Services</h4><ul><li><a href="#rate">Gold rate</a></li><li><a href="#fx">Money exchange</a></li><li><a href="#visit">Book an appointment</a></li></ul></div>
     <div><h4>Follow</h4><ul><li><a href="https://www.instagram.com/ranlankanegombo/" target="_blank" rel="noopener">Instagram</a></li><li>031 222 2202</li><li>ranlankanegombo@gmail.com</li></ul></div>
   </div>
-  <div class="wrap"><p class="foot-note">Gold and exchange rates on this page are sample figures. Films are Mixkit stock footage and the product photographs are AI-generated for this concept, so the pieces shown are not Ranlanka stock.</p></div>
+  <div class="wrap"><p class="foot-note">Gold and exchange rates on this page are sample figures. Films are Mixkit stock footage, the product photographs are AI-generated and the score was composed with ElevenLabs Music for this concept, so the pieces shown are not Ranlanka stock.</p></div>
   <div class="foot-bar"><div class="wrap"><span>Ranlanka · 192 Main Street, Negombo</span><span>© 2026 Ranlanka Jewellery (Pvt) Ltd</span></div></div>
 </footer>
+
+<!-- Quick view -->
+<div class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="dw-title">
+  <button class="drawer-shade" type="button" tabindex="-1" aria-label="Close" data-close></button>
+  <div class="drawer-panel">
+    <div class="drawer-top"><p class="kicker">Rani · High jewellery</p><button class="drawer-close" type="button" data-close>Close</button></div>
+    <div class="drawer-img"><img id="dw-img" src="media/jhumka.webp" alt=""></div>
+    <h3 id="dw-title">Rani temple jhumkas</h3>
+    <p class="body" id="dw-text"></p>
+    <dl class="specs" id="dw-specs"></dl>
+    <div class="worth"><span>Gold value at today's sample rate</span><b id="dw-worth">LKR 936,000</b></div>
+    <p class="note">Approximate weights for these concept pieces. Stones and making are priced separately.</p>
+    <a class="btn" href="#visit" data-close>Book a viewing</a>
+  </div>
+</div>
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
   <div class="menu-top">
     <span class="logo" style="justify-items:start"><b>RANLANKA</b></span>
     <button class="menu-btn" id="menu-close" type="button">Close</button>
   </div>
-  <nav aria-label="Menu">
-    <a href="#collection" style="--i:0">High jewellery</a>
-    <a href="#bride" style="--i:1">Bridal</a>
-    <a href="#made-to-order" style="--i:2">Made to order</a>
-    <a href="#rate" style="--i:3">Gold rate</a>
-    <a href="#maison" style="--i:4">The maison</a>
-    <a href="#visit" style="--i:5">Book an appointment</a>
-  </nav>
+  <div class="menu-body">
+    <nav aria-label="Menu" id="menu-nav">
+      <a href="#collection" style="--i:0" data-peek="0"><small>01</small>High jewellery</a>
+      <a href="#bride" style="--i:1" data-peek="1"><small>02</small>Bridal</a>
+      <a href="#made-to-order" style="--i:2" data-peek="2"><small>03</small>Made to order</a>
+      <a href="#rate" style="--i:3" data-peek="3"><small>04</small>Gold rate</a>
+      <a href="#maison" style="--i:4" data-peek="4"><small>05</small>The maison</a>
+      <a href="#visit" style="--i:5" data-peek="5"><small>06</small>Book an appointment</a>
+    </nav>
+    <div class="menu-peek" aria-hidden="true">
+      <img class="on" src="media/choker.webp" alt="" loading="lazy">
+      <img src="media/tikka.jpg" alt="" loading="lazy">
+      <img src="media/kada.jpg" alt="" loading="lazy">
+      <img src="media/gold.jpg" alt="" loading="lazy">
+      <img src="media/hands.webp" alt="" loading="lazy">
+      <img src="media/look.jpg" alt="" loading="lazy">
+    </div>
+  </div>
   <p class="meta">192 Main Street, Negombo · 031 222 2202</p>
 </div>
+
+<div class="cursor" id="cursor" aria-hidden="true">View</div>
+<audio id="score" src="media/score.mp3" loop preload="none"></audio>
 
 <script>
 (() => {
@@ -555,6 +707,8 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const ease = t => 1 - Math.pow(1 - t, 3);
+  const RATE = { 22: 312000, 24: 340000 }; // sample rates, LKR a pawn
+  const lkr = n => 'LKR ' + Math.round(n).toLocaleString('en-US');
 
   /* ---------- Hero film ---------- */
   const heroV = $('#hero-video'), ctl = $('#film-ctl'), prog = $('#film-prog');
@@ -572,13 +726,16 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
   if (reduce) setCtl(true);
 
   /* ---------- Films play only while on screen ---------- */
-  const films = [heroV, ...$$('video[data-auto]')];
   const vio = new IntersectionObserver(es => es.forEach(e => {
     const v = e.target;
     if (e.isIntersecting && !reduce && !(v === heroV && userPaused)) v.play().catch(() => {});
     else if (!e.isIntersecting) v.pause();
   }), { threshold: 0.12 });
-  films.forEach(v => vio.observe(v));
+  [heroV, ...$$('video[data-auto]')].forEach(v => vio.observe(v));
+
+  /* ---------- Overlays: menu and quick view ---------- */
+  const menu = $('#menu'), drawer = $('#drawer');
+  const lockScroll = on => { document.documentElement.style.overflow = on ? 'hidden' : ''; };
 
   /* ---------- Header ---------- */
   const hdr = $('#hdr'), hero = $('#top');
@@ -587,7 +744,7 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
     const y = scrollY, past = y > hero.offsetHeight - 70;
     hdr.classList.toggle('compact', y > 40);
     hdr.classList.toggle('solid', past);
-    hdr.classList.toggle('tuck', past && y > lastY + 2 && menu.hidden);
+    hdr.classList.toggle('tuck', past && y > lastY + 2 && menu.hidden && drawer.hidden);
     if (y < lastY - 2) hdr.classList.remove('tuck');
     lastY = y;
   }
@@ -603,9 +760,56 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
     });
   }
 
+  /* ---------- Chapter I: the bridal set ---------- */
+  const set = $('#bride'), setItems = $$('#set-list li'), setFigs = $$('#set-media figure'), setN = $('#set-n');
+  const N = setFigs.length;
+  const pinnedMQ = matchMedia('(min-width: 861px)');
+  const pinned = () => pinnedMQ.matches && !reduce;
+  let setActive = 0, setVisible = false, autoStart = performance.now();
+  const setVid = k => $('video', setFigs[k]);
+  function playSet() {
+    setFigs.forEach((f, k) => {
+      const v = setVid(k);
+      if (k === setActive && setVisible && !reduce) { v.preload = 'auto'; v.play().catch(() => {}); }
+      else if (!f.classList.contains('was')) v.pause();
+    });
+  }
+  function setShow(i) {
+    if (i === setActive) return;
+    const prev = setFigs[setActive], next = setFigs[i];
+    setFigs.forEach(f => { if (f !== prev) f.classList.remove('was'); });
+    prev.classList.remove('on'); prev.classList.add('was');
+    next.classList.remove('was'); next.classList.add('on');
+    setItems.forEach((li, k) => {
+      li.classList.toggle('on', k === i);
+      const b = $('button', li);
+      if (k === i) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+      if (k !== i) b.style.setProperty('--p', 0);
+    });
+    setN.textContent = String(i + 1).padStart(2, '0');
+    setActive = i;
+    setTimeout(() => { if (!prev.classList.contains('on')) { prev.classList.remove('was'); setVid(setFigs.indexOf(prev)).pause(); } }, 1300);
+    playSet();
+  }
+  new IntersectionObserver(([e]) => { setVisible = e.isIntersecting; autoStart = performance.now(); playSet(); if (!setVisible) setFigs.forEach((f, k) => setVid(k).pause()); if (setVisible) tickSet(); }, { threshold: 0.15 }).observe(set);
+  setItems.forEach((li, k) => $('button', li).addEventListener('click', () => {
+    if (pinned()) {
+      const top = set.getBoundingClientRect().top + scrollY, span = set.offsetHeight - innerHeight;
+      scrollTo({ top: top + span * ((k + 0.5) / N), behavior: 'smooth' });
+    } else { setShow(k); autoStart = performance.now(); }
+  }));
+  // On phones the set advances by itself every six seconds while it is on screen.
+  function tickSet() {
+    if (!setVisible || pinned() || reduce) return;
+    const p = (performance.now() - autoStart) / 6000;
+    if (p >= 1) { setShow((setActive + 1) % N); autoStart = performance.now(); }
+    $('button', setItems[setActive]).style.setProperty('--p', Math.min(1, p).toFixed(3));
+    requestAnimationFrame(tickSet);
+  }
+
   /* ---------- Scroll choreography ---------- */
   const scrubs = $$('[data-scrub]'), heroFilm = $('#hero-film'), heroCopy = $('.hero-copy');
-  const pure = $('#pure'), pureStick = $('.pure-stick'), pureNum = $('.pure-num'), pureBody = $('.pure-copy .body');
+  const pure = $('#pure'), pureStick = $('.pure-stick'), pureFrame = $('#pure-frame'), pureNum = $('.pure-num'), pureBody = $('.pure-copy .body');
   let ticking = false;
   function frame() {
     ticking = false;
@@ -623,12 +827,22 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
         el.style.setProperty('--zoom', (1 + (1 - p) * 0.14).toFixed(4));
       });
       const pr = pure.getBoundingClientRect();
+      const enter = ease(clamp(1 - pr.top / vh, 0, 1));
+      pureFrame.style.setProperty('--pi', ((1 - enter) * 9).toFixed(2) + '%');
+      pureFrame.style.setProperty('--pi2', ((1 - enter) * 16).toFixed(2) + '%');
       const pp = clamp(-pr.top / Math.max(1, pr.height - vh), 0, 1);
       pureStick.style.setProperty('--pz', (1.12 - pp * 0.12).toFixed(4));
-      pureStick.style.setProperty('--shade', (0.42 + pp * 0.26).toFixed(3));
+      pureFrame.style.setProperty('--shade', (0.42 + pp * 0.26).toFixed(3));
       pureNum.style.setProperty('--ns', (1.18 - ease(clamp(pp * 1.6, 0, 1)) * 0.18).toFixed(4));
       pureNum.style.setProperty('--ls', (0.08 - ease(clamp(pp * 1.6, 0, 1)) * 0.1).toFixed(4));
       pureBody.style.setProperty('--to', (0.35 + ease(clamp((pp - 0.15) * 2.2, 0, 1)) * 0.65).toFixed(3));
+      if (pinned()) {
+        const sr = set.getBoundingClientRect();
+        const sp = clamp(-sr.top / Math.max(1, set.offsetHeight - vh), 0, 0.9999);
+        const i = Math.floor(sp * N);
+        setShow(i);
+        $('button', setItems[i]).style.setProperty('--p', (sp * N - i).toFixed(3));
+      }
     }
     if (words.length) {
       const r = st.getBoundingClientRect();
@@ -638,47 +852,154 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
     }
   }
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
-  addEventListener('resize', frame);
+  addEventListener('resize', () => { frame(); tickSet(); });
 
   /* ---------- Rise on enter ---------- */
   const rio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
   $$('[data-rise]').forEach(el => rio.observe(el));
 
-  /* ---------- Menu ---------- */
-  const menu = $('#menu'), openBtn = $('#menu-open'), closeBtn = $('#menu-close');
+  /* ---------- Menu, with a preview of each destination ---------- */
+  const openBtn = $('#menu-open'), closeBtn = $('#menu-close'), peeks = $$('.menu-peek img');
   function setMenu(on, focus = true) {
     menu.hidden = !on;
     openBtn.setAttribute('aria-expanded', String(on));
-    document.documentElement.style.overflow = on ? 'hidden' : '';
+    lockScroll(on);
     if (focus) (on ? closeBtn : openBtn).focus();
   }
   openBtn.addEventListener('click', () => setMenu(true));
   closeBtn.addEventListener('click', () => setMenu(false));
-  $$('#menu a').forEach(a => a.addEventListener('click', () => setMenu(false, false)));
-  addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) setMenu(false); });
+  $$('#menu-nav a').forEach(a => {
+    a.addEventListener('click', () => setMenu(false, false));
+    const peek = () => peeks.forEach((im, k) => im.classList.toggle('on', k === Number(a.dataset.peek)));
+    a.addEventListener('pointerenter', peek); a.addEventListener('focus', peek);
+  });
+
+  /* ---------- Quick view ---------- */
+  const PIECES = {
+    jhumka: { img: 'media/jhumka.webp', alt: 'A pair of 22 karat gold temple jhumkas with ruby flower studs and pearl fringes', title: 'Rani temple jhumkas',
+      text: 'Domed temple bells covered in fine gold granulation, hung from ruby flower studs, with a fringe of seed pearls that moves as you turn your head.',
+      specs: [['Gold', '22 karat yellow gold'], ['Stones', 'Rubies and seed pearls'], ['Weight', 'About 3 pawn (24 g), the pair'], ['Made', 'By hand in Negombo']], pawn: 3 },
+    choker: { img: 'media/choker.webp', alt: 'A 22 karat gold kundan choker with uncut diamonds, rubies, emerald drops and pearls', title: 'Rani kundan choker',
+      text: 'Uncut polki diamonds and rubies set in gold, with an emerald drop and a pearl beneath every setting. It sits close at the base of the neck.',
+      specs: [['Gold', '22 karat yellow gold'], ['Stones', 'Polki diamonds, rubies, emeralds, pearls'], ['Weight', 'About 4½ pawn (36 g)'], ['Made', 'By hand in Negombo']], pawn: 4.5 },
+    bangles: { img: 'media/hands.webp', alt: "A bride's hands wearing 22 karat gold bangles, an engraved kada and a ruby ring", title: 'Rani bangles & kada',
+      text: 'Beaded bangles worn in a stack with one wide, hand-engraved kada. Sold one by one or as a set, sized at the counter.',
+      specs: [['Gold', '22 karat yellow gold'], ['Finish', 'Beaded and hand-engraved'], ['Weight', 'About 8 pawn (64 g), set of five'], ['Made', 'By hand in Negombo']], pawn: 8 }
+  };
+  let opener = null;
+  function openPiece(key, from) {
+    const p = PIECES[key]; if (!p) return;
+    opener = from;
+    $('#dw-img').src = p.img; $('#dw-img').alt = p.alt;
+    $('#dw-title').textContent = p.title; $('#dw-text').textContent = p.text;
+    const dl = $('#dw-specs'); dl.textContent = '';
+    p.specs.forEach(([k, v]) => { const d = document.createElement('div'); const dt = document.createElement('dt'); const dd = document.createElement('dd'); dt.textContent = k; dd.textContent = v; d.append(dt, dd); dl.appendChild(d); });
+    $('#dw-worth').textContent = lkr(p.pawn * RATE[22]);
+    drawer.hidden = false; lockScroll(true);
+    requestAnimationFrame(() => requestAnimationFrame(() => drawer.classList.add('open')));
+    $('.drawer-close', drawer).focus();
+  }
+  function closePiece(restore = true) {
+    drawer.classList.remove('open'); lockScroll(false);
+    setTimeout(() => { drawer.hidden = true; }, reduce ? 0 : 750);
+    if (restore && opener) opener.focus();
+  }
+  $$('[data-piece]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openPiece(a.dataset.piece, a); }));
+  $$('[data-close]', drawer).forEach(b => b.addEventListener('click', () => closePiece(b.tagName !== 'A')));
+  addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (!drawer.hidden) closePiece(); else if (!menu.hidden) setMenu(false);
+  });
   $$('a[href="#fx"]').forEach(a => a.addEventListener('click', () => { $('#fx').open = true; }));
+
+  /* ---------- A cursor label over the collection (desktop) ---------- */
+  const cur = $('#cursor');
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduce) {
+    let cx = innerWidth / 2, cy = innerHeight / 2, tx = cx, ty = cy, raf = 0;
+    const loop = () => {
+      cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2;
+      cur.style.setProperty('--cx', cx.toFixed(1) + 'px'); cur.style.setProperty('--cy', cy.toFixed(1) + 'px');
+      raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.4 ? requestAnimationFrame(loop) : 0;
+    };
+    addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; if (!raf) raf = requestAnimationFrame(loop); }, { passive: true });
+    $$('[data-cursor]').forEach(el => {
+      el.addEventListener('pointerenter', () => { cur.textContent = el.dataset.cursor; cur.classList.add('on'); });
+      el.addEventListener('pointerleave', () => cur.classList.remove('on'));
+    });
+  }
+
+  /* ---------- Sound: the score, off until asked for ---------- */
+  const snd = $('#sound'), score = $('#score'), sndLbl = $('.lbl', snd);
+  let fadeRaf = 0;
+  function fadeTo(target, ms, done) {
+    cancelAnimationFrame(fadeRaf);
+    const from = score.volume, t0 = performance.now();
+    const step = now => { const k = Math.min(1, (now - t0) / ms); score.volume = from + (target - from) * k; if (k < 1) fadeRaf = requestAnimationFrame(step); else if (done) done(); };
+    fadeRaf = requestAnimationFrame(step);
+  }
+  const soundOn = () => snd.getAttribute('aria-pressed') === 'true';
+  snd.addEventListener('click', () => {
+    if (!soundOn()) {
+      snd.setAttribute('aria-pressed', 'true'); sndLbl.textContent = 'Sound on';
+      score.volume = 0;
+      score.play().then(() => fadeTo(0.6, 1800)).catch(() => { snd.setAttribute('aria-pressed', 'false'); sndLbl.textContent = 'Sound'; });
+    } else {
+      snd.setAttribute('aria-pressed', 'false'); sndLbl.textContent = 'Sound';
+      fadeTo(0, 900, () => score.pause());
+    }
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) score.pause(); else if (soundOn()) score.play().catch(() => {});
+  });
 
   frame();
 
-  /* ---------- Opening status, Sri Lanka time ---------- */
+  /* ---------- Sri Lanka time: opening status and the visit planner ---------- */
+  function colombo() {
+    const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Colombo', weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+    const get = t => (parts.find(p => p.type === t) || {}).value;
+    return { day: { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[get('weekday')], mins: (Number(get('hour')) % 24) * 60 + Number(get('minute')), y: +get('year'), m: +get('month'), d: +get('day') };
+  }
+  let now;
+  try { now = colombo(); } catch (e) { now = null; }
   function updateStatus() {
-    let day, mins;
-    try {
-      const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Colombo', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
-      const get = t => (parts.find(p => p.type === t) || {}).value;
-      day = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[get('weekday')];
-      mins = (Number(get('hour')) % 24) * 60 + Number(get('minute'));
-    } catch (e) { return; }
-    const work = day >= 1 && day <= 6, open = work && mins >= 600 && mins < 1170;
+    let s; try { s = colombo(); } catch (e) { return; }
+    const work = s.day >= 1 && s.day <= 6, open = work && s.mins >= 600 && s.mins < 1170;
     $('#status-text').textContent = open ? 'Open now, until 7:30 pm'
-      : work && mins < 600 ? 'Opens today at 10 am'
-      : day === 6 || day === 0 ? 'Closed now, opens Monday at 10 am' : 'Closed now, opens tomorrow at 10 am';
+      : work && s.mins < 600 ? 'Opens today at 10 am'
+      : s.day === 6 || s.day === 0 ? 'Closed now, opens Monday at 10 am' : 'Closed now, opens tomorrow at 10 am';
     $('#status').classList.toggle('closed', !open);
   }
   updateStatus(); setInterval(updateStatus, 60000);
 
+  const plan = { what: 'the bridal set', day: '', time: 'in the morning' };
+  const dayBox = $('#plan-day');
+  if (now) {
+    const short = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'short', day: 'numeric', month: 'short' });
+    const long = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' });
+    let t = Date.UTC(now.y, now.m - 1, now.d) + (now.mins >= 1110 ? 86400000 : 0);
+    const days = [];
+    while (days.length < 6) { const dt = new Date(t); if (dt.getUTCDay() !== 0) days.push(dt); t += 86400000; }
+    days.forEach((dt, k) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = short.format(dt).replace(',', ''); b.dataset.v = 'on ' + long.format(dt);
+      b.setAttribute('aria-pressed', String(k === 0));
+      dayBox.appendChild(b);
+    });
+    plan.day = days.length ? 'on ' + long.format(days[0]) : '';
+  }
+  const msg = $('#plan-msg');
+  const writeMsg = () => { msg.textContent = `Hello Ranlanka, I would like to come in to see ${plan.what}${plan.day ? ' ' + plan.day : ''}, ${plan.time}.`; };
+  [['#plan-what', 'what'], ['#plan-day', 'day'], ['#plan-time', 'time']].forEach(([sel, key]) => {
+    $(sel).addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      $$('button', $(sel)).forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      plan[key] = b.dataset.v; writeMsg();
+    });
+  });
+  writeMsg();
+
   /* ---------- Weigh your gold (1 pawn = 8 g) ---------- */
-  const RATE = { 22: 312000, 24: 340000 }; // sample rates, LKR a pawn
   let karat = 22;
   const gIn = $('#grams'), pIn = $('#pawn'), out = $('#value');
   const tidy = n => String(Number(n.toFixed(3)));
@@ -686,7 +1007,7 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
     if (from === 'g') { const v = parseFloat(gIn.value); pIn.value = Number.isFinite(v) ? tidy(v / 8) : ''; }
     if (from === 'p') { const v = parseFloat(pIn.value); gIn.value = Number.isFinite(v) ? tidy(v * 8) : ''; }
     const pawn = parseFloat(pIn.value);
-    out.textContent = Number.isFinite(pawn) && pawn >= 0 ? 'LKR ' + Math.round(pawn * RATE[karat]).toLocaleString('en-US') : 'Enter a weight';
+    out.textContent = Number.isFinite(pawn) && pawn >= 0 ? lkr(pawn * RATE[karat]) : 'Enter a weight';
   }
   gIn.addEventListener('input', () => convert('g'));
   pIn.addEventListener('input', () => convert('p'));
@@ -698,11 +1019,14 @@ td b{font-weight:400;letter-spacing:.14em;margin-right:10px;color:var(--ink-2);f
   convert('g');
 
   /* ---------- Copy ---------- */
-  $$('[data-copy]').forEach(btn => btn.addEventListener('click', () => {
-    const flash = t => { btn.textContent = t; setTimeout(() => { btn.textContent = 'Copy'; }, 1600); };
-    const select = () => { const r = document.createRange(); r.selectNodeContents(btn.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); flash('Selected'); };
-    try { navigator.clipboard.writeText(btn.dataset.copy).then(() => flash('Copied'), select); } catch (e) { select(); }
-  }));
+  function copyText(text, btn, fallbackEl) {
+    const label = btn.textContent;
+    const flash = t => { btn.textContent = t; setTimeout(() => { btn.textContent = label; }, 1600); };
+    const select = () => { const r = document.createRange(); r.selectNodeContents(fallbackEl); const s = getSelection(); s.removeAllRanges(); s.addRange(r); flash('Selected'); };
+    try { navigator.clipboard.writeText(text).then(() => flash('Copied'), select); } catch (e) { select(); }
+  }
+  $$('[data-copy]').forEach(btn => btn.addEventListener('click', () => copyText(btn.dataset.copy, btn, btn.previousElementSibling)));
+  $('#plan-copy').addEventListener('click', e => copyText(msg.textContent, e.currentTarget, msg));
 })();
 </script>
 

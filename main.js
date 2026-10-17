@@ -7,7 +7,7 @@
   fit();
   addEventListener('resize', fit);
 
-  // hero: the scene and the name drift against the pointer
+  // hero: the scene drifts against the pointer
   const hero = document.querySelector('.hero');
   hero.addEventListener('mousemove', (e) => {
     if (still.matches) return;

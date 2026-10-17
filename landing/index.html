@@ -9,7 +9,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Jost:wght@300;400;500&amp;family=Noto+Serif+Sinhala:wght@300;400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&amp;family=Noto+Serif+Sinhala:wght@300;400&amp;display=swap">
+<link rel="preload" href="fonts/vonca-light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <script src="main.js" defer></script>
 </head>
@@ -115,18 +116,25 @@
     </div>
   </section>
 
-  <section id="maison" class="sec">
-    <div class="wrap">
-      <div class="mf-top">
-        <span class="eyebrow">The maison · Since 2008</span>
-        <span class="si-glyph" aria-hidden="true">රන්</span>
+  <section id="maison" class="sec maison">
+    <div class="wrap ms-grid">
+      <div class="ms-body">
+        <div class="rv">
+          <span class="eyebrow">The maison · Since 2008</span>
+          <h2 class="h2 ms-h"><em>Ran</em> is the Sinhala word for gold.</h2>
+        </div>
+        <p class="ms-lede rv">The promise has not changed since 2008: <em>honest gold, fair rates,</em> and designs that last longer than fashion.</p>
+        <ol class="ms-tl rv">
+          <li><span class="ms-yr">2008</span><span class="ms-ev">Mr. Anas opens a small gold shop in Negombo town.</span></li>
+          <li><span class="ms-yr">2011</span><span class="ms-ev">It becomes the showroom on Main Street.</span></li>
+          <li><span class="ms-yr">Today</span><span class="ms-ev">Jewellery, pieces made to order and money exchange.</span></li>
+        </ol>
       </div>
-      <p class="mf-text"><span class="w" style="--i: 0"><em>Ran</em></span> <span class="w" style="--i: 1">is</span> <span class="w" style="--i: 2">the</span> <span class="w" style="--i: 3">Sinhala</span> <span class="w" style="--i: 4">word</span> <span class="w" style="--i: 5">for</span> <span class="w" style="--i: 6">gold.</span> <span class="pic" style="--i: 7"><img src="images/molten-gold.webp" alt=""></span> <span class="w" style="--i: 8">The</span> <span class="w" style="--i: 9">promise</span> <span class="w" style="--i: 10">has</span> <span class="w" style="--i: 11">not</span> <span class="w" style="--i: 12">changed</span> <span class="w" style="--i: 13">since</span> <span class="w" style="--i: 14">2008:</span> <span class="pic" style="--i: 15"><img src="images/bride-arches.webp" alt=""></span> <span class="w" style="--i: 16"><em>honest</em></span> <span class="w" style="--i: 17"><em>gold,</em></span> <span class="w" style="--i: 18"><em>fair</em></span> <span class="w" style="--i: 19"><em>rates,</em></span> <span class="pic" style="--i: 20"><img src="images/bangle-set.webp" alt=""></span> <span class="w" style="--i: 21">and</span> <span class="w" style="--i: 22">designs</span> <span class="w" style="--i: 23">that</span> <span class="w" style="--i: 24">last</span> <span class="w" style="--i: 25">longer</span> <span class="w" style="--i: 26">than</span> <span class="w" style="--i: 27">fashion.</span></p>
-      <div class="mf-tl rv">
-        <div><strong>2008</strong><span>Mr. Anas opens a small gold shop in Negombo town.</span></div>
-        <div><strong>2011</strong><span>It becomes the showroom on Main Street.</span></div>
-        <div><strong>Today</strong><span>Jewellery, pieces made to order and money exchange.</span></div>
-      </div>
+      <figure class="ms-arch rv">
+        <span class="ms-frame"><img src="images/bride-arches.webp" alt="A bride in a red lehenga beneath brick arches, wearing a kundan choker, nath and maang tikka" loading="lazy" decoding="async"></span>
+        <span class="ms-sill" aria-hidden="true"></span>
+        <span class="ms-seal" aria-hidden="true"><b>රන්</b><span>Ran · gold</span></span>
+      </figure>
     </div>
   </section>
 
@@ -234,16 +242,14 @@
 
   <section id="scale" class="sec scale">
     <div class="wrap">
-      <div class="sc-head">
-        <div class="rv">
-          <span class="eyebrow">The tray · Nine one six</span>
-          <h2 class="h2">Weighed in front <em>of you.</em></h2>
-        </div>
-        <p class="lede rv">Every piece is 916, twenty-two karat gold, weighed by the pawn of eight grams. Lay pieces on the tray and watch the scale find its balance.</p>
+      <div class="sc-head rv">
+        <span class="eyebrow">The tray · Nine one six</span>
+        <h2 class="h2">Weighed in front <em>of you.</em></h2>
+        <p class="lede">Every piece is 916, twenty-two karat gold, weighed by the pawn of eight grams. Lay pieces on the tray and watch the scale find its balance.</p>
       </div>
-      <div class="sc-grid">
-        <div class="rv sc-card">
-          <svg class="tharasu" viewBox="0 0 640 540" role="img" aria-label="A jeweller’s balance weighing the pieces on your tray against brass pawn weights">
+      <div class="sc-card rv">
+        <div class="sc-stage">
+          <svg class="tharasu" viewBox="0 24 640 500" role="img" aria-label="A jeweller’s balance weighing the pieces on your tray against brass pawn weights">
             <defs>
               <radialGradient id="rlGem" cx="35%" cy="30%" r="75%"><stop offset="0%" style="stop-color: #fff4d4"></stop><stop offset="45%" style="stop-color: #d8b36c"></stop><stop offset="100%" style="stop-color: #6f4f20"></stop></radialGradient>
               <linearGradient id="rlBrass" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #5d4520"></stop><stop offset="50%" style="stop-color: #c9a463"></stop><stop offset="100%" style="stop-color: #5d4520"></stop></linearGradient>
@@ -292,27 +298,30 @@
             </g>
           </svg>
         </div>
-        <div class="sc-panel rv">
+        <div class="sc-tray">
           <span class="eyebrow">Lay pieces on the tray</span>
           <div class="tray">
-            <button type="button" class="tray-btn" data-piece="tikka" aria-pressed="true"><span class="tray-dot" aria-hidden="true"></span><span class="tray-orb"><img loading="lazy" decoding="async" src="images/maang-tikka.webp" alt="" style="object-position: 50% 22%"></span><span class="tray-name">Maang tikka</span><span class="tray-meta">1 pawn · 8 g</span></button>
-            <button type="button" class="tray-btn" data-piece="nath" aria-pressed="false"><span class="tray-dot" aria-hidden="true"></span><span class="tray-orb"><img loading="lazy" decoding="async" src="images/nath.webp" alt="" style="object-position: 45% 52%"></span><span class="tray-name">Nath</span><span class="tray-meta">½ pawn · 4 g</span></button>
-            <button type="button" class="tray-btn" data-piece="jhumkas" aria-pressed="true"><span class="tray-dot" aria-hidden="true"></span><span class="tray-orb"><img loading="lazy" decoding="async" src="images/temple-jhumkas.webp" alt="" style="object-position: 50% 62%"></span><span class="tray-name">Jhumkas</span><span class="tray-meta">3 pawn · 24 g</span></button>
-            <button type="button" class="tray-btn" data-piece="choker" aria-pressed="true"><span class="tray-dot" aria-hidden="true"></span><span class="tray-orb"><img loading="lazy" decoding="async" src="images/kundan-choker.webp" alt="" style="object-position: 50% 50%"></span><span class="tray-name">Kundan choker</span><span class="tray-meta">4½ pawn · 36 g</span></button>
-            <button type="button" class="tray-btn" data-piece="bangles" aria-pressed="false"><span class="tray-dot" aria-hidden="true"></span><span class="tray-orb"><img loading="lazy" decoding="async" src="images/bangle-set.webp" alt="" style="object-position: 50% 55%"></span><span class="tray-name">Bangle set</span><span class="tray-meta">8 pawn · 64 g</span></button>
-            <button type="button" class="tray-btn" data-piece="ring" aria-pressed="false"><span class="tray-dot" aria-hidden="true"></span><span class="tray-orb"><img loading="lazy" decoding="async" src="images/hathphool.webp" alt="" style="object-position: 62% 72%"></span><span class="tray-name">Ring</span><span class="tray-meta">¾ pawn · 6 g</span></button>
+            <button type="button" class="tray-btn" data-piece="tikka" aria-pressed="true"><span class="tray-orb"><img src="images/maang-tikka.webp" alt="" style="object-position: 50% 22%" loading="lazy" decoding="async"><span class="tray-tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"></path></svg></span></span><span class="tray-name">Maang tikka</span><span class="tray-meta">1 pawn · 8 g</span></button>
+            <button type="button" class="tray-btn" data-piece="nath" aria-pressed="false"><span class="tray-orb"><img src="images/nath.webp" alt="" style="object-position: 45% 52%" loading="lazy" decoding="async"><span class="tray-tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"></path></svg></span></span><span class="tray-name">Nath</span><span class="tray-meta">½ pawn · 4 g</span></button>
+            <button type="button" class="tray-btn" data-piece="jhumkas" aria-pressed="true"><span class="tray-orb"><img src="images/temple-jhumkas.webp" alt="" style="object-position: 50% 62%" loading="lazy" decoding="async"><span class="tray-tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"></path></svg></span></span><span class="tray-name">Jhumkas</span><span class="tray-meta">3 pawn · 24 g</span></button>
+            <button type="button" class="tray-btn" data-piece="choker" aria-pressed="true"><span class="tray-orb"><img src="images/kundan-choker.webp" alt="" style="object-position: 50% 50%" loading="lazy" decoding="async"><span class="tray-tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"></path></svg></span></span><span class="tray-name">Kundan choker</span><span class="tray-meta">4½ pawn · 36 g</span></button>
+            <button type="button" class="tray-btn" data-piece="bangles" aria-pressed="false"><span class="tray-orb"><img src="images/bangle-set.webp" alt="" style="object-position: 50% 55%" loading="lazy" decoding="async"><span class="tray-tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"></path></svg></span></span><span class="tray-name">Bangle set</span><span class="tray-meta">8 pawn · 64 g</span></button>
+            <button type="button" class="tray-btn" data-piece="ring" aria-pressed="false"><span class="tray-orb"><img src="images/hathphool.webp" alt="" style="object-position: 62% 72%" loading="lazy" decoding="async"><span class="tray-tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"></path></svg></span></span><span class="tray-name">Ring</span><span class="tray-meta">¾ pawn · 6 g</span></button>
           </div>
-          <div class="readout" aria-live="polite">
+        </div>
+        <div class="sc-read">
+          <span class="eyebrow">On the scale</span>
+          <div class="ro-status" aria-live="polite">
             <span class="ro-line">3 pieces · 8½ pawn · 68 g</span>
-            <span class="odo" aria-hidden="true"><span class="odo-cur">LKR</span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-20%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-comma">,</span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-60%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-50%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-20%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-comma">,</span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-0%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-0%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-0%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span>
-            <span class="sr-only">Gold value LKR 2,652,000</span>
-            <div class="ro-row">
-              <p class="ro-note">Gold value at the sample <span class="ro-karat">22 karat</span> rate</p>
-              <div class="karat"><button type="button" class="karat-btn" data-karat="22" aria-pressed="true">22 karat</button><button type="button" class="karat-btn" data-karat="24" aria-pressed="false">24 karat</button></div>
-            </div>
-            <p class="ro-note">Approximate weights. One pawn is eight grams; making charges are quoted separately.</p>
+            <span class="ro-value sr-only">Gold value LKR 2,652,000</span>
           </div>
-          <a class="tlink" href="#viewing">Reserve this tray for a viewing<svg class="ico" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></a>
+          <span class="odo" aria-hidden="true"><span class="odo-cur">LKR</span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-20%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-comma">,</span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-60%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-50%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-20%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-comma">,</span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-0%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-0%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-cell"><span class="odo-strip" style="transform: translateY(-0%)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span>
+          <div class="ro-row">
+            <p class="ro-note">At the sample <span class="ro-karat">22 karat</span> rate</p>
+            <div class="karat" role="group" aria-label="Karat"><button type="button" class="karat-btn" data-karat="22" aria-pressed="true">22 karat</button><button type="button" class="karat-btn" data-karat="24" aria-pressed="false">24 karat</button></div>
+          </div>
+          <p class="ro-fine">Approximate weights. One pawn is eight grams; making charges are quoted separately.</p>
+          <a class="btn-royal" href="#viewing"><span class="btn-in">Reserve this tray<svg class="ico" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></span></a>
         </div>
       </div>
     </div>
@@ -327,61 +336,69 @@
         </div>
         <p class="lede rv">From the wedding tray to the day’s exchange rate, everything happens across the same counter on Main Street.</p>
       </div>
-      <div class="svc-list">
-        <a class="svc" href="#viewing"><span class="svc-n">01</span><span class="svc-name">Bridal jewellery</span><span class="svc-d">Complete sets, brought out on trays for the whole family.</span><svg class="ico svc-arr" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></a>
-        <a class="svc" href="#viewing"><span class="svc-n">02</span><span class="svc-name">Design your own</span><span class="svc-d">A sketch or a family piece, drawn, weighed and made by hand.</span><svg class="ico svc-arr" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></a>
-        <a class="svc" href="#scale"><span class="svc-n">03</span><span class="svc-name">Gold rate &amp; weighing</span><span class="svc-d">The day’s rate each morning, your gold weighed by the pawn.</span><svg class="ico svc-arr" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></a>
-        <a class="svc" href="#viewing"><span class="svc-n">04</span><span class="svc-name">Money exchange</span><span class="svc-d">More than fifty currencies, with no commission.</span><svg class="ico svc-arr" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></a>
-        <a class="svc" href="#viewing"><span class="svc-n">05</span><span class="svc-name">Ring &amp; bangle sizes</span><span class="svc-d">Bangle sizes 2.2 to 2.12, confirmed at the counter.</span><svg class="ico svc-arr" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></a>
-        <span class="svc-preview" aria-hidden="true">
-          <img loading="lazy" decoding="async" class="is-on" src="images/hero-bride-veil.webp" alt="">
-          <img loading="lazy" decoding="async" src="images/bangle-set.webp" alt="">
-          <img loading="lazy" decoding="async" src="images/molten-gold.webp" alt="">
-          <img loading="lazy" decoding="async" src="images/hero-sea-green-sari.webp" alt="">
-          <img loading="lazy" decoding="async" src="images/kundan-kada.webp" alt="">
-        </span>
+      <div class="svc-grid">
+        <div class="svc-media rv" aria-hidden="true">
+          <img class="is-on" src="images/full-look.webp" alt="" style="object-position: 50% 30%" loading="lazy" decoding="async">
+          <img src="images/bangle-set.webp" alt="" style="object-position: 50% 55%" loading="lazy" decoding="async">
+          <img src="images/molten-gold.webp" alt="" style="object-position: 55% 50%" loading="lazy" decoding="async">
+          <img src="images/hero-sea-green-sari.webp" alt="" style="object-position: 38% 40%" loading="lazy" decoding="async">
+          <img src="images/kundan-kada.webp" alt="" style="object-position: 60% 50%" loading="lazy" decoding="async">
+          <span class="svc-cap"><span class="svc-cap-n">01</span><span class="svc-cap-t">Bridal jewellery</span></span>
+        </div>
+        <ol class="svc-list rv">
+          <li><a class="svc is-on" href="#viewing"><span class="svc-n">01</span><span class="svc-thumb" aria-hidden="true"><img src="images/full-look.webp" alt="" style="object-position: 50% 30%" loading="lazy" decoding="async"></span><span class="svc-txt"><span class="svc-name">Bridal jewellery</span><span class="svc-d">Complete sets, brought out on trays for the whole family.</span></span><span class="svc-go" aria-hidden="true"><svg class="ico" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></span></a></li>
+          <li><a class="svc" href="#viewing"><span class="svc-n">02</span><span class="svc-thumb" aria-hidden="true"><img src="images/bangle-set.webp" alt="" style="object-position: 50% 55%" loading="lazy" decoding="async"></span><span class="svc-txt"><span class="svc-name">Design your own</span><span class="svc-d">A sketch or a family piece, drawn, weighed and made by hand.</span></span><span class="svc-go" aria-hidden="true"><svg class="ico" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></span></a></li>
+          <li><a class="svc" href="#scale"><span class="svc-n">03</span><span class="svc-thumb" aria-hidden="true"><img src="images/molten-gold.webp" alt="" style="object-position: 55% 50%" loading="lazy" decoding="async"></span><span class="svc-txt"><span class="svc-name">Gold rate &amp; weighing</span><span class="svc-d">The day’s rate each morning, your gold weighed by the pawn.</span></span><span class="svc-go" aria-hidden="true"><svg class="ico" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></span></a></li>
+          <li><a class="svc" href="#viewing"><span class="svc-n">04</span><span class="svc-thumb" aria-hidden="true"><img src="images/hero-sea-green-sari.webp" alt="" style="object-position: 38% 40%" loading="lazy" decoding="async"></span><span class="svc-txt"><span class="svc-name">Money exchange</span><span class="svc-d">More than fifty currencies, with no commission.</span></span><span class="svc-go" aria-hidden="true"><svg class="ico" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></span></a></li>
+          <li><a class="svc" href="#viewing"><span class="svc-n">05</span><span class="svc-thumb" aria-hidden="true"><img src="images/kundan-kada.webp" alt="" style="object-position: 60% 50%" loading="lazy" decoding="async"></span><span class="svc-txt"><span class="svc-name">Ring &amp; bangle sizes</span><span class="svc-d">Bangle sizes 2.2 to 2.12, confirmed at the counter.</span></span><span class="svc-go" aria-hidden="true"><svg class="ico" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></span></a></li>
+        </ol>
       </div>
     </div>
   </section>
 
-  <section id="viewing" class="invite on-dark">
-    <div class="inv-bg"><img loading="lazy" decoding="async" src="images/bride-arches.webp" alt=""></div>
-    <div class="inv-tint" aria-hidden="true"></div>
-    <div class="wrap inv-grid">
-      <div class="inv-side rv">
-        <span class="eyebrow">By appointment</span>
-        <p class="inv-addr">192 Main Street, <em>Negombo</em></p>
-        <dl class="inv-dl">
-          <div><dt>Hours</dt><dd>Monday to Saturday, 10 am to 7.30 pm. Closed Sundays and Poya days.</dd></div>
-          <div><dt>Call</dt><dd><a href="tel:+94312222202">031 222 2202</a><br><a href="tel:+94312238383">031 223 8383</a></dd></div>
-          <div><dt>Write</dt><dd><a href="mailto:ranlankanegombo@gmail.com">ranlankanegombo@gmail.com</a></dd></div>
-          <div><dt>Follow</dt><dd><a href="https://www.instagram.com/ranlankanegombo/">@ranlankanegombo</a></dd></div>
-        </dl>
-      </div>
+  <section id="viewing" class="sec invite">
+    <div class="wrap">
       <div class="inv-card rv">
-        <svg class="inv-mark" viewBox="-24 0 140 140" aria-hidden="true"><path class="mk-g" d="M69 4C58 22 26 44 12 66C2 82 0 103 6 115C12 126 26 129 40 129C56 129 68 121 72 106C74 97 71 90 66 84C63 90 64 98 61 104C58 110 50 113 41 113C28 113 19 107 19 96C19 84 24 74 31 64C44 46 62 26 69 4Z"></path><path class="mk-h" d="M42 60C46 69 59 78 59 89C59 98 51 105 41 105C31 105 24 98 24 89C24 78 38 69 42 60Z"></path><path class="mk-s" d="M52 61C73 59 90 76 90 99C90 121 72 139 48 139C38 139 28 136 21 131C30 133 39 134 47 133C67 131 81 116 81 99C81 82 68 67 52 61Z"></path></svg>
-        <p class="inv-kick">Ranlanka requests the pleasure of your company at</p>
-        <h2 class="inv-title">A private <em>viewing</em></h2>
-        <p class="inv-body">Tell us what you would like to see and when. We will keep the trays ready and a seat for each of you at the counter.</p>
-        <form class="inv-form" id="viewing-form">
-          <fieldset class="fs">
-            <legend>I would like to see</legend>
-            <div class="chips" data-field="topic"><button type="button" class="chip" aria-pressed="true">A bridal set</button><button type="button" class="chip" aria-pressed="false">The Rani edit</button><button type="button" class="chip" aria-pressed="false">Design your own</button><button type="button" class="chip" aria-pressed="false">Gold rate &amp; exchange</button></div>
-          </fieldset>
-          <div class="field-row">
-            <label class="field"><span class="field-l">Preferred day</span><input class="inp" type="date" name="day"></label>
+        <div class="inv-media on-dark">
+          <img src="images/hero-bride-veil.webp" alt="" loading="lazy" decoding="async">
+          <div class="inv-visit">
+            <span class="eyebrow">By appointment</span>
+            <p class="inv-addr">192 Main Street, <em>Negombo</em></p>
+            <p class="inv-facts"><span>Monday to Saturday, 10 am to 7.30 pm</span><a href="tel:+94312222202">031 222 2202</a></p>
+          </div>
+        </div>
+        <div class="inv-main">
+          <svg class="inv-mark" viewBox="-24 0 140 140" aria-hidden="true"><path class="mk-g" d="M69 4C58 22 26 44 12 66C2 82 0 103 6 115C12 126 26 129 40 129C56 129 68 121 72 106C74 97 71 90 66 84C63 90 64 98 61 104C58 110 50 113 41 113C28 113 19 107 19 96C19 84 24 74 31 64C44 46 62 26 69 4Z"></path><path class="mk-h" d="M42 60C46 69 59 78 59 89C59 98 51 105 41 105C31 105 24 98 24 89C24 78 38 69 42 60Z"></path><path class="mk-s" d="M52 61C73 59 90 76 90 99C90 121 72 139 48 139C38 139 28 136 21 131C30 133 39 134 47 133C67 131 81 116 81 99C81 82 68 67 52 61Z"></path></svg>
+          <p class="inv-kick">Ranlanka requests the pleasure of your company at</p>
+          <h2 class="inv-title">A private <em>viewing</em></h2>
+          <p class="inv-body">Tell us what you would like to see and when. We will keep the trays ready and a seat for each of you at the counter.</p>
+          <form class="inv-form" id="viewing-form">
+            <fieldset class="fs">
+              <legend>I would like to see</legend>
+              <div class="opts opts-topic">
+                  <label class="opt"><input type="radio" name="topic" value="A bridal set" checked><span class="opt-face"><span class="opt-t">A bridal set</span><span class="opt-s">The full tray, for the whole family</span></span></label>
+                  <label class="opt"><input type="radio" name="topic" value="The Rani edit"><span class="opt-face"><span class="opt-t">The Rani edit</span><span class="opt-s">Choker, jhumkas and kada</span></span></label>
+                  <label class="opt"><input type="radio" name="topic" value="Design your own"><span class="opt-face"><span class="opt-t">Design your own</span><span class="opt-s">From a sketch or a family piece</span></span></label>
+                  <label class="opt"><input type="radio" name="topic" value="Gold rate and exchange"><span class="opt-face"><span class="opt-t">Gold rate &amp; exchange</span><span class="opt-s">Weighing, rates and currencies</span></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="fs">
+              <legend>Choose a day</legend>
+              <div class="opts opts-day" id="day-options"></div>
+              <p class="fs-note">Closed Sundays and Poya days.</p>
+            </fieldset>
             <fieldset class="fs">
               <legend>Time of day</legend>
-              <div class="chips" data-field="time"><button type="button" class="chip" aria-pressed="false">Morning</button><button type="button" class="chip" aria-pressed="true">Afternoon</button><button type="button" class="chip" aria-pressed="false">Evening</button></div>
+              <div class="opts opts-time"><label class="opt"><input type="radio" name="time" value="Morning"><span class="opt-face">Morning</span></label><label class="opt"><input type="radio" name="time" value="Afternoon" checked><span class="opt-face">Afternoon</span></label><label class="opt"><input type="radio" name="time" value="Evening"><span class="opt-face">Evening</span></label></div>
             </fieldset>
-          </div>
-          <div class="field-row">
-            <label class="field"><span class="field-l">Your name</span><input class="inp" type="text" name="name" autocomplete="name" required></label>
-            <label class="field"><span class="field-l">Phone</span><input class="inp" type="tel" name="phone" autocomplete="tel" required></label>
-          </div>
-          <button type="submit" class="btn-royal inv-btn"><span class="btn-in">Request my viewing<svg class="ico" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></span></button>
-        </form>
-        <p class="inv-note" id="viewing-note" aria-live="polite">We confirm every viewing by phone or email.</p>
+            <div class="field-row">
+              <label class="field"><span class="field-l">Your name</span><input class="inp" type="text" name="name" autocomplete="name" required></label>
+              <label class="field"><span class="field-l">Phone</span><input class="inp" type="tel" name="phone" autocomplete="tel" required></label>
+            </div>
+            <button type="submit" class="btn-royal inv-btn"><span class="btn-in">Request my viewing<svg class="ico" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1l5 5-5 5"></path></svg></span></button>
+            <p class="inv-note" id="viewing-note" aria-live="polite">We confirm every viewing by phone or email.</p>
+          </form>
+        </div>
       </div>
     </div>
   </section>

@@ -143,6 +143,8 @@
   ];
   const RATE = { 22: 312000, 24: 340000 }; // sample LKR per pawn
   const ARM = 220;
+  // Vonca Light digit advances (em), so each odometer cell is as wide as the digit it shows
+  const DIGIT_W = [0.696, 0.33, 0.592, 0.62, 0.624, 0.619, 0.644, 0.522, 0.65, 0.643];
   const sel = { tikka: true, jhumkas: true, choker: true };
   let karat = '22';
   let settle = 0;
@@ -154,7 +156,7 @@
   const [panL, panR] = $$('.t-pan', scale);
   const odoCells = $$('.odo-cell, .odo-comma', scale);
   const countLine = $('.ro-line', scale);
-  const valueLine = $('.readout .sr-only', scale);
+  const valueLine = $('.ro-value', scale);
   const karatName = $('.ro-karat', scale);
   const karatBtns = $$('.karat-btn', scale);
 
@@ -201,6 +203,7 @@
       const isLead = lead && d === 0 && i < chars.length - 1;
       if (!isLead) lead = false;
       el.classList.toggle('is-lead', isLead);
+      el.style.width = isLead ? '0' : DIGIT_W[d] + 'em';
       el.firstElementChild.style.transform = 'translateY(' + (-d * 10) + '%)';
     });
 
@@ -228,51 +231,61 @@
   setTilt(0);
   setWeights(total());
 
-  /* services: a preview that follows the cursor */
-  const svcList = $('.svc-list');
-  const previews = $$('.svc-preview img', svcList);
-  $$('.svc', svcList).forEach((row, i) => row.addEventListener('mouseenter', () => {
-    previews.forEach((img, j) => img.classList.toggle('is-on', i === j));
-  }));
-  svcList.addEventListener('mousemove', (e) => {
-    const r = svcList.getBoundingClientRect();
-    if (!r.width || !r.height) return;
-    svcList.style.setProperty('--cx', ((e.clientX - r.left) * (svcList.offsetWidth / r.width)).toFixed(1) + 'px');
-    svcList.style.setProperty('--cy', ((e.clientY - r.top) * (svcList.offsetHeight / r.height)).toFixed(1) + 'px');
+  /* services: the window beside the list shows the service under the pointer or focus */
+  const svcRows = $$('.svc');
+  const svcImgs = $$('.svc-media img');
+  const capNo = $('.svc-cap-n');
+  const capName = $('.svc-cap-t');
+  const pickSvc = (i) => {
+    svcRows.forEach((row, j) => row.classList.toggle('is-on', i === j));
+    svcImgs.forEach((img, j) => img.classList.toggle('is-on', i === j));
+    capNo.textContent = '0' + (i + 1);
+    capName.textContent = $('.svc-name', svcRows[i]).textContent;
+  };
+  svcRows.forEach((row, i) => {
+    row.addEventListener('mouseenter', () => pickSvc(i));
+    row.addEventListener('focus', () => pickSvc(i));
   });
 
   /* the private viewing request */
-  $$('.chips[data-field]').forEach((group) => {
-    const chips = $$('.chip', group);
-    chips.forEach((chip) => chip.addEventListener('click', () => {
-      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
-    }));
-  });
-
   const form = $('#viewing-form');
   const note = $('#viewing-note');
   const field = (name) => form.elements.namedItem(name);
-  const pad = (n) => String(n).padStart(2, '0');
-  const today = new Date();
-  field('day').min = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
+
+  // the next six days the shop is open (it closes on Sundays)
+  const dayBox = $('#day-options', form);
+  const next = new Date();
+  next.setHours(12, 0, 0, 0);
+  for (let added = 0; added < 6;) {
+    next.setDate(next.getDate() + 1);
+    if (next.getDay() === 0) continue;
+    const label = document.createElement('label');
+    label.className = 'opt';
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'day';
+    input.value = next.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    input.checked = added === 0;
+    const face = document.createElement('span');
+    face.className = 'opt-face';
+    [['day-w', { weekday: 'short' }], ['day-n', { day: 'numeric' }], ['day-m', { month: 'short' }]].forEach(([cls, opt]) => {
+      const part = document.createElement('span');
+      part.className = cls;
+      part.textContent = next.toLocaleDateString('en-GB', opt);
+      face.append(part);
+    });
+    label.append(input, face);
+    dayBox.append(label);
+    added += 1;
+  }
 
   // no booking backend yet: the request opens in the visitor's email app, addressed to the shop
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const picked = (name) => {
-      const on = $('.chips[data-field="' + name + '"] [aria-pressed="true"]', form);
-      return on ? on.textContent : 'Any';
-    };
-    const dayValue = field('day').value;
-    let day = 'Any day';
-    if (dayValue) {
-      const [y, m, d] = dayValue.split('-').map(Number);
-      day = new Date(y, m - 1, d).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-    }
     const body = [
-      'I would like to see: ' + picked('topic'),
-      'Preferred day: ' + day,
-      'Time of day: ' + picked('time'),
+      'I would like to see: ' + field('topic').value,
+      'Preferred day: ' + field('day').value,
+      'Time of day: ' + field('time').value,
       'Name: ' + field('name').value.trim(),
       'Phone: ' + field('phone').value.trim()
     ].join('\n');

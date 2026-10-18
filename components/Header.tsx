@@ -44,7 +44,7 @@ export function Header() {
       <header className="hdr">
         <div className="wrap hdr-in">
           <button type="button" className="ibtn hdr-menu" aria-label="Open menu" aria-expanded={menu} onClick={() => setMenu(true)}><MenuIcon /></button>
-          <Link href="/" className="hdr-logo" aria-label="Ranlanka, home"><Logo /></Link>
+          <Link href="/" className="hdr-logo" aria-label="Ranlanka, home"><Logo priority /></Link>
           <nav className="hdr-nav" aria-label="Main">
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className={path === n.href ? 'on' : undefined}>{n.label}</Link>
@@ -67,9 +67,11 @@ export function Header() {
             </div>
             <div className="mnav">
               <Link href="/shop">All jewellery</Link>
+              <Link href="/shop/bridal">Bridal</Link>
               {CATEGORIES.map((c) => <Link key={c.key} href={`/shop/${c.key}`}>{c.name}</Link>)}
             </div>
             <div className="mnav mnav--small">
+              <Link href="/exchange">Money exchange</Link>
               <Link href="/about">Our story</Link>
               <Link href="/about#visit">Visit the showroom</Link>
               <Link href="/wishlist">Wishlist</Link>
@@ -98,20 +100,20 @@ function Search({ onClose }: { onClose: () => void }) {
       <div className="wrap">
         <div className="search-bar">
           <SearchIcon />
-          <input ref={input} value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search rings, rubies, bridal sets…" aria-label="Search the jewellery" />
+          <input ref={input} value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search rings, studs, bangles…" aria-label="Search the jewellery" />
           <button type="button" className="ibtn" aria-label="Close search" onClick={onClose}><CloseIcon /></button>
         </div>
         {q.trim() === '' ? (
           <div className="search-hints">
             <span className="label">Popular</span>
-            {['Bridal', 'Ruby', 'Studs', 'Bangle', 'Pendant'].map((h) => <button key={h} type="button" className="chip" onClick={() => setQ(h)}>{h}</button>)}
+            {['Bridal', 'Studs', 'Bangle', 'Pendant', 'Ring'].map((h) => <button key={h} type="button" className="chip" onClick={() => setQ(h)}>{h}</button>)}
           </div>
         ) : hits.length ? (
           <ul className="search-hits">
             {hits.map((p) => (
               <li key={p.id}>
                 <Link href={`/product/${p.id}`} onClick={onClose}>
-                  <span className="sh-img"><ProductImage product={p} sizes="64px" /></span>
+                  <span className="sh-img"><ProductImage product={p} sizes="64px" fit="cover" /></span>
                   <span className="sh-name">{p.name}<small>{categoryOf(p.cat)?.name}</small></span>
                   <span className="sh-price">{lkr(priceOf(p).total)}</span>
                 </Link>

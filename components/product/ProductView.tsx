@@ -12,7 +12,7 @@ import { ProductImage } from '../ProductImage';
 
 // Where on the bride's photograph each kind of piece is worn: [x%, y%] focus for the close crop.
 const WORN: Partial<Record<CategoryKey, [number, number]>> = {
-  necklaces: [52, 52], earrings: [62, 30], bangles: [46, 80], rings: [26, 72], bridal: [52, 40], pendants: [52, 56], bracelets: [46, 80], chains: [52, 48]
+  necklaces: [52, 52], earrings: [62, 30], bangles: [46, 80], rings: [26, 72], pendants: [52, 56], bracelets: [46, 80]
 };
 
 type View = 'piece' | 'detail' | 'worn';
@@ -29,7 +29,8 @@ export function ProductView({ product }: { product: Product }) {
   const saved = wish.includes(product.id);
   const hasPhoto = product.images.length > 0;
   const worn = WORN[product.cat];
-  const views: View[] = hasPhoto ? (worn ? ['piece', 'detail', 'worn'] : ['piece', 'detail']) : worn ? ['piece', 'worn'] : ['piece'];
+  const closeUp = hasPhoto && product.cat !== 'bracelets';
+  const views: View[] = ['piece', ...(closeUp ? (['detail'] as View[]) : []), ...(worn ? (['worn'] as View[]) : [])];
 
   const onAdd = () => {
     if (sizes && !size) { setNeedSize(true); return; }

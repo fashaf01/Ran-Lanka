@@ -18,11 +18,13 @@ export function Footer() {
             <div>
               <span className="label">Shop</span>
               <Link href="/shop">All jewellery</Link>
+              <Link href="/shop/bridal">Bridal</Link>
               {CATEGORIES.map((c) => <Link key={c.key} href={`/shop/${c.key}`}>{c.name}</Link>)}
             </div>
             <div>
               <span className="label">Ranlanka</span>
               <Link href="/about">Our story</Link>
+              <Link href="/exchange">Money exchange</Link>
               <Link href="/about#bespoke">Design your own</Link>
               <Link href="/about#visit">Visit the showroom</Link>
               <Link href="/wishlist">Wishlist</Link>

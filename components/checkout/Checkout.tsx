@@ -133,7 +133,7 @@ export function Checkout() {
             if (!p) return null;
             return (
               <li key={l.key}>
-                <span className="co-img"><ProductImage product={p} sizes="72px" /><b>{l.qty}</b></span>
+                <span className="co-img"><ProductImage product={p} sizes="72px" fit="cover" /><b>{l.qty}</b></span>
                 <span className="co-name">{p.name}<small>{METALS[l.metal].name}{l.size ? ` · Size ${l.size}` : ''}</small></span>
                 <span className="co-price">{lkr(priceOf(p).total * l.qty)}</span>
               </li>
@@ -161,7 +161,7 @@ function Confirmed({ orderRef, lines, total, email }: { orderRef: string; lines:
       <ul className="co-lines co-lines--done">
         {lines.map((l) => {
           const p = productOf(l.id);
-          return p ? <li key={l.key}><span className="co-img"><ProductImage product={p} sizes="72px" /><b>{l.qty}</b></span><span className="co-name">{p.name}<small>{METALS[l.metal].name}{l.size ? ` · Size ${l.size}` : ''}</small></span><span className="co-price">{lkr(priceOf(p).total * l.qty)}</span></li> : null;
+          return p ? <li key={l.key}><span className="co-img"><ProductImage product={p} sizes="72px" fit="cover" /><b>{l.qty}</b></span><span className="co-name">{p.name}<small>{METALS[l.metal].name}{l.size ? ` · Size ${l.size}` : ''}</small></span><span className="co-price">{lkr(priceOf(p).total * l.qty)}</span></li> : null;
         })}
       </ul>
       <div className="co-sum co-sum--done"><span>Total</span><b>{lkr(total)}</b></div>

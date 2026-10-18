@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import {
-  CATEGORIES, METALS, PRODUCTS, STONES, STYLES, byShowcase, priceOf,
-  type Category, type Metal, type Product, type Stone, type Style
+  CATEGORIES, EDITS, METALS, PRODUCTS, STONES, STYLES, byShowcase, priceOf, productsIn,
+  type Collection, type Metal, type Product, type Stone, type Style
 } from '@/lib/catalogue';
 import { ProductCard } from '../ProductCard';
 import { CloseIcon, FilterIcon, LongArrow } from '../Icons';
@@ -37,7 +37,7 @@ const matches = (p: Product, f: Filters) => {
   );
 };
 
-export function ShopView({ category }: { category?: Category }) {
+export function ShopView({ collection }: { collection?: Collection }) {
   const [f, setF] = useState<Filters>(EMPTY);
   const [sort, setSort] = useState<Sort>('featured');
   const [panel, setPanel] = useState(false);
@@ -47,7 +47,7 @@ export function ShopView({ category }: { category?: Category }) {
     return () => { document.documentElement.style.overflow = ''; };
   }, [panel]);
 
-  const base = useMemo(() => PRODUCTS.filter((p) => !category || p.cat === category.key), [category]);
+  const base = useMemo(() => productsIn(collection?.key), [collection?.key]);
   const list = useMemo(() => {
     const out = base.filter((p) => matches(p, f));
     if (sort === 'featured') out.sort(byShowcase);
@@ -67,13 +67,13 @@ export function ShopView({ category }: { category?: Category }) {
         <div className="wrap">
           <nav className="crumbs" aria-label="Breadcrumb">
             <Link href="/">Home</Link><span>/</span>
-            {category ? <><Link href="/shop">Jewellery</Link><span>/</span><span aria-current="page">{category.name}</span></> : <span aria-current="page">Jewellery</span>}
+            {collection ? <><Link href="/shop">Jewellery</Link><span>/</span><span aria-current="page">{collection.name}</span></> : <span aria-current="page">Jewellery</span>}
           </nav>
-          <h1 className="h1">{category ? category.name : 'All jewellery'}</h1>
-          <p className="lede">{category ? category.lede : 'Twenty-two karat gold, weighed in front of you. Every price follows the day’s gold rate.'}</p>
+          <h1 className="h1">{collection ? collection.name : 'All jewellery'}</h1>
+          <p className="lede">{collection ? collection.lede : 'Twenty-two karat gold, weighed in front of you. Every price follows the day’s gold rate.'}</p>
           <nav className="cat-pills" aria-label="Categories">
-            <Link href="/shop" className={!category ? 'on' : undefined}>All</Link>
-            {CATEGORIES.map((c) => <Link key={c.key} href={`/shop/${c.key}`} className={category?.key === c.key ? 'on' : undefined}>{c.name}</Link>)}
+            <Link href="/shop" className={!collection ? 'on' : undefined}>All</Link>
+            {[...EDITS, ...CATEGORIES].map((c) => <Link key={c.key} href={`/shop/${c.key}`} className={collection?.key === c.key ? 'on' : undefined}>{c.name}</Link>)}
           </nav>
         </div>
       </section>

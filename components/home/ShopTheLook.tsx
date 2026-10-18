@@ -9,10 +9,10 @@ import { ProductImage } from '../ProductImage';
 
 // Points on the photograph (percent of its width and height) and the nearest piece we sell.
 const SPOTS = [
-  { x: 60.7, y: 30.2, id: 'rl-e03', what: 'Earrings' },
-  { x: 51.3, y: 60, id: 'rl-n01', what: 'Necklace' },
-  { x: 25.3, y: 71.6, id: 'rl-r01', what: 'Ring' },
-  { x: 46.9, y: 80, id: 'rl-b02', what: 'Bangles' }
+  { x: 60.7, y: 30.2, id: 'rl-e14', what: 'Earrings' },
+  { x: 51.3, y: 60, id: 'rl-n14', what: 'Necklace' },
+  { x: 25.3, y: 71.6, id: 'rl-r12', what: 'Ring' },
+  { x: 46.9, y: 80, id: 'rl-b16', what: 'Bangles' }
 ];
 
 export function ShopTheLook() {

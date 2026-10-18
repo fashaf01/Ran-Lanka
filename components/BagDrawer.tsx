@@ -40,7 +40,7 @@ export function BagDrawer() {
                 if (!p) return null;
                 return (
                   <li key={l.key} className="bl">
-                    <Link className="bl-img" href={`/product/${p.id}`} onClick={() => setBagOpen(false)}><ProductImage product={p} sizes="96px" /></Link>
+                    <Link className="bl-img" href={`/product/${p.id}`} onClick={() => setBagOpen(false)}><ProductImage product={p} sizes="96px" fit="cover" /></Link>
                     <div className="bl-info">
                       <Link className="bl-name" href={`/product/${p.id}`} onClick={() => setBagOpen(false)}>{p.name}</Link>
                       <span className="bl-meta">{METALS[l.metal].name}{l.size ? ` · Size ${l.size}` : ''}</span>

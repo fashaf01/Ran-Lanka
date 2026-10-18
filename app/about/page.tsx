@@ -4,6 +4,12 @@ import Link from 'next/link';
 import { BookViewing } from '@/components/about/BookViewing';
 import { LongArrow, PhoneIcon, PinIcon } from '@/components/Icons';
 
+const SHOWROOM = [
+  { src: '/images/showroom/showroom-1.jpg', alt: 'The counter at the Ranlanka showroom, with customers being served' },
+  { src: '/images/showroom/showroom-2.jpg', alt: 'The showroom floor, with seating along the glass counters' },
+  { src: '/images/showroom/showroom-3.jpg', alt: 'Rows of chairs facing the lit jewellery cabinets' }
+];
+
 export const metadata: Metadata = {
   title: 'Our story',
   description: 'Ranlanka has sold twenty-two karat gold in Negombo since 2008. Our story, how we work, and how to visit the Main Street showroom.'
@@ -38,6 +44,20 @@ export default function About() {
             <h2 className="h2">The gold of Lanka, sold in Negombo.</h2>
             <p className="lede"><em>Ran</em> is the Sinhala word for gold. In 2008 Mr. Anas opened a small shop in Negombo town to sell it the way he wanted to buy it himself: pure, weighed in the open and priced at the day’s rate.</p>
             <p className="lede">Three years later the shop moved to a larger showroom at 192 Main Street, with room for the full collection, pieces made to order and a counter for money exchange.</p>
+            <p className="lede">We carry twenty-two karat gold jewellery imported from around the world, with diamonds and coloured stones, and we make custom designs.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="sec--tight ab-room" aria-label="The showroom">
+        <div className="wrap">
+          <p className="kicker">The showroom, 192 Main Street</p>
+          <div className="room">
+            {SHOWROOM.map((s, i) => (
+              <figure key={s.src} className="rv" style={{ '--d': `${i * 0.08}s` } as React.CSSProperties}>
+                <Image src={s.src} alt={s.alt} width={200} height={200} unoptimized />
+              </figure>
+            ))}
           </div>
         </div>
       </section>

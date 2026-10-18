@@ -73,7 +73,7 @@ export function Rates() {
             </div>
           ))}
         </dl>
-        <p className="rates-fx rv">Money exchange at the counter: more than fifty currencies, no commission.</p>
+        <p className="rates-fx rv">Money exchange at the counter: more than fifty currencies, no commission. <Link className="tlink tlink--light" href="/exchange">See the rates <LongArrow size={14} /></Link></p>
       </div>
     </section>
   );

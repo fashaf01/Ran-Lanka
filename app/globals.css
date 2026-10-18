@@ -87,9 +87,8 @@ img { display: block; max-width: 100%; }
 .hdr { position: sticky; top: 0; z-index: 60; background: rgba(255, 255, 255, .94); -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid var(--line); }
 .hdr-in { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; height: 72px; }
 .hdr-menu { display: none; }
-.logo { display: inline-flex; align-items: center; gap: 10px; }
-.logo-mark { width: 22px; height: 22px; flex: none; }
-.logo-word { font-family: var(--display); font-weight: 400; font-size: 17px; letter-spacing: .38em; margin-right: -.38em; line-height: 1; }
+.hdr-logo { display: inline-flex; align-items: center; }
+.logo-img { display: block; width: auto; height: 24px; }
 .hdr-nav { display: flex; justify-content: center; gap: clamp(18px, 2.2vw, 34px); }
 .hdr-nav a { position: relative; padding: 6px 0; font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); transition: color .3s; }
 .hdr-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: right; transition: transform .5s var(--ease); }
@@ -105,7 +104,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 560px) {
   .strip-more, .strip-sep { display: none; }
   .hdr-wish { display: none; }
-  .logo-word { font-size: 15px; letter-spacing: .32em; margin-right: -.32em; }
+  .logo-img { height: 21px; }
 }
 
 /* ---------- drawers ---------- */
@@ -614,3 +613,60 @@ legend { padding: 0; }
 .nf { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; padding-block: clamp(80px, 12vw, 180px); }
 .nf .h1 { max-width: 14em; }
 .nf-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+
+/* =================== supplied photographs =================== */
+/* Each photo is one piece on a near-white ground. Multiply melts that ground into the soft
+   tile; the image box is exactly the photo (3:2), so its edges fade into the tile too. */
+img.photo { mix-blend-mode: multiply; padding: 0 !important; filter: brightness(1.045) contrast(1.03); }
+img.photo:not(.photo--cover) {
+  top: 50% !important; bottom: auto !important; height: auto !important; aspect-ratio: 3 / 2;
+  transform: translateY(-50%) scale(1.14);
+  -webkit-mask-image: radial-gradient(ellipse closest-side, #000 84%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side, #000 84%, transparent 100%);
+  transition: transform 1.1s var(--ease);
+}
+.pc:hover .pc-img > img.photo:not(.photo--cover) { transform: translateY(-50%) scale(1.22); }
+.pc:hover .pc-img > img.photo--cover { transform: scale(1.05); }
+.pv-stage .pv-img--detail > img.photo:not(.photo--cover) { transform: translateY(-50%) scale(1.9); }
+.pv-stage--piece .pv-img > img.photo:not(.photo--cover) { transform: translateY(-50%) scale(1.06); }
+.pv-thumb .pv-img > img.photo:not(.photo--cover), .sh-img img.photo, .bl-img img.photo, .co-img img.photo, .look-card-img img.photo { transform: none; }
+.look-card-img img.photo:not(.photo--cover) { transform: translateY(-50%) scale(1.1); }
+
+/* the Ranlanka mark, as supplied */
+.foot-mark .logo-img { height: 22px; }
+
+/* =================== about: the showroom =================== */
+.ab-room { padding-top: 0; }
+.room { display: grid; grid-template-columns: repeat(3, minmax(0, 200px)); gap: 12px; margin-top: 4px; }
+.room figure { aspect-ratio: 1; background: var(--soft); }
+.room img { width: 100%; height: 100%; object-fit: cover; }
+
+/* =================== money exchange =================== */
+.ex-head { background: var(--soft); padding: clamp(28px, 4vw, 48px) 0 clamp(48px, 6vw, 88px); }
+.ex-head-in { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 6vw, 96px); align-items: end; }
+.ex-head .lede { margin-top: 18px; }
+.ex-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 30px; }
+.ex-photos { display: grid; grid-template-columns: repeat(3, minmax(0, 200px)); gap: 10px; justify-content: end; }
+.ex-photos img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.ex-photos img:nth-child(2) { margin-top: 28px; }
+.ex-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.ex-grid .lede { margin-top: 16px; }
+.fxt { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.fxt th, .fxt td { padding: 16px 0; border-bottom: 1px solid var(--line); text-align: right; font-size: 16px; font-weight: 500; }
+.fxt thead th { padding-top: 0; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); border-bottom-color: var(--ink); }
+.fxt th:first-child { text-align: left; }
+.fxt tbody th { display: flex; align-items: center; gap: 14px; font-size: 14.5px; font-weight: 600; }
+.fx-code { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--ink); color: var(--gold-3); font-size: 10.5px; font-weight: 700; letter-spacing: .06em; }
+.fxt + .note { margin-top: 14px; }
+.ex-steps-sec { background: var(--soft); }
+.ex-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 18px; border-top: 1px solid var(--ink); }
+.ex-steps li { padding: 26px 32px 6px 0; }
+.ex-steps b { display: block; font-family: var(--display); font-weight: 200; font-size: 40px; line-height: 1; color: var(--gold); margin-bottom: 18px; }
+.ex-steps h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.ex-steps p { font-size: 14px; color: var(--ink-2); max-width: 22em; }
+@media (max-width: 900px) {
+  .ex-head-in, .ex-grid { grid-template-columns: minmax(0, 1fr); }
+  .ex-photos { justify-content: start; }
+  .ex-steps { grid-template-columns: minmax(0, 1fr); }
+  .ex-steps li { padding: 24px 0; border-bottom: 1px solid var(--line); }
+}

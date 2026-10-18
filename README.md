@@ -2,52 +2,61 @@
 
 The website for Ranlanka, twenty-two karat gold jewellery at 192 Main Street, Negombo.
 
-It is a static site with no build step: plain HTML, CSS and JavaScript.
+It is a [Next.js](https://nextjs.org) app (App Router, TypeScript). Every page is generated
+as static HTML at build time, so it is fast and cheap to host.
 
-| File | What it is |
+## Pages
+
+| Route | What it is |
 | --- | --- |
-| `index.html` | Home: hero, promise, collections, design your own, rates, our pieces, visit, footer |
-| `collection.html` | The collections: category tiles, filters, sort and the grid of pieces. `?c=rings` opens one category |
-| `product.html` | One piece: gallery, gold colour and size, price estimate, details. `?p=rl-r01` picks the piece |
-| `catalogue.js` | The pieces, categories, filters and the gold rate used for estimates |
-| `styles.css` | Home styles, and the colours, type and buttons every page shares |
-| `shop.css` | Styles for the collection and product pages |
-| `main.js` | Home: menu, hero pointer drift, booking chips and the booking email |
-| `shop.js` | Collection and product pages: filters, gallery and the viewing list |
-| `fonts/` | Vonca, the display and text face (weights 200 to 700) |
-| `images/` | The hero photograph and the jewellery cut-outs |
-| `images/dummy/` | Placeholder photos for the catalogue, one drawing per category |
+| `/` | Home: the lit hero, new pieces, categories, bestsellers, shop the look, design your own, gold rates, Instagram, services |
+| `/shop`, `/shop/[category]` | All jewellery or one category, with filters (stone, occasion, gold colour, price) and sorting |
+| `/product/[id]` | One piece: gallery (piece, close up, as worn), gold colour and size, price breakdown, details |
+| `/about` | Our story, how we work, design your own, and visiting the showroom with a viewing request |
+| `/checkout` | Contact, delivery or collection, and payment. **Design only:** nothing is sent and no payment is taken |
+| `/wishlist` | Pieces saved with the heart, kept on the visitor’s device |
+
+## Where things live
+
+| Path | What it is |
+| --- | --- |
+| `lib/catalogue.ts` | The pieces, categories, sizes and the gold rate used for every price |
+| `lib/store.tsx` | The bag and wishlist, kept in the browser’s local storage |
+| `components/` | Header, footer, product card, rails, bag drawer, and the home, shop, product, about and checkout pieces |
+| `app/globals.css` | All styles: colours, type, buttons and every section |
+| `app/fonts/` | Vonca, the display face, used for headlines and titles only |
+| `public/images/` | The hero photograph, its gold mask, crops of it, and the jewellery cut-outs |
+
+Type: **Vonca** is kept for headlines, page titles, large figures and the wordmark.
+Everything people need to read (body, prices, labels, forms) is set in **Manrope**.
 
 ## Run it locally
 
-Serve the folder with any static server, for example:
-
 ```sh
-python3 -m http.server 8000
+npm install
+npm run dev
 ```
 
-Then open http://localhost:8000.
+Then open http://localhost:3000. `npm run build` makes the production build.
 
 ## Deploy
 
-Upload the folder as-is to any static host (Vercel, Netlify, GitHub Pages, Cloudflare Pages). There is nothing to build.
+Vercel builds it with the Next.js preset; there is nothing else to configure.
 
 ## The catalogue
 
-Every piece in `catalogue.js` is a sample, with a placeholder photo. To add the real stock:
+Every piece in `lib/catalogue.ts` is a sample. Pieces without a photo show a drawn
+placeholder. To add the real stock:
 
-1. Put the photos in `images/products/`, for example `rl-r01-1.webp`, `rl-r01-2.webp`. Portrait 4:5 works best.
-2. In `catalogue.js`, edit the piece's name, weight, making charge and stones, and list its photos:
-   `images: ['images/products/rl-r01-1.webp', 'images/products/rl-r01-2.webp']`.
-   The first photo shows on the card and the second appears when you hover.
-3. Change `RATE_22K` at the top of `catalogue.js` to update every price estimate at once.
+1. Put the photos in `public/images/products/`, for example `rl-r01-1.webp`. A cut-out on a
+   transparent background looks best on the grey tiles.
+2. In `lib/catalogue.ts`, edit the piece’s name, weight, making charge and stones, and list
+   its photos, for example `images: ['/images/products/rl-r01-1.webp']`.
+3. Change `RATE_22K` and `RATE_24K` each morning, or connect them to wherever the
+   counter posts the day’s rate.
 
-Estimates are worked out as gold weight × rate, plus the making charge, plus the value of any stones.
+## The hero glow
 
-The viewing list is Ranlanka's version of a shopping bag. Visitors save pieces to it, then send a viewing request by email with the pieces, their name, phone and preferred day. The list is kept in the visitor's browser.
-
-## Notes
-
-- The gold and exchange rates in `index.html` are sample figures. Update them in the `#rates` section.
-- "Request my viewing" opens the visitor's email app with a message to ranlankanegombo@gmail.com, pre-filled with their choice, name, phone and day.
-- The scroll stages (collections carousel, our pieces) use CSS scroll-driven animations. Browsers without them, and visitors who ask for reduced motion, get a static layout.
+`public/images/hero-gold-mask.png` is a mask cut from the hero photograph’s gold pixels. The
+warm bloom and the passing light in the hero are drawn through it, so they touch the
+jewellery only. If the hero photograph changes, the mask has to be cut again to match.

@@ -1,11 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { Manrope, Noto_Sans_Sinhala } from 'next/font/google';
-import { StoreProvider } from '@/lib/store';
 import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
-import { BagDrawer } from '@/components/BagDrawer';
-import { Reveal } from '@/components/Reveal';
+import { Footer } from '@/components/Sections';
+import { Effects } from '@/components/Effects';
 import './globals.css';
 
 // Vonca is the display face: headlines, titles and the wordmark only.
@@ -25,12 +23,12 @@ const sinhala = Noto_Sans_Sinhala({ subsets: ['sinhala'], weight: ['300', '400']
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ranlanka.vercel.app'),
-  title: { default: 'Ranlanka · The gold of Lanka', template: '%s · Ranlanka' },
+  title: 'Ranlanka · The gold of Lanka',
   description: 'Ranlanka, twenty-two karat gold jewellery at 192 Main Street, Negombo. Bridal sets, fine jewellery made to your design, and money exchange. Since 2008.',
   openGraph: { images: ['/images/hero-saree.webp'] }
 };
 
-export const viewport: Viewport = { themeColor: '#ffffff' };
+export const viewport: Viewport = { themeColor: '#0c0a08' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -39,14 +37,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body>
-        <StoreProvider>
-          <a className="skip" href="#main">Skip to content</a>
-          <Header />
-          <main id="main">{children}</main>
-          <Footer />
-          <BagDrawer />
-          <Reveal />
-        </StoreProvider>
+        <a className="skip" href="#main">Skip to content</a>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
+        <Effects />
       </body>
     </html>
   );

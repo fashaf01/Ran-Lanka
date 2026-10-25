@@ -1,14 +1,11 @@
-import Link from 'next/link';
-
 export default function NotFound() {
   return (
-    <section className="wrap nf">
-      <p className="kicker">404</p>
-      <h1 className="h1">This page has gone back in the safe.</h1>
-      <p className="lede">The link may be old, or the piece may have found its owner.</p>
-      <div className="nf-links">
-        <Link className="btn btn--dark" href="/shop">Shop the jewellery</Link>
-        <Link className="btn btn--line" href="/">Home</Link>
+    <section className="sec nf">
+      <div className="wrap">
+        <p className="kicker">404</p>
+        <h1 className="display" style={{ marginTop: 24 }}>This page has gone back in the safe.</h1>
+        <p className="lede" style={{ marginTop: 24 }}>The link may be old. Everything Ranlanka has to show is on one page now.</p>
+        <a className="btn btn--gold" href="/" style={{ marginTop: 36 }}>Back to Ranlanka</a>
       </div>
     </section>
   );

@@ -2,38 +2,38 @@
 
 The website for Ranlanka, twenty-two karat gold jewellery at 192 Main Street, Negombo.
 
-It is a [Next.js](https://nextjs.org) app (App Router, TypeScript). Every page is generated
-as static HTML at build time, so it is fast and cheap to host.
+It is one landing page, built with [Next.js](https://nextjs.org) (App Router, TypeScript) and
+generated as static HTML at build time, so it is fast and cheap to host.
 
-## Pages
+## The page, top to bottom
 
-| Route | What it is |
+| Section | What it is |
 | --- | --- |
-| `/` | Home: the lit hero, new pieces, categories, bestsellers, shop the look, design your own, gold rates, Instagram, services |
-| `/shop`, `/shop/[collection]` | All jewellery, one of the six collections, or the Bridal edit, with filters (stone, occasion, gold colour, price) and sorting |
-| `/product/[id]` | One piece: gallery (piece, close up, as worn), gold colour and size, price breakdown, details |
-| `/about` | Our story, the showroom, how we work, design your own, and visiting with a viewing request |
-| `/exchange` | Money exchange: how it works and the day's rates (sample figures until real ones are entered) |
-| `/checkout` | Contact, delivery or collection, and payment. **Design only:** nothing is sent and no payment is taken |
-| `/wishlist` | Pieces saved with the heart, kept on the visitor’s device |
+| Hero | The bride among the lamps. The scene fades up, the lamps come on and the gold catches the light |
+| Marquee | A slow line of what the shop stands for |
+| Ran means gold | The story in one paragraph, with the year, the purity and the pawn |
+| The collection | Pieces in a lit case: drag, swipe, use the arrows or the keyboard, or pick a collection |
+| The bridal edit | The bridal set, and a call to book a viewing |
+| How we work | Four promises, on cards that light up under the cursor |
+| Design your own | Slide between the drawing and the finished pendant |
+| The gold rate | Today's rates (sample figures) and a few money-exchange rates |
+| Visit | Address, hours, phones, whether the showroom is open right now, and the showroom photos |
 
 ## Where things live
 
 | Path | What it is |
 | --- | --- |
-| `lib/catalogue.ts` | The pieces, collections, sizes and the gold rate used for every price |
-| `lib/rates.ts` | The money-exchange rates shown on `/exchange` |
-| `lib/store.tsx` | The bag and wishlist, kept in the browser’s local storage |
-| `components/` | Header, footer, product card, rails, bag drawer, and the home, shop, product, about and checkout pieces |
+| `app/page.tsx` | The order of the sections |
 | `app/globals.css` | All styles: colours, type, buttons and every section |
-| `app/fonts/` | Vonca, the display face, used for headlines and titles only |
-| `public/images/products/` | The 46 product photographs, named `<collection>-<number>.jpg` |
-| `public/images/showroom/`, `exchange/` | The showroom and money-exchange photographs |
-| `public/images/logo.png` | The Ranlanka logo, as supplied |
-| `public/images/` | The hero photograph, its gold mask, crops of it, and a few cut-outs used on the coloured tiles |
+| `components/` | The header, the hero, the collection case, the drawing slider and the other sections |
+| `lib/pieces.ts` | The pieces in the case, the gold rate (`RATE_22K`, `RATE_24K`) and the pawn |
+| `lib/rates.ts` | The money-exchange rates (sample figures) |
+| `app/fonts/` | Vonca, the display face, used for headlines, figures and names of pieces only |
+| `public/images/pieces/` | The pieces, cut out on a transparent ground, named `<collection>-<number>.webp` |
+| `public/images/` | The hero photograph and its gold mask, the bridal photographs, the logo (`logo.png` as supplied, `logo-light.png` for dark grounds) and the showroom photos |
 
-Type: **Vonca** is kept for headlines, page titles, large figures and the wordmark.
-Everything people need to read (body, prices, labels, forms) is set in **Manrope**.
+Type: **Vonca** is kept for headlines, big figures and names of pieces. Everything people need
+to read is set in **Manrope**.
 
 ## Run it locally
 
@@ -50,30 +50,33 @@ Vercel builds it with the Next.js preset; there is nothing else to configure.
 
 ## The photographs
 
-The product, showroom, money-exchange and logo images come from the shop's previous website
-(ranlankanegombo.com) and are used with the owner's permission. They are the originals,
-unedited. Two things to know:
+The product, showroom and logo images come from the shop's previous website
+(ranlankanegombo.com) and are used with the owner's permission.
 
-- They are 640 pixels wide and carry a large RANLANKA watermark, so they look soft on big
-  screens. Higher-resolution originals, ideally without the watermark, would lift the whole
-  site. Drop them in with the same file names and nothing else changes.
+- **The watermark is gone from every piece shown.** Those photos had a large RANLANKA
+  watermark. For necklaces, earrings and pendants the watermark sits behind the piece, so each
+  piece was cut out of its photo and the watermark left behind. 18 of those 22 came out clean
+  and are on the page.
+- **Rings, bangles and bracelets are not shown.** On the ring and bangle photos the watermark
+  is printed across the gold itself and cannot be taken off cleanly; the bracelet photos are
+  thin vertical strips that do not sit well in the case. Supply clean originals (any size, no
+  watermark) and they can be cut out and added.
+- The originals are 640 pixels wide, so the cut-outs are small. Higher-resolution photos would
+  make the case sharper on large screens.
 - The showroom photographs are 200 pixels square, so they are shown small.
 
-## The catalogue
+To add or change a piece, put a transparent `.webp` in `public/images/pieces/` and add a line
+to `PIECES` in `lib/pieces.ts` with its width and height.
 
-One piece per product photograph. **The photos are real but every name, weight, making
-charge, stone and "added" date in `lib/catalogue.ts` is a placeholder** written from what
-the photo shows, so every price on the site is a sample. Stones are described only as they
-look ("white stones", "red stone", "blue stone"); set the exact stone once it is known.
+## The figures
 
-To use the real stock details, edit each piece in `lib/catalogue.ts`: its name, `weight`
-(grams of 22K gold), `making` (making charge, per cent of the gold value), `stones` and
-`stoneValue`. To add a piece, copy one photo to `public/images/products/` and add a line in
-the matching group. Change `RATE_22K` and `RATE_24K` each morning, or connect them to
-wherever the counter posts the day's rate.
+**The names of the pieces, the gold rate and the exchange rates are placeholders.** The names
+were written from what each photo shows. Change `RATE_22K` and `RATE_24K` in `lib/pieces.ts`
+each morning (or connect them to wherever the counter posts the day's rate), and the rates in
+`lib/rates.ts`.
 
 ## The hero glow
 
-`public/images/hero-gold-mask.png` is a mask cut from the hero photograph’s gold pixels. The
+`public/images/hero-gold-mask.png` is a mask cut from the hero photograph's gold pixels. The
 warm bloom and the passing light in the hero are drawn through it, so they touch the
 jewellery only. If the hero photograph changes, the mask has to be cut again to match.

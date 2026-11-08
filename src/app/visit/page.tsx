@@ -1,137 +1,73 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "@/components/Button";
-import { EnquiryForm } from "@/components/EnquiryForm";
-import { Icon } from "@/components/Icon";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
-import { StatusHeading } from "@/components/StatusHeading";
-import { WeekStrip } from "@/components/WeekStrip";
-import { EMAIL, MAPS_URL, PHONE, PHONE_2, PHONE_2_HREF, PHONE_HREF } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Visit",
-  description: "Ranlanka, 192 Main Street, Negombo. Open Monday to Saturday, 10 am to 7.30 pm. Closed Sundays and Poya days.",
-};
-
-const AT_COUNTER = [
-  { icon: "arrow" as const, title: "See and try pieces", text: "We bring out the trays. Try them with your saree." },
-  { icon: "sketch" as const, title: "Have a piece sized", text: "Rings, bangles and chains, adjusted at the counter." },
-  { icon: "scale" as const, title: "Sell or exchange old gold", text: "Weighed in front of you before you decide." },
-  { icon: "exchange" as const, title: "Change money", text: "More than fifty currencies, with no commission." },
-];
-
-const photos = (
-  <div style={{ flex: "1 1 460px", minWidth: 0, display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 14 }}>
-    <figure style={{ margin: 0 }}>
-      <img src="/img/showroom-counter.jpg" alt="The counter at the Ranlanka showroom, with customers being served" loading="lazy" style={{ display: "block", width: "100%", aspectRatio: "1", objectFit: "cover" }} />
-      <figcaption className="small muted" style={{ marginTop: 10 }}>The counter</figcaption>
-    </figure>
-    <figure style={{ margin: 0 }}>
-      <img src="/img/showroom-floor.jpg" alt="The showroom floor, with seating along the glass counters" loading="lazy" style={{ display: "block", width: "100%", aspectRatio: "1", objectFit: "cover" }} />
-      <figcaption className="small muted" style={{ marginTop: 10 }}>The showroom floor</figcaption>
-    </figure>
-  </div>
-);
+export const metadata: Metadata = { title: "Visit", description: "Ranlanka Jewellery, 192 Main Street, Negombo. Open Monday to Saturday, 10:00 am to 7:30 pm." };
 
 export default function VisitPage() {
   return (
-    <>
-      <SiteHeader current="/visit" />
-      <main>
-        {/* ======================= OPEN OR CLOSED ======================= */}
-        <section className="lampbg page-head" data-theme="lamp">
-          <div className="wrap">
-            <nav aria-label="Breadcrumb" className="small breadcrumb">
-              <Link href="/">Home</Link>
-              <span aria-hidden="true">/</span>
-              <span>Visit</span>
-            </nav>
-            <div className="split" style={{ justifyContent: "space-between", marginTop: 28 }}>
-              <div style={{ flex: "1 1 500px", minWidth: 0 }}>
-                <p className="label kicker">Visit the showroom</p>
-                <StatusHeading as="h1" poyaNote dotSize="0.17em" style={{ margin: "24px 0 0", fontFamily: "var(--font-display)", fontWeight: 300, fontSize: "clamp(44px, 5.4vw, 80px)", lineHeight: 1.04, letterSpacing: "-0.02em", fontVariationSettings: "'opsz' 72", color: "var(--ink)", textWrap: "balance" }} />
-                <p className="body-p" style={{ margin: "24px 0 0", maxWidth: "48ch" }}>Come in to see a piece, have one sized, sell old gold or change money. We bring out the trays and take as long as you need.</p>
-                <div className="btn-row" style={{ marginTop: 32 }}>
-                  <Button variant="gold" icon="pin" href={MAPS_URL}>Get directions</Button>
-                  <Button variant="line" icon="phone" href={PHONE_HREF}>{PHONE}</Button>
-                </div>
-              </div>
-              <div className="rl-tray velvet" data-theme="maroon" style={{ flex: "0 1 460px", minWidth: 0, borderRadius: 2, padding: "40px 38px" }}>
-                <div style={{ display: "grid", gap: 22 }}>
-                  <div style={{ display: "grid", gap: 8 }}>
-                    <span className="label kicker" style={{ fontSize: 10.5 }}>Address</span>
-                    <p className="piece-name" style={{ margin: 0, fontSize: 28 }}>192 Main Street, Negombo</p>
-                  </div>
-                  <div style={{ display: "grid", gap: 12, paddingTop: 20, borderTop: "1px solid var(--line)" }}>
-                    <span className="label kicker" style={{ fontSize: 10.5 }}>Hours</span>
-                    <p className="body" style={{ margin: 0 }}>Monday to Saturday, 10 am to 7.30 pm</p>
-                    <p className="small muted" style={{ margin: 0 }}>Closed Sundays and Poya days</p>
-                    <WeekStrip />
-                  </div>
-                  <div style={{ display: "grid", gap: 6, paddingTop: 20, borderTop: "1px solid var(--line)" }}>
-                    <span className="label kicker" style={{ fontSize: 10.5 }}>Call or write</span>
-                    <p className="body" style={{ margin: 0, display: "flex", flexWrap: "wrap", gap: "4px 16px" }}>
-                      <a href={PHONE_HREF} style={{ textDecoration: "none" }}>{PHONE}</a>
-                      <a href={PHONE_2_HREF} style={{ textDecoration: "none" }}>{PHONE_2}</a>
-                    </p>
-                    <p className="body" style={{ margin: 0, overflowWrap: "anywhere" }}>
-                      <a href={`mailto:${EMAIL}`} className="more-link" style={{ color: "var(--ink)", fontSize: "inherit", paddingBottom: 0 }}>{EMAIL}</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
+    <div className="page" data-page="visit">
+      <header className="wrap phead">
+        <div className="phead-copy" style={{ "maxWidth": "1100px" }}>
+          <nav className="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Visit</span></nav>
+          <p className="kicker">Visit</p>
+          <h1 className="d1 rv"><span className="ln"><span>Gold looks best</span></span><span className="ln"><span><em>in person.</em></span></span></h1>
+          <p className="lead">Come in, hold it to the light and take your time. We are on Main Street in the centre of Negombo, a short drive from Bandaranaike International Airport.</p>
+        </div>
+      </header>
+      <section className="sec-s" style={{ "paddingTop": "0" }} aria-label="Showroom details">
+        <div className="wrap vi-grid">
+          <div className="vi-col">
+            <h3>Showroom</h3>
+            <address>Ranlanka Jewellery<br />192 Main Street<br />Negombo 11500, Sri Lanka</address>
+            <div className="acts" style={{ "marginTop": "28px" }}><a className="btn solid" href="https://www.google.com/maps/search/?api=1&amp;query=Ranlanka%2C%20192%20Main%20Street%2C%20Negombo" target="_blank" rel="noopener">Get directions</a><a className="btn" href="https://www.instagram.com/ranlankanegombo/" target="_blank" rel="noopener">Instagram</a></div>
+          </div>
+          <div className="vi-col">
+            <h3>Opening hours</h3>
+            <p className="status"><i></i><span>Monday to Saturday</span></p>
+            <ul className="hours">
+              <li data-d="1"><span>Monday</span><span>10:00 am – 7:30 pm</span></li>
+              <li data-d="2"><span>Tuesday</span><span>10:00 am – 7:30 pm</span></li>
+              <li data-d="3"><span>Wednesday</span><span>10:00 am – 7:30 pm</span></li>
+              <li data-d="4"><span>Thursday</span><span>10:00 am – 7:30 pm</span></li>
+              <li data-d="5"><span>Friday</span><span>10:00 am – 7:30 pm</span></li>
+              <li data-d="6"><span>Saturday</span><span>10:00 am – 7:30 pm</span></li>
+              <li data-d="0"><span>Sunday</span><span>Closed</span></li>
+              <li><span>Poya days</span><span>Closed</span></li>
+            </ul>
+          </div>
+          <div className="vi-col">
+            <h3>Call or email</h3>
+            <ul className="contact">
+              <li><a href="tel:0312222202">031 222 2202</a><button className="copy" type="button" data-copy="031 222 2202">Copy</button></li>
+              <li><a href="tel:0312238383">031 223 8383</a><button className="copy" type="button" data-copy="031 223 8383">Copy</button></li>
+              <li><span className="v">ranlankanegombo@gmail.com</span><button className="copy" type="button" data-copy="ranlankanegombo@gmail.com">Copy</button></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section className="sec raise" id="enquiry" aria-label="Send an enquiry">
+        <div className="wrap form-wrap">
+          <div style={{ "display": "grid", "gap": "22px" }}>
+            <p className="kicker">Send an enquiry</p>
+            <h2 className="d2 rv"><span className="ln"><span>Ask us</span></span><span className="ln"><span><em>anything.</em></span></span></h2>
+            <p className="body">About a piece, a design idea, today's rates or a bridal viewing. We will turn this into a message you can send us.</p>
+            <div className="faq" style={{ "marginTop": "14px" }}>
+              <details><summary>How is gold weighed?</summary><p>In pawn. One pawn is 8 grams, and every piece is weighed and priced that way.</p></details>
+              <details><summary>Do you buy old gold?</summary><p>Yes. Bring it to the counter. We weigh it in front of you and tell you what we can offer before you decide.</p></details>
+              <details><summary>When are you closed?</summary><p>On Sundays and on Poya days. We are open Monday to Saturday, 10:00 am to 7:30 pm.</p></details>
             </div>
           </div>
-        </section>
-
-        {/* ======================= FIND US (emerald) ======================= */}
-        <section className="rl-tray rl-tray--plain velvet sec-sm" data-theme="velvet">
-          <div className="wrap split" style={{ gap: "40px clamp(40px, 5vw, 80px)" }}>
-            <div style={{ flex: "1 1 420px", minWidth: 0 }}>
-              <p className="label kicker">Find us</p>
-              <p className="title" style={{ margin: "20px 0 0", fontSize: "clamp(40px, 4.6vw, 66px)" }}>On Main Street, in Negombo town.</p>
-              <p className="body muted" style={{ margin: "18px 0 0", maxWidth: "44ch" }}>Open the map on your phone for directions to the door. Call us if you would like a piece kept ready for you.</p>
-              <div className="btn-row" style={{ marginTop: 30 }}>
-                <Button variant="gold" icon="pin" href={MAPS_URL}>Open in Google Maps</Button>
-              </div>
+          <form className="compose" data-greet="Hello Ranlanka," autoComplete="on">
+            <div className="fgrid">
+              <label className="fld"><span>Your name</span><input id="e-name" name="Name" autoComplete="name" required /></label>
+              <label className="fld"><span>Phone</span><input id="e-phone" name="Phone" type="tel" autoComplete="tel" /></label>
+              <label className="fld wide"><span>I am asking about</span><input id="e-about" name="About" /></label>
+              <label className="fld wide"><span>Message</span><textarea id="e-msg" name="Message" rows={4} /></label>
             </div>
-            {photos}
-          </div>
-        </section>
-
-        {/* ======================= AT THE COUNTER ======================= */}
-        <section className="lampbg" data-theme="lamp" style={{ padding: "clamp(64px, 6.5vw, 96px) 0 0" }}>
-          <div className="wrap">
-            <p className="label kicker">At the counter</p>
-            <h2 className="title t-lg">What you can do when you come in.</h2>
-            <div className="grid-auto" style={{ ["--min" as string]: "240px", marginTop: 40 }}>
-              {AT_COUNTER.map((c) => (
-                <div key={c.title} className="card" style={{ gap: 12, padding: 26 }}>
-                  <span className="goldink"><Icon name={c.icon} size={28} /></span>
-                  <h3 className="piece-name" style={{ fontSize: 22 }}>{c.title}</h3>
-                  <p className="small muted" style={{ fontSize: 14 }}>{c.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ======================= WRITE TO US ======================= */}
-        <section className="lampbg sec" data-theme="lamp">
-          <div className="wrap split split--top">
-            <div style={{ flex: "1 1 360px", minWidth: 0 }}>
-              <p className="label kicker">Ask us anything</p>
-              <h2 className="title t-lg">We will call you back.</h2>
-              <p className="body-p" style={{ maxWidth: "40ch" }}>A question about a piece, a viewing to book, or a rate to check. We reply on shop days.</p>
-            </div>
-            <div className="rl-tray velvet" data-theme="maroon" style={{ flex: "1 1 520px", minWidth: 0, borderRadius: 2, padding: "clamp(28px, 3vw, 44px)" }}>
-              <EnquiryForm />
-            </div>
-          </div>
-        </section>
-      </main>
-      <SiteFooter />
-    </>
+            <div><button className="btn solid" type="submit">Prepare my message</button></div>
+            <div className="composed" hidden></div>
+          </form>
+        </div>
+      </section>
+    </div>
   );
 }

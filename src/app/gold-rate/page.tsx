@@ -1,132 +1,85 @@
 import type { Metadata } from "next";
-import { Fragment } from "react";
-import Link from "next/link";
-import { Button } from "@/components/Button";
-import { GoldCalculator } from "@/components/GoldCalculator";
-import { GoldRatePosted } from "@/components/GoldRatePosted";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
-import { Zari } from "@/components/Zari";
-import { FX, GRAM22, GRAM24, PAWN_GRAMS, money } from "@/lib/site";
+import type React from "react";
 
-export const metadata: Metadata = {
-  title: "Gold rate and exchange",
-  description: "Today’s 22 and 24 karat gold rate per gram and per pawn, a price calculator, money exchange rates and how we buy old gold at Ranlanka, Negombo.",
-};
-
-const OLD_GOLD = [
-  { n: "01", title: "Bring it to the counter", text: "A broken chain, a single earring, a piece you no longer wear." },
-  { n: "02", title: "We weigh it in front of you", text: "You see the scale and the weight, and we tell you what we can offer before you decide." },
-  { n: "03", title: "Take the money, or a new piece", text: "Or have it remade into something you will wear." },
-];
+export const metadata: Metadata = { title: "Gold rate", description: "Today's 22K and 24K gold rate per pawn at Ranlanka, Negombo, a calculator for any weight, and selling old gold." };
 
 export default function GoldRatePage() {
   return (
-    <>
-      <SiteHeader current="/gold-rate" />
-      <main>
-        {/* ======================= TODAY'S BOARD (emerald) ======================= */}
-        <section className="rl-tray rl-tray--plain velvet" data-theme="velvet" style={{ padding: "32px 0 clamp(56px, 5.5vw, 80px)" }}>
-          <div className="wrap">
-            <nav aria-label="Breadcrumb" className="small breadcrumb">
-              <Link href="/">Home</Link>
-              <span aria-hidden="true">/</span>
-              <span>Gold rate and exchange</span>
-            </nav>
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "baseline", gap: "12px 32px", marginTop: 36, paddingBottom: 20, borderBottom: "1px solid var(--line)" }}>
-              <h1 className="label kicker">The gold rate today</h1>
-              <GoldRatePosted />
+    <div className="page" data-page="gold-rate">
+      <header className="wrap phead">
+        <div className="phead-grid">
+          <div className="phead-copy">
+            <nav className="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Gold rate</span></nav>
+            <p className="kicker">Today at the counter</p>
+            <h1 className="d1 rv"><span className="ln"><span>The gold rate</span></span><span className="ln"><span><em>today.</em></span></span></h1>
+          </div>
+          <div style={{ "display": "grid", "gap": "18px", "justifyItems": "start" }}>
+            <span className="stamp">Sample figures</span>
+            <p className="lead">Rates are posted at the counter every morning. These are sample figures for this preview, so call 031 222 2202 for today's numbers.</p>
+          </div>
+        </div>
+      </header>
+      <section className="sec-s" style={{ "paddingTop": "0" }} aria-label="Rates and calculator">
+        <div className="wrap rt-grid">
+          <div>
+            <p className="fl">Gold per pawn · 8 grams</p>
+            <div className="big-rate">
+              <div><span className="k">22K</span><span className="v"><small>LKR</small><span data-count="312000">312,000</span></span><span className="per">LKR 39,000 per gram</span></div>
+              <div><span className="k">24K</span><span className="v"><small>LKR</small><span data-count="340000">340,000</span></span><span className="per">LKR 42,500 per gram</span></div>
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "36px 64px", marginTop: 40 }}>
-              <div style={{ minWidth: 0 }}>
-                <p style={{ margin: 0, display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 18 }}>
-                  <span className="rl-figures metal" style={{ fontFamily: "var(--font-display)", fontWeight: 200, fontSize: "clamp(80px, 12.5vw, 188px)", lineHeight: 0.86, letterSpacing: "-0.035em", fontVariationSettings: "'opsz' 72" }}>{money(GRAM22 * PAWN_GRAMS)}</span>
-                  <span className="label goldink">LKR</span>
-                </p>
-                <p className="body muted" style={{ margin: "18px 0 0" }}>One pawn of 22 karat gold, {PAWN_GRAMS} g. Every piece in the case is priced from this, every morning.</p>
-              </div>
-              <div style={{ flex: "0 1 340px", minWidth: 240, display: "grid" }}>
-                {[
-                  ["22 karat · per gram", GRAM22],
-                  ["24 karat · per gram", GRAM24],
-                ].map(([k, v], i) => (
-                  <div key={k} style={{ padding: i === 0 ? "0 0 18px" : "18px 0 0", borderBottom: i === 0 ? "1px solid var(--line)" : undefined }}>
-                    <p className="label muted" style={{ margin: 0, fontSize: 10.5 }}>{k}</p>
-                    <p style={{ margin: "10px 0 0", display: "flex", alignItems: "baseline", gap: 10 }}>
-                      <span className="rl-figures" style={{ fontFamily: "var(--font-display)", fontWeight: 250, fontSize: 46, lineHeight: 1 }}>{money(v as number)}</span>
-                      <span className="label muted" style={{ fontSize: 10.5 }}>LKR</span>
-                    </p>
-                  </div>
-                ))}
-              </div>
+            <div className="tbl" style={{ "marginTop": "44px" }}>
+              <table className="ktab">
+                <caption className="sr">Karat and purity</caption>
+                <thead><tr><th scope="col">Karat</th><th scope="col">Gold in 1,000 parts</th><th scope="col">Used for</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">24K</th><td><b>999</b></td><td>Bars and coins. Too soft for daily wear.</td></tr>
+                  <tr className="ours"><th scope="row">22K</th><td><b>916</b></td><td>Every piece in our showroom.</td></tr>
+                  <tr><th scope="row">21K</th><td><b>875</b></td><td>Some imported jewellery.</td></tr>
+                  <tr><th scope="row">18K</th><td><b>750</b></td><td>Settings for diamonds and fine stones.</td></tr>
+                </tbody>
+              </table>
             </div>
           </div>
-        </section>
-
-        {/* ======================= WORK OUT A PRICE ======================= */}
-        <section className="lampbg sec" data-theme="lamp">
-          <div className="wrap" style={{ display: "flex", flexWrap: "wrap", alignItems: "stretch", gap: "40px clamp(40px, 5vw, 80px)" }}>
-            <div style={{ flex: "1 1 380px", minWidth: 0 }}>
-              <p className="label kicker">Work out a price</p>
-              <h2 className="title t-lg">What does a weight cost today?</h2>
-              <p className="body-p" style={{ maxWidth: "42ch" }}>Type a weight, or pick a number of pawns. This is the gold alone, at today’s sample rate. At the counter we weigh the piece itself.</p>
-            </div>
-            <GoldCalculator />
-          </div>
-        </section>
-
-        {/* ======================= MONEY EXCHANGE (maroon) ======================= */}
-        <section className="rl-tray rl-tray--plain velvet" data-theme="maroon">
-          <Zari edge="top" />
-          <div className="wrap" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", gap: "40px clamp(40px, 5vw, 80px)", paddingTop: "clamp(56px, 5.5vw, 80px)", paddingBottom: "clamp(56px, 5.5vw, 80px)" }}>
-            <div style={{ flex: "1 1 340px", minWidth: 0 }}>
-              <p className="label kicker">Money exchange</p>
-              <h2 className="title t-lg">More than fifty currencies, no commission.</h2>
-              <p className="body muted" style={{ margin: "20px 0 0", maxWidth: "40ch" }}>At the same counter as the gold. Rates change through the day; these are samples.</p>
-            </div>
-            <div style={{ flex: "1 1 460px", minWidth: 0 }}>
-              <div className="fx">
-                <span className="label fx__head">Currency</span>
-                <span className="label fx__head" style={{ textAlign: "right" }}>LKR for one</span>
-                {FX.map((f) => (
-                  <Fragment key={f.code}>
-                    <span className="fx__code">
-                      <b className="label goldink" style={{ fontSize: 11 }}>{f.code}</b>
-                      <span className="small muted">{f.name}</span>
-                    </span>
-                    <span className="rl-figures fx__rate">{f.rate}</span>
-                  </Fragment>
-                ))}
+          <div className="rt-side">
+            <form className="calc" id="calc" autoComplete="off">
+              <h3>What does a weight cost today?</h3>
+              <div className="calc-row">
+                <div className="seg" role="radiogroup" aria-label="Karat"><input type="radio" name="karat" id="k22" value="22" defaultChecked /><label htmlFor="k22">22K</label><input type="radio" name="karat" id="k24" value="24" /><label htmlFor="k24">24K</label></div>
+                <div className="seg" role="radiogroup" aria-label="Unit"><input type="radio" name="unit" id="ug" value="g" defaultChecked /><label htmlFor="ug">Grams</label><input type="radio" name="unit" id="up" value="p" /><label htmlFor="up">Pawn</label></div>
               </div>
-              <p className="small muted" style={{ margin: "16px 0 0" }}>Other currencies at the counter. Call 031 222 2202 to check a rate.</p>
-            </div>
+              <div className="field"><label className="fl" htmlFor="weight">Weight</label><input id="weight" type="number" inputMode="decimal" min="0" step="0.1" defaultValue="16" /></div>
+              <div><span className="fl">Estimated gold value</span><output id="value" htmlFor="weight">LKR 624,000</output><p className="conv" id="conv">16 g is 2 pawn. Gold value only, at the sample rate.</p></div>
+            </form>
+            <ul className="tiles" style={{ "gridTemplateColumns": "repeat(2,minmax(0,1fr))" }}>
+              <li><span className="si" lang="si">පවුම</span><h3>1 pawn · 8 g</h3><p>The weight every gold rate in Sri Lanka is quoted in.</p></li>
+              <li><h3>2 pawn · 16 g</h3><p>LKR 624,000 in 22K gold at the sample rate.</p></li>
+            </ul>
           </div>
-          <Zari edge="bottom" />
-        </section>
-
-        {/* ======================= OLD GOLD ======================= */}
-        <section className="lampbg sec" data-theme="lamp">
-          <div className="wrap">
-            <div className="head-row">
-              <div>
-                <p className="label kicker">Old gold</p>
-                <h2 className="title t-lg">Sell it, or turn it into something new.</h2>
-              </div>
-              <Button variant="line" icon="pin" href="/visit">Bring it in</Button>
-            </div>
-            <div className="grid-auto" style={{ ["--min" as string]: "280px", marginTop: 40 }}>
-              {OLD_GOLD.map((s) => (
-                <div key={s.n} className="card" style={{ gap: 12 }}>
-                  <span className="label goldink" style={{ fontSize: 10.5 }}>{s.n}</span>
-                  <h3 className="piece-name" style={{ fontSize: 23 }}>{s.title}</h3>
-                  <p className="small muted" style={{ fontSize: 14 }}>{s.text}</p>
-                </div>
-              ))}
-            </div>
+        </div>
+      </section>
+      <section className="sec raise" id="old-gold" aria-label="Old gold">
+        <div className="wrap">
+          <div className="sec-head end">
+            <div className="rv"><p className="kicker">Old gold</p><h2 className="d2"><span className="ln"><span>Sell it, or turn it</span></span><span className="ln"><span>into something <em>new.</em></span></span></h2></div>
+            <div className="acts" style={{ "justifySelf": "end" }}><a className="btn" href="/visit">Bring it in</a></div>
           </div>
-        </section>
-      </main>
-      <SiteFooter />
-    </>
+          <ol className="steps row fade" style={{ "--n": "3" } as React.CSSProperties}>
+            <li><h3>Bring it to the counter</h3><p>A broken chain, a single earring, a piece you no longer wear.</p></li>
+            <li><h3>We weigh it in front of you</h3><p>You see the scale and the weight, and we tell you what we can offer before you decide.</p></li>
+            <li><h3>Take the money, or a new piece</h3><p>Or have it remade into something you will wear.</p></li>
+          </ol>
+        </div>
+      </section>
+      <section className="sec" aria-label="Questions">
+        <div className="wrap form-wrap">
+          <div style={{ "display": "grid", "gap": "18px" }}><p className="kicker">Questions</p><h2 className="d2 rv"><span className="ln"><span>How gold</span></span><span className="ln"><span>is <em>priced.</em></span></span></h2></div>
+          <div className="faq fade">
+            <details><summary>How is the price of a piece worked out?</summary><p>It starts with the weight of gold in the piece at that day's rate. Ask at the counter for the full price of any piece, including stones and workmanship.</p></details>
+            <details><summary>Why do the rates change every day?</summary><p>They follow the world gold price and the rupee. We check them each morning and post them at the counter.</p></details>
+            <details><summary>Is every piece 22 karat?</summary><p>Yes. Every piece in our showroom is 22 karat, 916 parts gold in every 1,000.</p></details>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

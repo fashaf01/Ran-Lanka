@@ -1,116 +1,70 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "@/components/Button";
-import { DesignForm } from "@/components/DesignForm";
-import { Icon } from "@/components/Icon";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
-import { WipeCompare } from "@/components/WipeCompare";
-import { Zari } from "@/components/Zari";
-import { EMAIL, PHONE, PHONE_HREF } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Design your own",
-  description: "Bring a sketch, a photograph or a family piece. We draw it with you, tell you its weight before anything is made, and finish it by hand in Negombo.",
-};
-
-const HOW = [
-  { n: "01", title: "Bring your idea", text: "A sketch, a photo on your phone, or a family piece to remake." },
-  { n: "02", title: "See it drawn", text: "With its weight in pawn, before anything is cast." },
-  { n: "03", title: "Agree the price", text: "At that day’s gold rate, so the cost is clear from the start." },
-  { n: "04", title: "Collect your piece", text: "Finished by hand and weighed with you at the counter." },
-];
-
-const WAYS = [
-  { icon: "exchange" as const, title: "Remake an heirloom", text: "Bring your mother’s chain or a broken bangle. We weigh it in front of you and remake it into something you will wear." },
-  { icon: "sketch" as const, title: "Your own design", text: "A drawing on paper is enough to start. We draw it properly with you and show you the weight." },
-  { icon: "scale" as const, title: "A thali to your family’s design", text: "Tell us the pattern your family wears and we make it in 22 karat gold, ready for the wedding." },
-];
+export const metadata: Metadata = { title: "Bespoke", description: "Bring a sketch or a photo. We design it, weigh it and make it for you in 22 karat gold." };
 
 export default function BespokePage() {
   return (
-    <>
-      <SiteHeader current="/bespoke" />
-      <main>
-        {/* ======================= HERO WITH THE DRAWING ======================= */}
-        <section className="lampbg page-head" data-theme="lamp">
-          <div className="wrap">
-            <nav aria-label="Breadcrumb" className="small breadcrumb">
-              <Link href="/">Home</Link>
-              <span aria-hidden="true">/</span>
-              <span>Design your own</span>
-            </nav>
-            <div className="split" style={{ marginTop: 28 }}>
-              <div style={{ flex: "1 1 420px", minWidth: 0 }}>
-                <p className="label kicker">Design your own</p>
-                <h1 className="title t-xl">From a drawing to the <em>counter.</em></h1>
-                <p className="lede lede-p">Bring a sketch, a photograph or a family piece to remake. We draw it with you, tell you its weight before anything is made, and finish it by hand here in Negombo.</p>
-                <div className="btn-row" style={{ marginTop: 34 }}>
-                  <Button variant="gold" icon="sketch" href="#start">Start a design</Button>
-                  <Button variant="line" icon="phone" href={PHONE_HREF}>Talk to us first</Button>
-                </div>
-              </div>
-              <div style={{ flex: "1 1 500px", minWidth: 0, maxWidth: 620 }}>
-                <WipeCompare sketch="/img/starburst-sketch.png" gold="/img/starburst-gold.webp" sketchAlt="A pencil drawing of the Starburst pendant" goldAlt="The finished Starburst pendant in 22 karat gold" />
-                <p className="small muted" style={{ margin: "16px 0 0", display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
-                  <span>Starburst · sketch 2 · 38 mm · 6.4 g</span>
-                  <span>Drag across the drawing</span>
-                </p>
-              </div>
-            </div>
+    <div className="page" data-page="bespoke">
+      <header className="wrap phead">
+        <div className="phead-copy" style={{ "maxWidth": "1000px" }}>
+          <nav className="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Bespoke</span></nav>
+          <p className="kicker">Bespoke</p>
+          <h1 className="d1 rv"><span className="ln"><span>Your sketch,</span></span><span className="ln"><span>in <em>22 karat gold.</em></span></span></h1>
+          <p className="lead">Bring a drawing, a photo or a piece you have seen and liked. We design it, weigh it and make it for you, and you approve every step.</p>
+        </div>
+      </header>
+      <section className="sec-s" style={{ "paddingTop": "0" }} aria-label="From sketch to gold">
+        <div className="wrap split">
+          <div className="compare clip" data-cursor="Drag">
+            <img src="/img/starburst-sketch.webp" alt="A pencil drawing of the Starburst pendant" />
+            <img className="gold" src="/img/starburst-gold.webp" alt="The finished Starburst pendant in 22 karat gold" />
+            <span className="lab l">Sketch</span>
+            <span className="lab r">Gold</span>
+            <input type="range" id="cmp-bespoke" min="0" max="100" defaultValue="50" aria-label="Compare the sketch with the finished pendant" />
+            <span className="cut"><i>Drag</i></span>
           </div>
-        </section>
-
-        {/* ======================= HOW IT WORKS (maroon band) ======================= */}
-        <section className="rl-tray rl-tray--plain velvet" data-theme="maroon" aria-label="How it works">
-          <Zari edge="top" />
-          <div className="wrap grid-auto" style={{ ["--min" as string]: "240px", ["--gap" as string]: "36px 40px", paddingTop: 56, paddingBottom: 56 }}>
-            {HOW.map((s) => (
-              <div key={s.n} className="stat" style={{ gap: 12 }}>
-                <span className="rl-figures stat__fig metal" style={{ fontSize: 52 }}>{s.n}</span>
-                <h2 className="piece-name" style={{ fontSize: 22 }}>{s.title}</h2>
-                <p className="small">{s.text}</p>
-              </div>
-            ))}
+          <div style={{ "display": "grid", "gap": "24px" }}>
+            <h2 className="d3">From your idea to the counter</h2>
+            <ol className="steps fade">
+              <li><h3>Bring your idea</h3><p>A drawing, a photo, or a piece you want to make your own.</p></li>
+              <li><h3>See the design</h3><p>We draw it up and tell you its weight in pawn before anything is made.</p></li>
+              <li><h3>Agree the price</h3><p>Based on that day's gold rate, so you know the cost up front.</p></li>
+              <li><h3>Collect your piece</h3><p>Finished in 22 karat gold and ready for you at the showroom.</p></li>
+            </ol>
           </div>
-          <Zari edge="bottom" />
-        </section>
-
-        {/* ======================= WHAT WE MAKE ======================= */}
-        <section className="lampbg sec" data-theme="lamp">
-          <div className="wrap">
-            <p className="label kicker">What we make</p>
-            <h2 className="title t-lg">Three ways to begin.</h2>
-            <div className="grid-auto" style={{ ["--min" as string]: "300px", marginTop: 40 }}>
-              {WAYS.map((w) => (
-                <div key={w.title} className="card" style={{ padding: 30 }}>
-                  <span className="goldink"><Icon name={w.icon} size={32} /></span>
-                  <h3 className="piece-name" style={{ fontSize: 24 }}>{w.title}</h3>
-                  <p className="small muted" style={{ fontSize: 14 }}>{w.text}</p>
-                </div>
-              ))}
-            </div>
+        </div>
+      </section>
+      <section className="sec raise" aria-label="What to bring">
+        <div className="wrap">
+          <div className="sec-head"><div className="rv"><p className="kicker">What to bring</p><h2 className="d2"><span className="ln"><span>Anything that</span></span><span className="ln"><span>shows the <em>idea.</em></span></span></h2></div></div>
+          <ul className="tiles fade">
+            <li><h3>A sketch or photo</h3><p>Any drawing helps, however rough. A picture from a magazine or your phone works too.</p></li>
+            <li><h3>A piece for reference</h3><p>An old piece whose shape or pattern you like, so we can see it in the hand.</p></li>
+            <li><h3>Your size</h3><p>Your ring or bangle size if you know it. We can measure you at the counter if not.</p></li>
+            <li><h3>A weight or budget</h3><p>Tell us roughly how many pawn, or how much you want to spend, and we design to it.</p></li>
+          </ul>
+        </div>
+      </section>
+      <section className="sec" id="design-form" aria-label="Start your design">
+        <div className="wrap form-wrap">
+          <div style={{ "display": "grid", "gap": "22px" }}>
+            <p className="kicker">Start your design</p>
+            <h2 className="d2 rv"><span className="ln"><span>Tell us what</span></span><span className="ln"><span>you have <em>in mind.</em></span></span></h2>
+            <p className="body">We will turn this into a message you can send us. Bring your sketch or photo when you come in.</p>
           </div>
-        </section>
-
-        {/* ======================= START A DESIGN (emerald form) ======================= */}
-        <section id="start" className="rl-tray rl-tray--plain velvet sec" data-theme="velvet">
-          <div className="wrap split split--top">
-            <div style={{ flex: "1 1 360px", minWidth: 0 }}>
-              <p className="label kicker">Start a design</p>
-              <h2 className="title t-lg">Tell us what you have in mind.</h2>
-              <p className="body-p" style={{ maxWidth: "40ch" }}>We call you back, and you bring the idea to the counter. Nothing is made until you have seen the drawing and agreed the weight.</p>
-              <p className="small muted" style={{ margin: "28px 0 0" }}>
-                Prefer to talk? Call <a href={PHONE_HREF} style={{ color: "var(--ink)" }}>{PHONE}</a> or write to <a href={`mailto:${EMAIL}`} style={{ color: "var(--ink)" }}>{EMAIL}</a>.
-              </p>
+          <form className="compose" data-greet="Hello Ranlanka, I would like a piece designed and made." autoComplete="on">
+            <div className="fgrid">
+              <label className="fld"><span>Your name</span><input id="d-name" name="Name" autoComplete="name" required /></label>
+              <label className="fld"><span>Phone</span><input id="d-phone" name="Phone" type="tel" autoComplete="tel" /></label>
+              <label className="fld"><span>Kind of piece</span><select id="d-kind" name="Piece"><option value="">Choose one</option><option>Ring</option><option>Pendant</option><option>Earrings</option><option>Bangle</option><option>Necklace</option><option>Chain or bracelet</option><option>Thali or mangalsutra</option><option>Something else</option></select></label>
+              <label className="fld"><span>Weight or budget</span><input id="d-budget" name="Weight or budget" placeholder="For example, 2 pawn" /></label>
+              <label className="fld wide"><span>Describe your idea</span><textarea id="d-idea" name="Idea" rows={4} /></label>
             </div>
-            <div style={{ flex: "1 1 540px", minWidth: 0, padding: "clamp(28px, 3vw, 44px)", background: "color-mix(in srgb, #000000 18%, transparent)", boxShadow: "inset 0 0 0 1px var(--line)" }}>
-              <DesignForm />
-            </div>
-          </div>
-        </section>
-      </main>
-      <SiteFooter />
-    </>
+            <div><button className="btn solid" type="submit">Prepare my message</button></div>
+            <div className="composed" hidden></div>
+          </form>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,145 +1,100 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "@/components/Button";
-import { Hallmark } from "@/components/Hallmark";
-import { Icon } from "@/components/Icon";
-import { ProductGallery } from "@/components/ProductGallery";
-import { ProductTile } from "@/components/ProductTile";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
-import { Zari } from "@/components/Zari";
-import { PIECES, PIECE_NOTES, getCategory, getPiece } from "@/lib/catalogue";
-import { GRAM22, PHONE_HREF, money } from "@/lib/site";
 import { notFound } from "next/navigation";
+import { Grid } from "@/components/Cards";
+import { CATS, NOTES, PHONE, PIECES, PIECE_BY_ID } from "@/lib/data";
 
-type Params = Promise<{ id: string }>;
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return PIECES.map((p) => ({ id: p.id }));
 }
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const piece = getPiece((await params).id);
-  if (!piece) return {};
-  return { title: piece.name, description: `${piece.name}, ${piece.no}. 22 karat 916 gold, weighed in front of you and priced at the day’s rate in Negombo.` };
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const p = PIECE_BY_ID[id];
+  return p ? { title: p.name, description: `${p.name} (${p.no}), 22 karat gold, priced by weight at the day's rate. Ranlanka, Negombo.` } : {};
 }
 
-export default async function ProductPage({ params }: { params: Params }) {
-  const piece = getPiece((await params).id);
-  if (!piece) notFound();
-  const cat = getCategory(piece.cat)!;
-  const kind = cat.kind ?? "";
-  const related = PIECES.filter((p) => p.cat === piece.cat && p.id !== piece.id).slice(0, 4);
-  const views = [
-    { img: piece.a, alt: `${piece.name} in 22 karat gold`, label: "Show the front view" },
-    { img: piece.b, alt: `${piece.name}, second view`, label: "Show the second view" },
-  ];
-
-  const spec: Array<[string, string]> = [
-    ["Metal", "22 karat yellow gold"],
-    ["Purity", "916 hallmark"],
-    ["Piece number", piece.no],
-    ["Where", "In the case at 192 Main Street, Negombo"],
-  ];
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const p = PIECE_BY_ID[id];
+  if (!p) notFound();
+  const c = CATS[p.cat];
+  const i = PIECES.indexOf(p);
+  const pv = PIECES[(i - 1 + PIECES.length) % PIECES.length];
+  const nx = PIECES[(i + 1) % PIECES.length];
+  const same = PIECES.filter((q) => q.cat === p.cat && q !== p);
+  const fill = PIECES.filter((q) => q.cat !== p.cat);
+  const o = (i * 5) % (fill.length - 4);
+  const related = same.concat(fill.slice(o, o + 4)).slice(0, 4);
+  const ask = `/visit?about=${encodeURIComponent(`${p.name} (${p.no})`)}`;
 
   return (
-    <>
-      <SiteHeader current="/collection" />
-      <main>
-        <section className="lampbg" data-theme="lamp" style={{ padding: "32px 0 clamp(64px, 6vw, 88px)" }}>
-          <div className="wrap">
-            <nav aria-label="Breadcrumb" className="small breadcrumb">
-              <Link href="/">Home</Link>
-              <span aria-hidden="true">/</span>
-              <Link href="/collection">Collection</Link>
-              <span aria-hidden="true">/</span>
-              <Link href={`/collection?cat=${cat.key}`}>{cat.name}</Link>
-              <span aria-hidden="true">/</span>
-              <span>{piece.name}</span>
-            </nav>
-
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", gap: "40px clamp(40px, 5vw, 80px)", marginTop: 28 }}>
-              <ProductGallery views={views} />
-
-              <div style={{ flex: "1 1 420px", minWidth: 0 }}>
-                <p className="label kicker">{kind} · {piece.no}</p>
-                <h1 className="title" style={{ margin: "18px 0 0", fontSize: "clamp(38px, 3.8vw, 54px)", textWrap: "balance" }}>{piece.name}</h1>
-                <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 20 }}>
-                  <Hallmark />
-                  <span className="small muted">Twenty-two karat yellow gold</span>
-                </div>
-                <p className="body muted" style={{ margin: "22px 0 0", maxWidth: "46ch" }}>
-                  {PIECE_NOTES[piece.id] ?? `${piece.name} in 22 karat gold. Try it on with your saree at the counter.`}
-                </p>
-
-                <div className="rl-tray rl-tray--plain velvet" data-theme="velvet" style={{ marginTop: 30, borderRadius: 2, padding: "28px 30px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16, paddingBottom: 16, borderBottom: "1px solid var(--line)" }}>
-                    <span className="label kicker" style={{ fontSize: 10.5 }}>Priced by weight</span>
-                    <span className="label muted" style={{ fontSize: 10 }}>Sample rate</span>
-                  </div>
-                  <dl className="small" style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "12px 24px", margin: "18px 0 0" }}>
-                    <dt className="muted">22 karat today</dt>
-                    <dd style={{ margin: 0, textAlign: "right" }}>LKR {money(GRAM22)} a gram</dd>
-                    <dt className="muted">Weight</dt>
-                    <dd style={{ margin: 0, textAlign: "right" }}>Weighed at the counter</dd>
-                  </dl>
-                  <p style={{ margin: "18px 0 0", paddingTop: 16, borderTop: "1px solid var(--line)", display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16 }}>
-                    <span className="small muted">At today’s rate</span>
-                    <span className="metal" style={{ fontFamily: "var(--font-display)", fontWeight: 300, fontSize: 28, lineHeight: 1 }}>Quoted at the counter</span>
-                  </p>
-                  <p className="small muted" style={{ margin: "12px 0 0" }}>We weigh it in front of you before you pay.</p>
-                </div>
-
-                <div className="btn-row" style={{ marginTop: 26 }}>
-                  <Button variant="gold" icon href="/visit">Reserve to see it in store</Button>
-                  <Button variant="line" icon="phone" href={PHONE_HREF}>Call about this piece</Button>
-                </div>
-
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16, marginTop: 30, paddingTop: 24, borderTop: "1px solid var(--line)" }}>
-                  {([
-                    ["scale", "Weighed in front of you"],
-                    ["exchange", "Old gold taken in exchange"],
-                    ["sketch", cat.fit ?? "Fitted at the counter"],
-                  ] as const).map(([icon, text]) => (
-                    <div key={text} style={{ display: "grid", gap: 8, color: "var(--gold-ink)", alignContent: "start" }}>
-                      <Icon name={icon} size={24} />
-                      <span className="small" style={{ color: "var(--ink)" }}>{text}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <dl className="spec small">
-                  {spec.map(([k, v]) => (
-                    <div key={k} style={{ display: "contents" }}>
-                      <dt className="label">{k}</dt>
-                      <dd>{v}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
+    <div className="page" data-page="piece">
+      <section className="wrap pd" aria-label="Piece">
+        <nav className="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span>/</span><a href="/collection">Collection</a><span>/</span>
+          <a href={`/collection/${c.slug}`}>{c.name}</a><span>/</span><span>{p.name}</span>
+        </nav>
+        <div className="pd-grid">
+          <div className="pd-gal">
+            <div className="pd-thumbs" id="pd-thumbs">
+              {(["a", "b"] as const).map((s, k) => (
+                <button key={s} type="button" aria-pressed={k === 0} aria-label={`Show photo ${k + 1}`} data-src={`/img/${p.id}${s}.webp`}>
+                  <img src={`/img/${p.id}${s}.webp`} alt="" />
+                </button>
+              ))}
+            </div>
+            <div className="pd-main" id="pd-main" data-cursor="Zoom">
+              <img id="pd-img" src={`/img/${p.id}a.webp`} alt={p.name} />
+              <span className="pc-no">{p.no}</span>
             </div>
           </div>
-        </section>
-
-        {/* ======================= MORE LIKE THIS ======================= */}
-        {related.length ? (
-          <section className="rl-tray rl-tray--plain velvet" data-theme="maroon">
-            <Zari edge="top" />
-            <div className="wrap" style={{ paddingTop: "clamp(56px, 5.5vw, 80px)", paddingBottom: "clamp(56px, 5.5vw, 80px)" }}>
-              <div className="head-row">
-                <h2 className="title" style={{ margin: 0, fontSize: "clamp(32px, 3.4vw, 46px)" }}>More {cat.name.toLowerCase()}.</h2>
-                <Link className="label more-link" href={`/collection?cat=${cat.key}`}>All {cat.name.toLowerCase()}</Link>
-              </div>
-              <div className="grid-auto" style={{ ["--min" as string]: "240px", ["--gap" as string]: "32px 22px", marginTop: 36 }}>
-                {related.map((p) => (
-                  <ProductTile key={p.id} piece={p} kind={`${kind} · 22K`} detail={false} />
-                ))}
+          <div className="pd-info">
+            <p className="kicker">{c.kind}</p>
+            <h1 className="d2">{p.name}</h1>
+            <p className="lead">{NOTES[p.id] || c.text}</p>
+            <dl>
+              <dt>Piece no.</dt><dd>{p.no}</dd>
+              <dt>Gold</dt><dd>22 karat, 916 parts in every 1,000</dd>
+              <dt>Fitting</dt><dd>{c.fit}</dd>
+              <dt>Price</dt><dd>By weight, at the day&apos;s gold rate</dd>
+            </dl>
+            <div className="pd-buy">
+              <p>To ask about this piece, quote its number at the counter or when you call.</p>
+              <div className="row">
+                <b>{p.no}</b>
+                <button className="copy" type="button" data-copy={p.no}>Copy number</button>
+                <a href="tel:0312222202" style={{ color: "var(--bone-2)", fontSize: "14.5px" }}>{PHONE}</a>
               </div>
             </div>
-          </section>
-        ) : null}
-      </main>
-      <SiteFooter tone={related.length ? "black" : "maroon"} />
-    </>
+            <div className="acts">
+              <a className="btn solid" href={ask}>Ask about this piece</a>
+              <a className="btn" href={`/collection/${c.slug}`}>More {c.name.toLowerCase()}</a>
+            </div>
+            <ul className="assure">
+              <li><b>916</b>Every piece 22 karat</li>
+              <li><b>Weighed</b>In front of you</li>
+              <li><b>Priced</b>At the day&apos;s rate</li>
+            </ul>
+          </div>
+        </div>
+        <nav className="pd-pn" aria-label="Previous and next piece">
+          <a href={`/product/${pv.id}`}><small>Previous</small><span>{pv.name}</span></a>
+          <a href={`/product/${nx.id}`}><small>Next</small><span>{nx.name}</span></a>
+        </nav>
+      </section>
+      <section className="sec-s stone" aria-label="Related pieces">
+        <div className="wrap">
+          <div className="sec-head">
+            <div>
+              <p className="kicker">From the case</p>
+              <h2 className="d3">{same.length >= 4 ? `More ${c.name.toLowerCase()}` : (<>More from the <em>case</em></>)}</h2>
+            </div>
+          </div>
+          <Grid name="related" pieces={related} />
+        </div>
+      </section>
+    </div>
   );
 }

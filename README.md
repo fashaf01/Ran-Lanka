@@ -34,3 +34,9 @@ npm run build && npm start
   animations, the home slider and the calculators. Pages are server-rendered; this wires them up.
 - Photographs are `public/img/<id>a.webp` (the piece) and `<id>b.webp` (worn or a second view).
 - The bridal, bespoke and visit forms prepare a message to copy or open in email; they do not send anything by themselves.
+
+## Showroom concept (single page)
+
+`showroom/index.html` is a self-contained design concept published as a Claude artifact. It is one HTML
+file (styles and script inline) that loads its photographs from `img/`, which maps to `public/img/` here.
+It uses the same shop data as the site, so the rates in it are sample figures too.

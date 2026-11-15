@@ -38,5 +38,6 @@ npm run build && npm start
 ## Showroom concept (single page)
 
 `showroom/index.html` is a self-contained design concept published as a Claude artifact. It is one HTML
-file (styles and script inline) that loads its photographs from `img/`, which maps to `public/img/` here.
+file (styles and script inline) that loads its photographs from `img/`, which maps to `public/img/` here,
+and six emerald-toned case photographs from `gimg/`, which maps to `showroom/gimg/`.
 It uses the same shop data as the site, so the rates in it are sample figures too.

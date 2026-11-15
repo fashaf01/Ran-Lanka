@@ -12,7 +12,7 @@ export default function BridalPage() {
           <div className="phead-grid wide" style={{ "alignItems": "center" }}>
             <div className="phead-copy">
               <nav className="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Bridal</span></nav>
-              <p className="kicker">Bridal · <span lang="si" style={{ "letterSpacing": "0", "textTransform": "none", "fontSize": "14px" }}>මනාලිය</span></p>
+              <p className="kicker">Bridal · <span lang="si">මනාලිය</span></p>
               <h1 className="d1 rv"><span className="ln"><span>For the day</span></span><span className="ln"><span>the whole family</span></span><span className="ln"><span><em>remembers.</em></span></span></h1>
               <p className="lead">Bring your family and take your time. We bring out the trays, try every piece with the saree, and size the bangles on the wrist.</p>
               <div className="acts"><button className="btn solid" type="button" data-to="#bridal-form">Request a bridal viewing</button></div>

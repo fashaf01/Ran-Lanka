@@ -5,16 +5,16 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Lenis from "lenis";
-import { FX, HERO_SLIDES as HS, PAWN_GRAMS, PHONE, RATE, money } from "@/lib/data";
+import { FX, HERO_SLIDES as HS, PAWN_GRAMS, PHONE, PHONE_HREF, RATE, money } from "@/lib/data";
+import { Icon, Logo, Lotus } from "@/components/Icons";
 
-const NAV_L = [
+const NAV = [
   { href: "/collection", label: "Collection", key: "collection" },
   { href: "/bridal", label: "Bridal", key: "bridal" },
   { href: "/bespoke", label: "Bespoke", key: "bespoke" },
-];
-const NAV_R = [
   { href: "/gold-rate", label: "Gold rate", key: "gold-rate" },
   { href: "/exchange", label: "Exchange", key: "exchange" },
+  { href: "/about", label: "Our story", key: "about" },
 ];
 const MENU = [
   { href: "/", label: "Home", small: "Ranlanka", key: "home" },
@@ -35,11 +35,6 @@ const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const section = (path: string) => (path === "/" ? "home" : path.split("/")[1] === "product" ? "collection" : path.split("/")[1]);
 
 type PageCtx = {
-  home: boolean;
-  hero: HTMLElement | null;
-  hsMedia: HTMLElement | null;
-  hsT: HTMLElement | null;
-  hsIn: HTMLElement | null;
   words: HTMLElement[];
   wordsEl: HTMLElement | null;
   lit: number;
@@ -61,7 +56,7 @@ const G: {
   gio: IntersectionObserver | null;
 } = {
   lenis: null, RM: false, FINE: false, busy: false, first: true, loaderDone: false, onLoaderDone: null,
-  ctx: { home: false, hero: null, hsMedia: null, hsT: null, hsIn: null, words: [], wordsEl: null, lit: -1, mq: null, mqX: 0 },
+  ctx: { words: [], wordsEl: null, lit: -1, mq: null, mqX: 0 },
   io: null, gio: null,
 };
 
@@ -128,7 +123,7 @@ function copyText(t: string, b: HTMLElement) {
 /* ---------------- page behaviours, run after every route ---------------- */
 function initPage(path: string): () => void {
   const off: (() => void)[] = [];
-  const ctx: PageCtx = { home: path === "/", hero: $(".hero"), hsMedia: $("[data-hs-media]"), hsT: $(".hs-t"), hsIn: $("[data-hs-in]"), words: [], wordsEl: null, lit: -1, mq: null, mqX: 0 };
+  const ctx: PageCtx = { words: [], wordsEl: null, lit: -1, mq: null, mqX: 0 };
   G.ctx = ctx;
 
   // words that light up as the paragraph scrolls past
@@ -162,9 +157,12 @@ function initPage(path: string): () => void {
   const mq = $("[data-marquee]");
   if (mq) { if (!mq.dataset.dup) { mq.dataset.dup = "1"; mq.innerHTML += mq.innerHTML; } ctx.mq = mq; }
 
-  // home hero slider
-  const hs = $(".hs");
+  // home hero: one piece at a time
+  const hs = $(".hero[data-hs]");
   if (hs) off.push(initSlider(hs));
+
+  // carousels: the arcade of cases and the favourites
+  $$("[data-car]").forEach((c) => off.push(initCarousel(c)));
 
   // gold calculator
   const calcF = $<HTMLFormElement>("#calc");
@@ -263,24 +261,26 @@ function initPage(path: string): () => void {
   return () => off.forEach((f) => f());
 }
 
-/* ---------------- home hero slider ---------------- */
+/* ---------------- home hero ---------------- */
 function initSlider(hs: HTMLElement): () => void {
   const D = 6500;
-  const tabs = $(".hs-tabs", hs)!, panel = $("[data-hs-panel]", hs)!;
+  const tabs = $(".hero-tabs", hs)!;
   const cur = $<HTMLImageElement>("[data-hs-cur] img", hs)!, prev = $<HTMLImageElement>("[data-hs-prev] img", hs)!;
   hs.style.setProperty("--hs-dur", D + "ms");
-  HS.forEach((x) => { const a = new Image(); a.src = `/img/${x.img}.webp`; const b = new Image(); b.src = `/img/${x.arch}.webp`; });
+  HS.forEach((x) => { const a = new Image(); a.src = `/img/${x.img}.webp`; const b = new Image(); b.src = `/img/${x.id}a.webp`; });
   let i = 0, timer = 0 as unknown as ReturnType<typeof setTimeout>, t0 = 0, left = D, hold = false, alive = true;
   const set = (k: number) => {
     const x = HS[k], o = HS[i];
     prev.src = `/img/${o.img}.webp`; prev.style.objectPosition = o.pos;
     cur.src = `/img/${x.img}.webp`; cur.alt = x.alt; cur.style.objectPosition = x.pos;
-    $("[data-hs-title]", hs)!.textContent = x.t; $("[data-hs-sub]", hs)!.textContent = x.sub;
-    $("[data-hs-stone]", hs)!.textContent = x.stone + " · 22 karat"; $("[data-hs-count]", hs)!.textContent = `0${k + 1} / 0${HS.length}`;
-    const ar = $<HTMLImageElement>("[data-hs-arch]", hs)!; ar.src = `/img/${x.arch}.webp`; ar.alt = x.aalt;
-    $("[data-hs-text]", hs)!.textContent = x.text;
+    $("[data-hs-name]", hs)!.textContent = x.name; $("[data-hs-kind]", hs)!.textContent = x.kind;
+    $("[data-hs-g1]", hs)!.textContent = x.ghost[0]; $("[data-hs-g2]", hs)!.textContent = x.ghost[1];
+    const obj = $<HTMLAnchorElement>("[data-hs-obj]", hs)!; obj.href = `/product/${x.id}`;
+    const oi = $<HTMLImageElement>("img", obj)!; oi.src = `/img/${x.id}a.webp`; oi.alt = `${x.name} ${x.kind.toLowerCase()}`;
+    $("[data-hs-no]", hs)!.textContent = "RL " + x.id.toUpperCase();
+    $("[data-hs-cap]", hs)!.textContent = x.cap;
     const cta = $<HTMLAnchorElement>("[data-hs-cta]", hs)!; cta.firstChild!.textContent = x.cta + " "; cta.href = x.href;
-    panel.style.backgroundColor = x.bg;
+    $("[data-hs-count]", hs)!.textContent = `0${k + 1} / 0${HS.length}`;
     $$("button", tabs).forEach((b, j) => { b.setAttribute("aria-selected", String(j === k)); b.classList.toggle("done", j < k); });
     i = k;
     if (!G.RM) { hs.classList.remove("play"); void hs.offsetWidth; hs.classList.add("play"); }
@@ -310,6 +310,28 @@ function initSlider(hs: HTMLElement): () => void {
     $("[data-hs-prevbtn]", hs)?.removeEventListener("click", prv);
     hs.removeEventListener("pointerenter", pe); hs.removeEventListener("pointerleave", pl);
     hs.removeEventListener("focusin", fi); hs.removeEventListener("focusout", fo);
+  };
+}
+
+/* ---------------- carousels ---------------- */
+function initCarousel(root: HTMLElement): () => void {
+  const view = $(".car-view", root), prev = $<HTMLButtonElement>("[data-car-prev]", root), next = $<HTMLButtonElement>("[data-car-next]", root);
+  if (!view || !prev || !next) return () => {};
+  const step = () => {
+    const card = $(".car-track > *", view), track = $(".car-track", view);
+    if (!card || !track) return view.clientWidth * 0.8;
+    return card.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0);
+  };
+  const sync = () => { const max = view.scrollWidth - view.clientWidth - 2; prev.disabled = view.scrollLeft <= 2; next.disabled = view.scrollLeft >= max; };
+  const by = (dir: number) => { const n = Math.max(1, Math.floor(view.clientWidth / step()) - 1); view.scrollBy({ left: dir * step() * n, behavior: G.RM ? "auto" : "smooth" }); };
+  const p = () => by(-1), n = () => by(1);
+  const key = (e: KeyboardEvent) => { if (e.key === "ArrowRight") { e.preventDefault(); by(1); } else if (e.key === "ArrowLeft") { e.preventDefault(); by(-1); } };
+  prev.addEventListener("click", p); next.addEventListener("click", n);
+  view.addEventListener("scroll", sync, { passive: true }); view.addEventListener("keydown", key);
+  window.addEventListener("resize", sync); sync();
+  return () => {
+    prev.removeEventListener("click", p); next.removeEventListener("click", n);
+    view.removeEventListener("scroll", sync); view.removeEventListener("keydown", key); window.removeEventListener("resize", sync);
   };
 }
 
@@ -410,7 +432,7 @@ export default function SiteChrome() {
     const loader = $(".loader");
     const finish = () => { G.loaderDone = true; const f = G.onLoaderDone; G.onLoaderDone = null; f?.(); };
     let seen = false;
-    try { seen = !!sessionStorage.getItem("rl-site2"); } catch { /* private mode */ }
+    try { seen = !!sessionStorage.getItem("rl-site3"); } catch { /* private mode */ }
     if (!loader || G.RM || seen || location.pathname !== "/") { if (loader) loader.style.display = "none"; requestAnimationFrame(finish); }
     else {
       const bar = $(".ld-bar i")!, cnt = $(".ld-count")!, t0 = performance.now(), DUR = 1400;
@@ -418,7 +440,7 @@ export default function SiteChrome() {
         const k = clamp((now - t0) / DUR, 0, 1), ez = 1 - Math.pow(1 - k, 3);
         bar.style.transform = `scaleX(${ez})`; cnt.textContent = String(Math.round(ez * 100)).padStart(3, "0");
         if (k < 1) requestAnimationFrame(tick);
-        else setTimeout(() => { loader.classList.add("done"); setTimeout(finish, 250); setTimeout(() => { loader.style.display = "none"; }, 1200); try { sessionStorage.setItem("rl-site2", "1"); } catch { /* ignore */ } }, 160);
+        else setTimeout(() => { loader.classList.add("done"); setTimeout(finish, 250); setTimeout(() => { loader.style.display = "none"; }, 1200); try { sessionStorage.setItem("rl-site3", "1"); } catch { /* ignore */ } }, 160);
       };
       requestAnimationFrame(tick);
       setTimeout(() => { if (!G.loaderDone) { loader.classList.add("done"); finish(); } }, 4000);
@@ -430,20 +452,14 @@ export default function SiteChrome() {
       G.lenis?.raf(now);
       const ctx = G.ctx, y = scrollY, vh = innerHeight;
       vel = lerp(vel, y - prevY, 0.2); prevY = y;
-      if (ctx.home && ctx.hero) head.classList.toggle("over", y < ctx.hero.offsetHeight - 120);
+      head.classList.toggle("stuck", y > 8);
       if (!menuRef.current && !G.busy) {
         if (y > lastY + 4 && y > vh * 0.5) { head.classList.add("hide"); document.body.classList.add("head-hidden"); }
         else if (y < lastY - 4 || y < vh * 0.5) { head.classList.remove("hide"); document.body.classList.remove("head-hidden"); }
         if (Math.abs(y - lastY) > 4) lastY = y;
       }
       if (!G.RM) {
-        if (ctx.home && ctx.hsMedia && y < vh * 1.3) {
-          ctx.hsMedia.style.transform = `translate3d(0,${(y * 0.28).toFixed(1)}px,0)`;
-          if (ctx.hsT) { ctx.hsT.style.transform = `translate3d(0,calc(-50% + ${(y * 0.12).toFixed(1)}px),0)`; ctx.hsT.style.opacity = String(clamp(1 - y / (vh * 0.75), 0, 1)); }
-          if (ctx.hsIn) ctx.hsIn.style.transform = `translate3d(0,${(-y * 0.07).toFixed(1)}px,0)`;
-        }
         for (const el of $$("main [data-zoom]")) { const r = el.parentElement!.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) continue; const t = clamp((vh - r.top) / (vh + r.height), 0, 1); el.style.transform = `scale(${(1.16 - 0.16 * clamp(t * 1.7, 0, 1)).toFixed(4)})`; }
-        for (const el of $$("main [data-spread]")) { const r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) continue; const t = clamp((vh * 0.96 - r.top) / (vh * 0.55), 0, 1), ez = 1 - Math.pow(1 - t, 3); el.style.letterSpacing = (0.62 - 0.48 * ez).toFixed(3) + "em"; }
         for (const el of $$("main [data-speed]")) { const r = el.parentElement!.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) continue; el.style.translate = `0 ${((r.top + r.height / 2 - vh / 2) * +(el.dataset.speed || 0)).toFixed(1)}px`; }
         if (ctx.mq) { if (Math.abs(vel) > 0.5) mqDir = vel > 0 ? 1 : -1; ctx.mqX -= (0.42 + Math.min(Math.abs(vel) * 0.05, 4)) * mqDir; const half = ctx.mq.scrollWidth / 2; if (ctx.mqX <= -half) ctx.mqX += half; if (ctx.mqX > 0) ctx.mqX -= half; ctx.mq.style.transform = `translate3d(${ctx.mqX.toFixed(1)}px,0,0)`; }
       }
@@ -469,7 +485,6 @@ export default function SiteChrome() {
   useEffect(() => {
     const head = headRef.current!;
     head.classList.remove("hide"); document.body.classList.remove("head-hidden");
-    head.classList.toggle("over", pathname === "/");
     const hash = location.hash;
     if (G.lenis) G.lenis.scrollTo(0, { immediate: true, force: true });
     window.scrollTo(0, 0);
@@ -498,31 +513,37 @@ export default function SiteChrome() {
     <>
       <div className="loader" aria-hidden="true">
         <div className="ld-in">
+          <Lotus className="ld-mark" />
           <p className="ld-si" lang="si">රන්ලංකා</p>
           <p className="ld-word">RANLANKA</p>
           <div className="ld-row"><span className="ld-bar"><i></i></span><span className="ld-count">000</span></div>
         </div>
       </div>
-      <div className="curtain" aria-hidden="true" ref={curtainRef}><p>RANLANKA</p></div>
+      <div className="curtain" aria-hidden="true" ref={curtainRef}><p><Lotus />RANLANKA</p></div>
       <div className="cursor" aria-hidden="true"><div className="ring"><b>View</b></div><div className="dot"></div></div>
 
-      <header className={"head" + (pathname === "/" ? " over" : "")} ref={headRef}>
+      <header className="head" ref={headRef}>
         <div className="topbar">
           <div className="wrap tb-in">
-            <p>22K today <b>LKR 312,000</b> per pawn <span className="tag">Sample</span></p>
-            <p className="tb-r"><i className="tb-dot" data-dot=""></i><span data-open="">Open Monday to Saturday</span><span aria-hidden="true">·</span><span>{PHONE}</span></p>
+            <div className="tb-g">
+              <span className="tb-i tb-hide"><Icon n="pin" />192 Main Street, Negombo</span>
+              <span className="tb-i"><Icon n="scale" />22K today <b>LKR 312,000</b> per pawn <span className="tag">Sample</span></span>
+            </div>
+            <div className="tb-g tb-hide">
+              <span className="tb-i"><i className="tb-dot" data-dot=""></i><span data-open="">Open Monday to Saturday</span></span>
+              <a className="tb-i" href={PHONE_HREF}><Icon n="phone" />{PHONE}</a>
+            </div>
           </div>
         </div>
         <div className="nav">
           <div className="wrap nav-in">
-            <nav className="nav-l" aria-label="Main">
-              <button className="menu-btn" type="button" aria-expanded={menuOpen} aria-controls="overlay" onClick={() => setMenuOpen(true)}><i></i><span>Menu</span></button>
-              {NAV_L.map((n) => <a key={n.key} className={navCls(n.key, "nl wide")} href={n.href}>{n.label}</a>)}
+            <Logo />
+            <nav className="nav-links" aria-label="Main">
+              {NAV.map((n) => <a key={n.key} className={navCls(n.key, "nl")} href={n.href}>{n.label}</a>)}
             </nav>
-            <a className="logo" href="/" aria-label="Ranlanka home"><b>RANLANKA</b><span lang="si">රන්ලංකා</span></a>
-            <div className="nav-r">
-              {NAV_R.map((n) => <a key={n.key} className={navCls(n.key, "nl wide")} href={n.href}>{n.label}</a>)}
-              <a className={navCls("visit", "nl box")} href="/visit"><span className="long">Book a visit</span><span className="short">Visit</span></a>
+            <div className="nav-acts">
+              <a className="btn solid sm nav-cta" href="/visit">Book a visit</a>
+              <button className="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded={menuOpen} aria-controls="overlay" onClick={() => setMenuOpen(true)}><Icon n="menu" /></button>
             </div>
           </div>
         </div>
@@ -531,17 +552,15 @@ export default function SiteChrome() {
       <div className={"overlay" + (menuOpen ? " open" : "")} id="overlay" aria-hidden={!menuOpen}>
         <div className="wrap ov-in">
           <div className="ov-top">
-            <button className="ov-close" type="button" onClick={() => setMenuOpen(false)}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" /></svg>Close
-            </button>
-            <span className="logo" style={{ gridColumn: 2 }}><b>RANLANKA</b><span lang="si">රන්ලංකා</span></span>
+            <Logo />
+            <button className="ov-close" type="button" onClick={() => setMenuOpen(false)}>Close<Icon n="close" /></button>
           </div>
           <div className="ov-body">
             <nav className="ov-links" aria-label="Menu">
               {MENU.map((n) => <a key={n.key} href={n.href} className={sec === n.key ? "on" : undefined}><span>{n.label}</span><small>{n.small}</small></a>)}
             </nav>
             <div className="ov-side">
-              <div className="ov-img"><img src="/img/bride.webp" alt="" loading="lazy" /></div>
+              <div className="ov-img arch-rim"><span className="arch"><img src="/img/bride.webp" alt="" loading="lazy" /></span></div>
               <dl>
                 <dt>22K today</dt><dd><b>LKR 312,000</b> per pawn <span className="tag">Sample</span></dd>
                 <dt>Showroom</dt><dd>192 Main Street, Negombo</dd>

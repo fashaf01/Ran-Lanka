@@ -57,12 +57,12 @@ export const countIn = (k: CatKey) => PIECES.filter((p) => p.cat === k).length;
 export const HOME_FAV = ["nk3", "ch1", "bg5", "rg2", "pd4", "br7", "er2", "ms3"];
 export const BRIDAL = ["nk5", "nk3", "nk4", "bg6", "bg4", "ms1", "ms2", "ms3"];
 
-/** Home hero slides. Images live in public/img. */
+/** Home hero: one piece at a time, set over its name, beside a photograph. Images live in public/img. */
 export const HERO_SLIDES = [
-  { t: "Necklaces", sub: "Five pieces in the case", stone: "Emerald", bg: "#0F3D33", img: "bride", pos: "50% 28%", alt: "A bride wearing a layered gold necklace and choker", arch: "nk3a", aalt: "Regal Beaded Gold Necklace", text: "Necklaces for the ceremony and for every day, from fine garlands to beaded collars.", cta: "Shop necklaces", href: "/collection/necklaces" },
-  { t: "Earrings", sub: "Eight pieces in the case", stone: "Ruby", bg: "#5A1E22", img: "er6b", pos: "50% 40%", alt: "A woman smiling, wearing gold stud earrings", arch: "er2a", aalt: "Alluring Mesh Gold Drop Earrings", text: "Studs and drops, from a quiet stud to a bright pair for the wedding.", cta: "Shop earrings", href: "/collection/earrings" },
-  { t: "Bangles", sub: "Sized on the wrist", stone: "Sapphire", bg: "#1B2B45", img: "cat-bg", pos: "50% 50%", alt: "Gold bangles from the case", arch: "bg5a", aalt: "Cosmic Lace Gold Bangle", text: "Single bangles and pairs, sized on your wrist at the counter. By the dozen for a bride.", cta: "Shop bangles", href: "/collection/bangles" },
-  { t: "Pendants", sub: "Om and Ganesha designs", stone: "Topaz", bg: "#3A2618", img: "pd1b", pos: "50% 36%", alt: "A man wearing a gold pendant on a chain", arch: "pd4a", aalt: "Ethereal Ganpati Gold Pendant", text: "Pendants to wear alone or on a chain from the case, including Om and Ganesha designs.", cta: "Shop pendants", href: "/collection/pendants" },
+  { id: "nk5", name: "Gilded Garland", kind: "Necklace", ghost: ["Gilded", "Garland"], img: "bride", pos: "50% 20%", alt: "A bride wearing a layered gold necklace and choker", cap: "The bridal trays", cta: "View the bridal edit", href: "/bridal" },
+  { id: "bg5", name: "Cosmic Lace", kind: "Bangle", ghost: ["Cosmic", "Lace"], img: "hands-bangles", pos: "50% 50%", alt: "A bride's hands with stacked gold bangles, rings and jasmine", cap: "Sized on the wrist", cta: "Shop bangles", href: "/collection/bangles" },
+  { id: "er2", name: "Alluring Mesh", kind: "Drop earrings", ghost: ["Alluring", "Mesh"], img: "er3b", pos: "50% 40%", alt: "A woman wearing gold leaf drop earrings", cap: "Studs and drops", cta: "Shop earrings", href: "/collection/earrings" },
+  { id: "pd4", name: "Ethereal Ganpati", kind: "Pendant", ghost: ["Ethereal", "Ganpati"], img: "pd1b", pos: "50% 36%", alt: "A man wearing a gold pendant on a chain", cap: "Om and Ganesha designs", cta: "Shop pendants", href: "/collection/pendants" },
 ];
 
 export const money = (n: number) => Math.round(n).toLocaleString("en-US");

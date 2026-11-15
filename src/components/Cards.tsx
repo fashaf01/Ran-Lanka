@@ -17,8 +17,9 @@ export function ProductCard({ p }: { p: Piece }) {
         <span className="pc-no">{p.no}</span>
       </span>
       <span className="pc-meta">
-        <span className="c">{CATS[p.cat].kind}</span>
         <span className="h">{p.name}</span>
+        <span className="c">22kt gold · {CATS[p.cat].kind}</span>
+        <span className="p">At today&apos;s gold rate</span>
       </span>
     </a>
   );

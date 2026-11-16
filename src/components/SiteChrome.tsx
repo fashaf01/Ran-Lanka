@@ -432,7 +432,7 @@ export default function SiteChrome() {
     const loader = $(".loader");
     const finish = () => { G.loaderDone = true; const f = G.onLoaderDone; G.onLoaderDone = null; f?.(); };
     let seen = false;
-    try { seen = !!sessionStorage.getItem("rl-site3"); } catch { /* private mode */ }
+    try { seen = !!sessionStorage.getItem("rl-site4"); } catch { /* private mode */ }
     if (!loader || G.RM || seen || location.pathname !== "/") { if (loader) loader.style.display = "none"; requestAnimationFrame(finish); }
     else {
       const bar = $(".ld-bar i")!, cnt = $(".ld-count")!, t0 = performance.now(), DUR = 1400;
@@ -440,7 +440,7 @@ export default function SiteChrome() {
         const k = clamp((now - t0) / DUR, 0, 1), ez = 1 - Math.pow(1 - k, 3);
         bar.style.transform = `scaleX(${ez})`; cnt.textContent = String(Math.round(ez * 100)).padStart(3, "0");
         if (k < 1) requestAnimationFrame(tick);
-        else setTimeout(() => { loader.classList.add("done"); setTimeout(finish, 250); setTimeout(() => { loader.style.display = "none"; }, 1200); try { sessionStorage.setItem("rl-site3", "1"); } catch { /* ignore */ } }, 160);
+        else setTimeout(() => { loader.classList.add("done"); setTimeout(finish, 250); setTimeout(() => { loader.style.display = "none"; }, 1200); try { sessionStorage.setItem("rl-site4", "1"); } catch { /* ignore */ } }, 160);
       };
       requestAnimationFrame(tick);
       setTimeout(() => { if (!G.loaderDone) { loader.classList.add("done"); finish(); } }, 4000);

@@ -1,12 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource/cormorant-garamond/400.css";
-import "@fontsource/cormorant-garamond/400-italic.css";
-import "@fontsource/cormorant-garamond/500.css";
-import "@fontsource/cormorant-garamond/500-italic.css";
-import "@fontsource/cormorant-garamond/600.css";
-import "@fontsource/archivo/400.css";
-import "@fontsource/archivo/500.css";
-import "@fontsource/archivo/600.css";
+import "@fontsource/bodoni-moda/400.css";
+import "@fontsource/bodoni-moda/400-italic.css";
+import "@fontsource/bodoni-moda/500.css";
+import "@fontsource/jost/300.css";
+import "@fontsource/jost/400.css";
+import "@fontsource/jost/500.css";
 import "@fontsource/pinyon-script/400.css";
 import "@fontsource/abhaya-libre/600.css";
 import "@fontsource/abhaya-libre/700.css";
@@ -24,12 +22,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FAF3E3",
+  themeColor: "#062A24",
   colorScheme: "light",
 };
 
 // Runs before paint: marks that scripts run, and skips the loader except on a first visit to the home page.
-const BOOT = `(function(){var d=document.documentElement;d.classList.add('js');try{if(location.pathname!=='/'||sessionStorage.getItem('rl-site3')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('no-loader');}catch(e){d.classList.add('no-loader');}})();`;
+const BOOT = `(function(){var d=document.documentElement;d.classList.add('js');try{if(location.pathname!=='/'||sessionStorage.getItem('rl-site4')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('no-loader');}catch(e){d.classList.add('no-loader');}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

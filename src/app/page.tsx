@@ -1,6 +1,6 @@
 import { FxTable, ProductCard } from "@/components/Cards";
-import { Flourish, Icon, Seal } from "@/components/Icons";
-import { CATS, CAT_KEYS, EMAIL, FX, HERO_SLIDES, HOME_FAV, MAPS_URL, PAWN_GRAMS, PHONE, PHONE_HREF, PIECES, PIECE_BY_ID, RATE, countIn, money } from "@/lib/data";
+import { Icon, Seal } from "@/components/Icons";
+import { CATS, CAT_KEYS, EMAIL, FX, HOME_FAV, MAPS_URL, PAWN_GRAMS, PHONE, PHONE_HREF, PIECES, PIECE_BY_ID, RATE, countIn, money } from "@/lib/data";
 
 const SERVICES = [
   { icon: "scale", name: "Gold rate", text: "22 and 24 karat rates per pawn and per gram, checked each morning, with a calculator for any weight.", go: "Today's rate", href: "/gold-rate" },
@@ -19,41 +19,32 @@ const CarNav = ({ what }: { what: string }) => (
 );
 
 export default function Home() {
-  const first = HERO_SLIDES[0];
   const pawn22 = money(RATE[22] * PAWN_GRAMS), pawn24 = money(RATE[24] * PAWN_GRAMS);
   return (
     <div className="page" data-page="home">
-      {/* ---------- hero: a piece set over its own name ---------- */}
-      <section className="hero" data-hs="" aria-label="From the case" aria-roledescription="carousel">
-        <div className="hero-stage">
-          <span className="lace" aria-hidden="true"></span>
-          <h1 className="sr">Ranlanka, 22 karat gold jewellers on Main Street, Negombo</h1>
-          <p className="hero-piece" id="hs-slide"><span className="script" data-hs-name="">{first.name}</span> <span data-hs-kind="">{first.kind}</span>, 22kt</p>
-          <div className="hero-comp">
-            <span className="hero-ghost" aria-hidden="true"><span data-hs-g1="">{first.ghost[0]}</span><span data-hs-g2="">{first.ghost[1]}</span></span>
-            <a className="hero-obj" data-hs-obj="" href={`/product/${first.id}`} data-cursor="View"><img src={`/img/${first.id}a.webp`} alt={`${first.name} ${first.kind.toLowerCase()}`} fetchPriority="high" /></a>
+      {/* ---------- hero ---------- */}
+      <section className="eh" aria-label="Introduction">
+        <div className="wrap eh-in">
+          <span className="eh-arcade" aria-hidden="true"><svg viewBox="0 0 640 220"><use href="#rl-arcade" /></svg></span>
+          <div className="eh-copy">
+            <p className="kicker">22 karat gold · Negombo · since 2008</p>
+            <h1 className="eh-title">Honest gold, <em>weighed in front of you.</em></h1>
+            <p className="eh-lead">Ranlanka is the gold of Lanka. Necklaces, bangles and thali chains in 22 karat, each one priced by its weight at the day&apos;s rate on Main Street, Negombo.</p>
+            <div className="acts eh-acts"><a className="btn solid" href="/visit">Book a visit <Icon n="right" /></a><a className="tlink" href="/collection">See the collection</a></div>
           </div>
-          <p className="hero-price"><span>Priced at today&apos;s gold rate</span><i aria-hidden="true"></i><span data-hs-no="">RL {first.id.toUpperCase()}</span></p>
-          <p className="hero-note">On Main Street in Negombo since 2008. <em>Only</em> 22 karat gold, weighed in front of you and priced at the day&apos;s rate. Every piece has a number, so quote it and we will have it <em>ready.</em></p>
-          <div className="hero-tabs" role="tablist" aria-label="Choose a piece">
-            {HERO_SLIDES.map((x, i) => (
-              <button key={x.id} type="button" role="tab" aria-selected={i === 0} aria-controls="hs-slide" aria-label={`${x.name} ${x.kind.toLowerCase()}`} data-i={i}><i></i><span>0{i + 1}</span></button>
-            ))}
+          <div className="eh-art">
+            <img className="eh-mandala" src="/img/mandala.svg" alt="" aria-hidden="true" />
+            <div className="arch-rim eh-arch"><span className="arch"><img src="/img/em-gown.jpg" alt="A woman in a draped rose gown against deep green, wearing a jewelled necklace and drop earrings" fetchPriority="high" /></span></div>
+            <Seal />
+            <a className="eh-card" href="/collection/bangles"><img src="/img/cat-bg.webp" alt="A gold bangle on emerald silk" /><span><small>From the bangle case</small>Sized on your wrist</span></a>
           </div>
-          <svg className="sketch hero-sketch" viewBox="0 0 640 220" aria-hidden="true"><use href="#rl-arcade" /></svg>
         </div>
-        <div className="hero-aside">
-          <div className="hero-ph" data-hs-prev=""><img src={`/img/${first.img}.webp`} alt="" /></div>
-          <div className="hero-ph cur" data-hs-cur=""><img src={`/img/${first.img}.webp`} alt={first.alt} style={{ objectPosition: first.pos }} fetchPriority="high" /></div>
-          <span className="lace pale" aria-hidden="true"></span>
-          <span className="hero-badge"><Icon n="scale" />Weighed in front of you</span>
-          <div className="hero-foot">
-            <p className="hero-cap"><b data-hs-cap="">{first.cap}</b><a data-hs-cta="" href={first.href}>{first.cta} <Icon n="right" /></a></p>
-            <div className="hero-ctl">
-              <span className="hero-count" data-hs-count="" aria-live="polite">01 / 0{HERO_SLIDES.length}</span>
-              <button type="button" className="hero-btn" data-hs-prevbtn="" aria-label="Previous piece"><Icon n="left" /></button>
-              <button type="button" className="hero-btn" data-hs-nextbtn="" aria-label="Next piece"><Icon n="right" /></button>
-            </div>
+        <div className="eh-facts">
+          <div className="wrap">
+            <p><b>2008</b>A small gold shop opens in Negombo town</p>
+            <p><b>916</b>Parts gold in every 1,000. Only 22 karat</p>
+            <p><b>{PIECES.length}</b>Pieces in the case, each with its own number</p>
+            <p><b>50+</b>Currencies exchanged, with no commission</p>
           </div>
         </div>
       </section>
@@ -98,7 +89,15 @@ export default function Home() {
         </div>
       </section>
 
-      <Flourish />
+      <section className="bottle name-band" aria-label="The name">
+        <span className="lace pale" aria-hidden="true"></span>
+        <div className="wrap">
+          <p className="name-line fade"><b lang="si">රන්</b> is the Sinhala word for gold. Ranlanka is the <em>gold of Lanka.</em></p>
+          <p className="script name-sub fade">Main Street, Negombo, since 2008</p>
+          <svg className="name-arcade" viewBox="0 0 640 220" aria-hidden="true"><use href="#rl-arcade" /></svg>
+        </div>
+      </section>
+
 
       {/* ---------- favourites ---------- */}
       <section className="sec favs" data-car="" aria-label="Favourites from the case">

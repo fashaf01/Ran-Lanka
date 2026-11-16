@@ -868,3 +868,4 @@ body{background:#FFFFFF;font-weight:400}
 .name-arcade{position:absolute;left:50%;bottom:clamp(30px,3.2vw,44px);width:min(640px,80%);height:auto;aspect-ratio:640/220;translate:-50% 0;color:#D9B66A;opacity:.24;pointer-events:none}
 .name-band .lace{opacity:.7}
 .svc h3,.steps h3,.tiles h3,.sh-name,.calc h3,.faq summary,.list li b,.pd-pn span,.hours li.today span{font-weight:400}
+@media (max-width:640px){.name-band .wrap{padding-inline:46px}.name-sub{font-size:23px}.name-line{font-size:25px}}

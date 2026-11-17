@@ -19,7 +19,7 @@ export default function CollectionView({ cat }: { cat?: CatKey }) {
             <p className="lead">{c ? c.text : "Every piece in the case, in 22 karat gold. Weighed in front of you and priced at the day’s rate."}</p>
             {c && <p className="fit-note">{c.fit}</p>}
           </div>
-          <div className="plate ph-plate"><img src={`/img/${c ? c.img : "life-plain"}.webp`} alt={c ? c.name : "A gold necklace and earrings on a stand"} /></div>
+          <div className="plate ph-plate"><img src={`/img/${c ? c.img : "hero"}.webp`} alt={c ? c.name : "A bride in a red and green silk saree wearing a gold choker and temple necklace"} style={c ? undefined : { objectPosition: "50% 28%" }} /></div>
         </div>
       </header>
       <div className="catbar">

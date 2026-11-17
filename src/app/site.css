@@ -942,3 +942,28 @@ body.leaving main{opacity:0;transition-duration:.18s}
 @media (max-width:520px){.logo-mark{height:38px}.logo-name{font-size:17px;letter-spacing:.24em}}
 .ov-side dd a{color:var(--bone);border-bottom:1px solid rgba(217,182,106,.5)}
 .ov-side dd a:hover{color:#D9B66A}
+
+/* phones: fixes found by touch testing */
+.compare{touch-action:pan-y;cursor:ew-resize}
+.compare input{pointer-events:none}
+.sec[aria-label="Our story"]{overflow-x:clip}
+@media (max-width:940px){
+  .her-aside .seal{top:-26px;right:10px;left:auto;width:92px}
+}
+@media (max-width:760px){
+  .cats{-webkit-mask:linear-gradient(90deg,#000 85%,transparent);mask:linear-gradient(90deg,#000 85%,transparent);padding-right:28px}
+  .catbar-in{gap:10px}
+  .sort select{padding:9px 26px 9px 10px;font-size:11.5px}
+  .interlude::after{display:none}
+  .interlude::before{background:linear-gradient(0deg,rgba(5,8,7,.94) 0%,rgba(5,8,7,.78) 48%,rgba(5,8,7,.2) 100%)}
+  .interlude>*{margin-inline:6px}
+  .interlude>*:last-child{margin-bottom:8px}
+  .assure{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .pd-main::after{inset:6px;border-width:14px}
+}
+@media (max-width:760px){
+  .interlude{min-height:0;padding:0 0 24px;align-content:start;gap:8px;background:#062A24}
+  .interlude img{position:relative;inset:auto;width:100%;height:220px;opacity:1;margin:0 0 14px!important}
+  .interlude::before{display:none}
+  .interlude>*:not(img){margin-inline:22px!important}
+}

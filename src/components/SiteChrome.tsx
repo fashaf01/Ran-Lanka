@@ -209,9 +209,35 @@ function initPage(path: string): () => void {
   }
 
   // sketch / gold comparison
-  $$<HTMLInputElement>(".compare input").forEach((r) => {
-    const f = () => r.parentElement!.style.setProperty("--cut", r.value + "%");
-    r.addEventListener("input", f); off.push(() => r.removeEventListener("input", f));
+  // sketch / gold comparison: drag anywhere on it with a mouse; on touch only a sideways drag
+  // moves it, so a finger scrolling the page past it leaves it alone. The range input stays for keyboards.
+  $$<HTMLElement>(".compare").forEach((c) => {
+    const r = $<HTMLInputElement>("input", c);
+    if (!r) return;
+    const set = (v: number) => { const k = clamp(v, 0, 100); c.style.setProperty("--cut", k.toFixed(1) + "%"); r.value = String(Math.round(k)); };
+    const at = (x: number) => { const b = c.getBoundingClientRect(); return ((x - b.left) / b.width) * 100; };
+    let id = -1, sx = 0, sy = 0, live = false;
+    const onKey = () => set(+r.value);
+    const down = (e: PointerEvent) => {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      id = e.pointerId; sx = e.clientX; sy = e.clientY; live = e.pointerType === "mouse";
+      if (live) { c.setPointerCapture(id); set(at(e.clientX)); e.preventDefault(); }
+    };
+    const move = (e: PointerEvent) => {
+      if (e.pointerId !== id) return;
+      if (!live) {
+        const dx = Math.abs(e.clientX - sx), dy = Math.abs(e.clientY - sy);
+        if (dx < 6 && dy < 6) return;
+        if (dy > dx) { id = -1; return; }
+        live = true; try { c.setPointerCapture(id); } catch { /* released */ }
+      }
+      set(at(e.clientX));
+    };
+    const up = (e: PointerEvent) => { if (e.pointerId === id) { id = -1; live = false; } };
+    r.addEventListener("input", onKey);
+    c.addEventListener("pointerdown", down); c.addEventListener("pointermove", move);
+    c.addEventListener("pointerup", up); c.addEventListener("pointercancel", up);
+    off.push(() => { r.removeEventListener("input", onKey); c.removeEventListener("pointerdown", down); c.removeEventListener("pointermove", move); c.removeEventListener("pointerup", up); c.removeEventListener("pointercancel", up); });
   });
 
   // collection: sort and keep the current case in view

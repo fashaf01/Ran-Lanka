@@ -10,7 +10,7 @@ export function Arrow() {
 
 export function ProductCard({ p }: { p: Piece }) {
   return (
-    <a className="pc" href={`/product/${p.id}`} data-cursor="View" data-name={p.name} data-order={p.order}>
+    <a className="pc" href={`/product/${p.id}`} data-name={p.name} data-order={p.order}>
       <span className="pc-img">
         <img className="a" src={`/img/${p.id}a.webp`} alt={p.name} loading="lazy" />
         <img className="b" src={`/img/${p.id}b.webp`} alt="" loading="lazy" />

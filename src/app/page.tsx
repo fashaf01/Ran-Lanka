@@ -75,7 +75,7 @@ export default function Home() {
           <div className="car-view" tabIndex={0} role="region" aria-label="Jewellery by kind, scrollable">
             <div className="car-track">
               {CAT_KEYS.map((k) => (
-                <a className="cat" key={k} href={`/collection/${CATS[k].slug}`} data-cursor="Open">
+                <a className="cat" key={k} href={`/collection/${CATS[k].slug}`}>
                   <span className="cat-media"><img src={`/img/${CATS[k].img}.webp`} alt="" loading="lazy" /></span>
                   <span className="cat-label"><small>{countIn(k)} pieces</small><b>{k === "ms" ? "Thali" : CATS[k].name}</b></span>
                 </a>
@@ -158,8 +158,8 @@ export default function Home() {
             <Seal />
             <div className="tile tall"><img src="/img/hands-bangles.webp" alt="A bride's hands with stacked gold bangles, rings and jasmine" loading="lazy" /><span>Sized on the wrist</span></div>
             <div className="tile pack"><img src="/img/bg4a.webp" alt="Twilight Hues gold bangles" loading="lazy" /><span>Weighed in front of you</span></div>
-            <div className="tile"><img src="/img/showroom-counter.jpg" alt="The counter at the Ranlanka showroom" loading="lazy" /><span>Main Street since 2011</span></div>
-            <div className="tile wide"><img src="/img/life-family.jpg" alt="Two women in silk sarees and gold necklaces, laughing together" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span>Designs that are passed on</span></div>
+            <div className="tile"><img src="/img/er3b.webp" alt="A woman wearing gold leaf drop earrings" loading="lazy" style={{ objectPosition: "50% 35%" }} /><span>Tried on at the counter</span></div>
+            <div className="tile wide"><img src="/img/bride.webp" alt="A bride wearing a layered gold choker and long temple necklace" loading="lazy" style={{ objectPosition: "50% 52%" }} /><span>Designs that are passed on</span></div>
           </div>
         </div>
       </section>
@@ -249,7 +249,7 @@ export default function Home() {
             </div>
           </div>
           <article className="showroom fade" data-d="1">
-            <div className="sh-media"><img src="/img/showroom-floor.jpg" alt="Inside the Ranlanka showroom on Main Street" loading="lazy" /><span className="sh-tag">Showroom</span></div>
+            <div className="sh-media"><img src="/img/hero.webp" alt="A bride in a red and green silk saree, seated among brass oil lamps" loading="lazy" style={{ objectPosition: "50% 30%" }} /><span className="sh-tag">Main Street, Negombo</span></div>
             <div className="sh-body">
               <h3 className="sh-name">Ranlanka Jewellery, Main Street</h3>
               <ul className="sh-rows">

@@ -916,3 +916,9 @@ body.leaving main{opacity:0;transition-duration:.18s}
 @media (max-width:560px){.ct-list a{grid-template-columns:44px minmax(0,1fr);margin-inline:0;padding-inline:0}.ct-ic{width:44px;height:44px}.ct-go{grid-column:2}}
 .at-visual{background:#FFFFFF}
 .page:not([data-page="home"])>header.phead + section{padding-top:clamp(44px,5vw,72px)!important}
+/* never show a photo larger than its real size: product photos are 560 px, the gold pendant 391 px */
+.pd-main{aspect-ratio:1;max-width:600px}
+.pd-main.zoom img{transform:scale(1.5)}
+.at-visual .compare,.compare{max-width:470px}
+.trio{max-width:1060px;margin-inline:auto}
+.cursor{display:none!important}

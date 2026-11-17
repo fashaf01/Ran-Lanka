@@ -18,7 +18,7 @@ export default function AboutPage() {
       </header>
       <section className="sec-s" style={{ "paddingTop": "0" }} aria-label="The story">
         <div className="wrap split">
-          <div className="plate clip" style={{ "aspectRatio": "4/3" }}><img src="/img/hands-bangles.webp" alt="A bride's hands with stacked gold bangles, rings and jasmine" /></div>
+          <div className="plate clip" style={{ "aspectRatio": "640/425" }}><img src="/img/hands-bangles.webp" alt="A bride's hands with stacked gold bangles, rings and jasmine" /></div>
           <div style={{ "display": "grid", "gap": "30px" }}>
             <p className="fade" style={{ "font": "500 clamp(22px,2vw,30px)/1.4 var(--f-display)", "letterSpacing": ".01em", "fontVariantNumeric": "lining-nums" }}>In 2008, Mr. Anas opened a small gold shop in Negombo town. By 2011 it had grown into a showroom on Main Street. The promise has stayed the same since the first day. Honest gold, fair rates, and designs that never go out of fashion.</p>
             <dl className="tl fade">

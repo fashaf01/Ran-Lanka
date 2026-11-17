@@ -45,7 +45,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 </button>
               ))}
             </div>
-            <div className="pd-main" id="pd-main" data-cursor="Zoom">
+            <div className="pd-main" id="pd-main">
               <img id="pd-img" src={`/img/${p.id}a.webp`} alt={p.name} />
               <span className="pc-no">{p.no}</span>
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-// The site frame: cursor, header, menu, smooth scrolling and every
+// The site frame: header, menu, smooth scrolling and every
 // scroll and page behaviour. Pages are server-rendered; this wires them up after each route.
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
@@ -347,28 +347,20 @@ export default function SiteChrome() {
   routerRef.current = router;
   const sec = section(pathname);
 
-  // long-lived: smooth scroll, reveals, the frame loop, cursor, links, forms
+  // long-lived: smooth scroll, reveals, the frame loop, links, forms
   useEffect(() => {
     G.RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
     G.FINE = matchMedia("(pointer: fine)").matches;
     if (!G.RM) {
-      try { G.lenis = new Lenis({ lerp: 0.09, smoothWheel: true, wheelMultiplier: 0.95 }); } catch { G.lenis = null; }
+      try { G.lenis = new Lenis({ lerp: 0.15, smoothWheel: true, wheelMultiplier: 1.15 }); } catch { G.lenis = null; }
     }
     G.io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); G.io!.unobserve(e.target); countUp(e.target as HTMLElement); } }), { rootMargin: "0px 0px -10% 0px" });
     G.gio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { const el = e.target as HTMLElement; setTimeout(() => el.classList.add("in"), (+(el.dataset.i || 0)) * 70); G.gio!.unobserve(el); } }), { rootMargin: "0px 0px -6% 0px" });
 
     const head = headRef.current!;
-    const cur = $(".cursor")!, ring = $(".cursor .ring")!, dot = $(".cursor .dot")!, label = $(".cursor .ring b")!;
-    const M = { x: innerWidth / 2, y: innerHeight / 2, rx: innerWidth / 2, ry: innerHeight / 2 };
     const offs: (() => void)[] = [];
     const on = <K extends keyof DocumentEventMap>(t: Document | Window, ev: K | string, fn: (e: any) => void, opt?: AddEventListenerOptions) => { t.addEventListener(ev, fn, opt); offs.push(() => t.removeEventListener(ev, fn, opt)); };
 
-    if (G.FINE) {
-      on(window, "pointermove", (e: PointerEvent) => { M.x = e.clientX; M.y = e.clientY; if (!cur.classList.contains("live")) { M.rx = M.x; M.ry = M.y; cur.classList.add("live"); } }, { passive: true });
-      on(document, "pointerleave", () => cur.classList.remove("live"));
-      on(document, "pointerover", (e: PointerEvent) => { const t = (e.target as HTMLElement).closest?.("[data-cursor]") as HTMLElement | null; if (t) { label.textContent = t.dataset.cursor || ""; cur.classList.add("big"); } });
-      on(document, "pointerout", (e: PointerEvent) => { const t = (e.target as HTMLElement).closest?.("[data-cursor]"); if (t && !t.contains(e.relatedTarget as Node)) cur.classList.remove("big"); });
-    }
 
     // internal links: a short fade, then route
     on(document, "click", (e: MouseEvent) => {
@@ -453,7 +445,6 @@ export default function SiteChrome() {
           if (n !== ctx.lit) { ctx.words.forEach((w, i) => w.classList.toggle("on", i < n)); ctx.lit = n; }
         }
       }
-      if (G.FINE) { M.rx = lerp(M.rx, M.x, 0.18); M.ry = lerp(M.ry, M.y, 0.18); ring.style.transform = `translate3d(${M.rx}px,${M.ry}px,0) rotate(45deg)`; dot.style.transform = `translate3d(${M.x}px,${M.y}px,0)`; }
       raf = requestAnimationFrame(frame);
     };
     raf = requestAnimationFrame(frame);
@@ -491,7 +482,6 @@ export default function SiteChrome() {
 
   return (
     <>
-      <div className="cursor" aria-hidden="true"><div className="ring"><b>View</b></div><div className="dot"></div></div>
 
       <header className="head" ref={headRef}>
         <div className="topbar">

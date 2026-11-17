@@ -869,3 +869,11 @@ body{background:#FFFFFF;font-weight:400}
 .name-band .lace{opacity:.7}
 .svc h3,.steps h3,.tiles h3,.sh-name,.calc h3,.faq summary,.list li b,.pd-pn span,.hours li.today span{font-weight:400}
 @media (max-width:640px){.name-band .wrap{padding-inline:46px}.name-sub{font-size:23px}.name-line{font-size:25px}}
+/* page changes: a short fade, no curtain, no opening loader, no hero entrance */
+main{transition:opacity .28s var(--ease-out)}
+body.leaving main{opacity:0;transition-duration:.18s}
+.eh-copy>*,.eh-arch,.eh-arch img,.eh-card,.eh-facts p{animation:none!important}
+.at-visual{display:grid;place-items:center;min-height:0;padding:clamp(24px,4vw,56px)}
+.at-visual .compare{max-width:560px}
+.at-visual{grid-template-columns:minmax(0,1fr);justify-items:center}
+.at-visual .compare{width:min(100%,560px)}

@@ -121,18 +121,17 @@ export default function Home() {
       {/* ---------- bespoke ---------- */}
       <section className="atelier" aria-label="Bespoke">
         <div className="at-visual">
-          <img src="/img/starburst-sketch.webp" alt="A pencil drawing of the Starburst pendant" loading="lazy" />
-          <div className="at-marks">
-            <span className="mark"><Icon n="pencil" />Your sketch or photo</span>
-            <span className="mark"><Icon n="scale" />Weight in pawn first</span>
-          </div>
-          <div className="at-marks">
-            <span className="mark"><Icon n="shield" />Price agreed before we start</span>
+          <div className="compare">
+            <img src="/img/starburst-sketch.webp" alt="A pencil drawing of the Starburst pendant" loading="lazy" />
+            <img className="gold" src="/img/starburst-gold.webp" alt="The finished Starburst pendant in 22 karat gold" loading="lazy" />
+            <span className="lab l">Sketch</span>
+            <span className="lab r">Gold</span>
+            <input type="range" min="0" max="100" defaultValue="50" aria-label="Compare the sketch with the finished pendant" />
+            <span className="cut"><i>Drag</i></span>
           </div>
         </div>
         <div className="at-body">
           <div className="rv"><p className="kicker">Bespoke</p><h2 className="d2"><span className="ln"><span>Your sketch,</span></span><span className="ln"><span>in <em>22 karat gold.</em></span></span></h2></div>
-          <div className="at-frame arch-rim"><span className="arch"><img src="/img/starburst-gold.webp" alt="The finished Starburst pendant in 22 karat gold" loading="lazy" /></span></div>
           <p className="at-text">Bring a drawing, a photo or a piece you have seen and liked. We draw it up, tell you its weight in pawn and agree the price before anything is made. You approve every step.</p>
           <a className="btn" href="/bespoke">Start a design <Icon n="right" /></a>
         </div>

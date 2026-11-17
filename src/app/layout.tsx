@@ -26,8 +26,8 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-// Runs before paint: marks that scripts run, and skips the loader except on a first visit to the home page.
-const BOOT = `(function(){var d=document.documentElement;d.classList.add('js');try{if(location.pathname!=='/'||sessionStorage.getItem('rl-site4')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('no-loader');}catch(e){d.classList.add('no-loader');}})();`;
+// Runs before paint: marks that scripts run.
+const BOOT = `document.documentElement.classList.add('js');`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

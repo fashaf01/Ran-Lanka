@@ -1,12 +1,12 @@
 "use client";
 
-// The site frame: loader, page curtain, cursor, header, menu, smooth scrolling and every
+// The site frame: cursor, header, menu, smooth scrolling and every
 // scroll and page behaviour. Pages are server-rendered; this wires them up after each route.
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Lenis from "lenis";
 import { FX, HERO_SLIDES as HS, PAWN_GRAMS, PHONE, PHONE_HREF, RATE, money } from "@/lib/data";
-import { Icon, Logo, Lotus } from "@/components/Icons";
+import { Icon, Logo } from "@/components/Icons";
 
 const NAV = [
   { href: "/collection", label: "Collection", key: "collection" },
@@ -341,7 +341,6 @@ export default function SiteChrome() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const headRef = useRef<HTMLElement>(null);
-  const curtainRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef(menuOpen);
   menuRef.current = menuOpen;
   const routerRef = useRef(router);
@@ -371,7 +370,7 @@ export default function SiteChrome() {
       on(document, "pointerout", (e: PointerEvent) => { const t = (e.target as HTMLElement).closest?.("[data-cursor]"); if (t && !t.contains(e.relatedTarget as Node)) cur.classList.remove("big"); });
     }
 
-    // internal links: curtain, then route
+    // internal links: a short fade, then route
     on(document, "click", (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const cp = target.closest?.("[data-copy]") as HTMLElement | null;
@@ -395,15 +394,14 @@ export default function SiteChrome() {
     async function navigate(href: string) {
       if (G.busy) return;
       setMenuOpen(false);
-      const c = curtainRef.current!;
       if (G.RM) { routerRef.current.push(href, { scroll: false }); return; }
       G.busy = true;
       routerRef.current.prefetch(href);
-      c.className = "curtain in";
-      await wait(620);
+      document.body.classList.add("leaving");
+      await wait(180);
       const before = location.pathname;
       routerRef.current.push(href, { scroll: false });
-      setTimeout(() => { if (G.busy && location.pathname === before) { c.className = "curtain in out"; setTimeout(() => { c.className = "curtain"; G.busy = false; }, 840); } }, 2500);
+      setTimeout(() => { if (G.busy && location.pathname === before) { document.body.classList.remove("leaving"); G.busy = false; } }, 2500);
     }
 
     // forms that prepare a message (the site cannot send email itself)
@@ -428,23 +426,8 @@ export default function SiteChrome() {
     on(window, "resize", () => { try { G.lenis?.resize(); } catch { /* ignore */ } });
     const statusTimer = setInterval(paintStatus, 60000);
 
-    // loader: first visit to the home page only
-    const loader = $(".loader");
     const finish = () => { G.loaderDone = true; const f = G.onLoaderDone; G.onLoaderDone = null; f?.(); };
-    let seen = false;
-    try { seen = !!sessionStorage.getItem("rl-site4"); } catch { /* private mode */ }
-    if (!loader || G.RM || seen || location.pathname !== "/") { if (loader) loader.style.display = "none"; requestAnimationFrame(finish); }
-    else {
-      const bar = $(".ld-bar i")!, cnt = $(".ld-count")!, t0 = performance.now(), DUR = 1400;
-      const tick = (now: number) => {
-        const k = clamp((now - t0) / DUR, 0, 1), ez = 1 - Math.pow(1 - k, 3);
-        bar.style.transform = `scaleX(${ez})`; cnt.textContent = String(Math.round(ez * 100)).padStart(3, "0");
-        if (k < 1) requestAnimationFrame(tick);
-        else setTimeout(() => { loader.classList.add("done"); setTimeout(finish, 250); setTimeout(() => { loader.style.display = "none"; }, 1200); try { sessionStorage.setItem("rl-site4", "1"); } catch { /* ignore */ } }, 160);
-      };
-      requestAnimationFrame(tick);
-      setTimeout(() => { if (!G.loaderDone) { loader.classList.add("done"); finish(); } }, 4000);
-    }
+    requestAnimationFrame(finish);
 
     // the frame loop
     let raf = 0, lastY = 0, prevY = 0, vel = 0, mqDir = 1;
@@ -481,7 +464,7 @@ export default function SiteChrome() {
     };
   }, []);
 
-  // every route: reset scroll, wire the page up, lift the curtain
+  // every route: reset scroll, wire the page up, fade the page in
   useEffect(() => {
     const head = headRef.current!;
     head.classList.remove("hide"); document.body.classList.remove("head-hidden");
@@ -490,10 +473,7 @@ export default function SiteChrome() {
     window.scrollTo(0, 0);
     const cleanup = initPage(pathname);
     if (hash) setTimeout(() => goTo($(decodeURIComponent(hash))), G.first ? 80 : 700);
-    const c = curtainRef.current!;
-    if (c.classList.contains("in")) {
-      requestAnimationFrame(() => { c.className = "curtain in out"; setTimeout(() => { c.className = "curtain"; G.busy = false; }, 840); });
-    }
+    if (document.body.classList.contains("leaving")) requestAnimationFrame(() => { document.body.classList.remove("leaving"); G.busy = false; });
     if (!G.first) { const h = $("main h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); } }
     G.first = false;
     try { G.lenis?.resize(); } catch { /* ignore */ }
@@ -511,15 +491,6 @@ export default function SiteChrome() {
 
   return (
     <>
-      <div className="loader" aria-hidden="true">
-        <div className="ld-in">
-          <Lotus className="ld-mark" />
-          <p className="ld-si" lang="si">රන්ලංකා</p>
-          <p className="ld-word">RANLANKA</p>
-          <div className="ld-row"><span className="ld-bar"><i></i></span><span className="ld-count">000</span></div>
-        </div>
-      </div>
-      <div className="curtain" aria-hidden="true" ref={curtainRef}><p><Lotus />RANLANKA</p></div>
       <div className="cursor" aria-hidden="true"><div className="ring"><b>View</b></div><div className="dot"></div></div>
 
       <header className="head" ref={headRef}>

@@ -15,7 +15,7 @@ export default function BespokePage() {
       </header>
       <section className="sec-s" style={{ "paddingTop": "0" }} aria-label="From sketch to gold">
         <div className="wrap split">
-          <div className="compare clip" data-cursor="Drag">
+          <div className="compare clip">
             <img src="/img/starburst-sketch.webp" alt="A pencil drawing of the Starburst pendant" />
             <img className="gold" src="/img/starburst-gold.webp" alt="The finished Starburst pendant in 22 karat gold" />
             <span className="lab l">Sketch</span>

@@ -10,15 +10,16 @@ export function Arrow() {
 
 export function ProductCard({ p }: { p: Piece }) {
   return (
-    <a className="pc" href={`/product/${p.id}`} data-cursor="View" data-name={p.name} data-order={p.order}>
+    <a className="pc" href={`/product/${p.id}`} data-name={p.name} data-order={p.order}>
       <span className="pc-img">
         <img className="a" src={`/img/${p.id}a.webp`} alt={p.name} loading="lazy" />
         <img className="b" src={`/img/${p.id}b.webp`} alt="" loading="lazy" />
         <span className="pc-no">{p.no}</span>
       </span>
       <span className="pc-meta">
-        <span className="c">{CATS[p.cat].kind}</span>
         <span className="h">{p.name}</span>
+        <span className="c">22kt gold · {CATS[p.cat].kind}</span>
+        <span className="p">At today&apos;s gold rate</span>
       </span>
     </a>
   );

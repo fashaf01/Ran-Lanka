@@ -20,6 +20,8 @@ const PATHS: Record<string, ReactNode> = {
   ring: <><circle cx="12" cy="14.5" r="6" /><path d="m9.5 5 2.5 3.500L14.5 5 13 3h-2L9.5 5Z" /></>,
   pencil: <><path d="M4 20l1-4.500L16.5 4l3.5 3.500L8.5 19 4 20Z" /><path d="m14 6.5 3.5 3.5" /></>,
   coins: <><ellipse cx="9" cy="8" rx="5.5" ry="2.8" /><path d="M3.5 8v4c0 1.5 2.5 2.8 5.5 2.800M3.5 12v4c0 1.5 2.5 2.8 5.5 2.8 1 0 2-.1 2.8-.4" /><ellipse cx="15.5" cy="13" rx="5" ry="2.6" /><path d="M10.5 13v4c0 1.4 2.2 2.6 5 2.600s5-1.2 5-2.600v-4" /></>,
+  fb: <path d="M14.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.6 1.6-1.6h1.6V3.2A21 21 0 0 0 15.4 3c-2.4 0-4 1.5-4 4.2v2.6H8.6V13h2.8v8Z" />,
+  x: <path d="M4.5 4h4.2l10.8 16h-4.2ZM19.2 4l-6 6.8M4.8 20l6-6.8" />,
   ig: <><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="16.9" cy="7.1" r=".6" /></>,
 };
 
@@ -55,7 +57,7 @@ export function Flourish({ pale }: { pale?: boolean }) {
 export function Logo({ href = "/", label = "Ranlanka home" }: { href?: string; label?: string }) {
   return (
     <a className="logo" href={href} aria-label={label}>
-      <Lotus className="logo-mark" />
+      <img className="logo-mark" src="/img/ranlanka-mark.svg" alt="" width="34" height="50" />
       <span className="logo-type">
         <span className="logo-name">Ranlanka</span>
         <span className="logo-tag"><span lang="si">රන්ලංකා</span> · Est. 2008</span>

@@ -1,5 +1,5 @@
 import { Flourish, Icon, Logo } from "@/components/Icons";
-import { EMAIL, MAPS_URL, PHONE, PHONE_2, PHONE_HREF } from "@/lib/data";
+import { EMAIL, MAPS_URL, PHONE, PHONE_2, PHONE_HREF, SOCIAL } from "@/lib/data";
 
 export default function Footer() {
   return (
@@ -11,7 +11,9 @@ export default function Footer() {
             Twenty-two karat gold, bespoke pieces and money exchange on Main Street, Negombo. Weighed in front of you since 2008.
           </p>
           <div className="socials">
-            <a className="social" href="https://www.instagram.com/ranlankanegombo/" target="_blank" rel="noopener" aria-label="Ranlanka on Instagram"><Icon n="ig" /></a>
+            <a className="social" href={SOCIAL.facebook} target="_blank" rel="noopener" aria-label="Ranlanka on Facebook"><Icon n="fb" /></a>
+            <a className="social" href={SOCIAL.instagram} target="_blank" rel="noopener" aria-label="Ranlanka on Instagram"><Icon n="ig" /></a>
+            <a className="social" href={SOCIAL.x} target="_blank" rel="noopener" aria-label="Ranlanka on X (Twitter)"><Icon n="x" /></a>
             <a className="social" href={PHONE_HREF} aria-label={`Call ${PHONE}`}><Icon n="phone" /></a>
             <a className="social" href={`mailto:${EMAIL}`} aria-label="Email the shop"><Icon n="mail" /></a>
             <a className="social" href={MAPS_URL} target="_blank" rel="noopener" aria-label="Directions to the showroom"><Icon n="pin" /></a>
@@ -47,6 +49,7 @@ export default function Footer() {
             <li>Closed Sundays and Poya days</li>
             <li><a href={PHONE_HREF}>{PHONE}</a></li>
             <li><a href="tel:0312238383">{PHONE_2}</a></li>
+            <li><a href={SOCIAL.facebook} target="_blank" rel="noopener">Facebook</a> · <a href={SOCIAL.instagram} target="_blank" rel="noopener">Instagram</a></li>
           </ul>
         </div>
       </div>

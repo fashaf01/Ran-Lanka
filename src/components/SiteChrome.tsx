@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Lenis from "lenis";
-import { FX, HERO_SLIDES as HS, PAWN_GRAMS, PHONE, PHONE_HREF, RATE, money } from "@/lib/data";
+import { FX, HERO_SLIDES as HS, PAWN_GRAMS, PHONE, PHONE_HREF, RATE, SOCIAL, money } from "@/lib/data";
 import { Icon, Logo } from "@/components/Icons";
 
 const NAV = [
@@ -527,6 +527,7 @@ export default function SiteChrome() {
                 <dt>Showroom</dt><dd>192 Main Street, Negombo</dd>
                 <dt>Hours</dt><dd data-open="">Monday to Saturday, 10:00 am to 7:30 pm</dd>
                 <dt>Call</dt><dd><b>{PHONE}</b></dd>
+                <dt>Follow</dt><dd><a href={SOCIAL.facebook} target="_blank" rel="noopener">Facebook</a> · <a href={SOCIAL.instagram} target="_blank" rel="noopener">Instagram</a> · <a href={SOCIAL.x} target="_blank" rel="noopener">X</a></dd>
               </dl>
             </div>
           </div>

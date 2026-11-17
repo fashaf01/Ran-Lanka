@@ -922,3 +922,23 @@ body.leaving main{opacity:0;transition-duration:.18s}
 .at-visual .compare,.compare{max-width:470px}
 .trio{max-width:1060px;margin-inline:auto}
 .cursor{display:none!important}
+
+/* Ranlanka's own type: 35 FTR for text, Liferdas for the italic emphasis in headings */
+@font-face{font-family:"35 FTR";src:url(/fonts/35ftr-300.woff2) format("woff2");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"35 FTR";src:url(/fonts/35ftr-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"35 FTR";src:url(/fonts/35ftr-400-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"35 FTR";src:url(/fonts/35ftr-500.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"35 FTR";src:url(/fonts/35ftr-600.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Liferdas";src:url(/fonts/liferdas-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+:root{--f-text:"35 FTR","Jost","Avenir Next","Segoe UI",system-ui,sans-serif;--f-accent:"Liferdas","Bodoni Moda","Didot",serif}
+.d1 em,.d2 em,.eh-title em,.name-line em{font-family:var(--f-accent);font-style:italic;font-weight:400;letter-spacing:0}
+.d1 em,.d2 em,.eh-title em{font-size:1.06em}
+/* the Ranlanka logo: gold drop mark and a wide wordmark */
+.logo{gap:12px}
+.logo-mark{width:auto;height:46px;flex:none;transition:none}
+.logo:hover .logo-mark{transform:none}
+.logo-name{font:500 clamp(18px,1.6vw,22px)/1 var(--f-text);letter-spacing:.3em;text-transform:uppercase}
+.logo-tag{margin-top:7px}
+@media (max-width:520px){.logo-mark{height:38px}.logo-name{font-size:17px;letter-spacing:.24em}}
+.ov-side dd a{color:var(--bone);border-bottom:1px solid rgba(217,182,106,.5)}
+.ov-side dd a:hover{color:#D9B66A}

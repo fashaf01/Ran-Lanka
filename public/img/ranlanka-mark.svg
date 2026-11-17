@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 350">
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#F1E9A8"/><stop offset=".45" stop-color="#C6AF5E"/><stop offset="1" stop-color="#9A8134"/></linearGradient>
+<linearGradient id="d" x1="0.2" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#D9C56E"/><stop offset=".55" stop-color="#B39A44"/><stop offset="1" stop-color="#8E7630"/></linearGradient>
+<linearGradient id="s" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#EEF1F3"/><stop offset=".5" stop-color="#C3C9CE"/><stop offset="1" stop-color="#9EA6AD"/></linearGradient>
+</defs>
+<path fill="url(#s)" d="M150 132C206 142 238 194 236 252C233 316 182 350 104 346C82 345 66 341 56 335C78 340 96 341 114 339C182 332 216 296 216 252C216 204 192 158 150 132Z"/>
+<path fill="url(#g)" d="M182 4C120 66 22 160 20 248C18 310 66 342 120 340C172 338 205 306 207 258C198 290 168 306 128 305C90 304 60 282 62 246C64 175 128 86 182 4Z"/>
+<path fill="url(#d)" d="M124 150C150 172 172 198 172 228C172 258 150 278 120 278C91 278 70 258 70 230C70 198 98 176 124 150Z"/>
+</svg>

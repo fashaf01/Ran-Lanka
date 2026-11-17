@@ -5,6 +5,11 @@ export const PHONE = "031 222 2202";
 export const PHONE_HREF = "tel:0312222202";
 export const PHONE_2 = "031 223 8383";
 export const EMAIL = "ranlankanegombo@gmail.com";
+export const SOCIAL = {
+  facebook: "https://www.facebook.com/Ranlankanegombo/",
+  instagram: "https://www.instagram.com/ranlankanegombo/",
+  x: "https://twitter.com/Ranlankanegombo",
+};
 export const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=Ranlanka%2C%20192%20Main%20Street%2C%20Negombo";
 
 /** Gold, LKR per gram (sample). One pawn is 8 grams. */

@@ -3,9 +3,16 @@
 Next.js (App Router, TypeScript) site for Ranlanka, 22 karat gold jewellers on Main Street, Negombo.
 An emerald dress: deep emerald, black and white grounds with gold kept for highlights, cusped
 arches, a jali lattice, a lace border, an arcade sketch and a seal, all drawn in SVG. Bodoni Moda
-for titles, Jost for text, Pinyon Script for small accents and Abhaya Libre for Sinhala (self-hosted
-through `@fontsource`). The emerald look is the last block of `src/app/site.css`; the antique paper
-dress it replaced sits above it.
+for titles, Ranlanka's own fonts 35 FTR (text) and Liferdas (italic emphasis in headings) from
+`public/fonts/`, Pinyon Script for small accents and Abhaya Libre for Sinhala. The emerald look is
+the last blocks of `src/app/site.css`; the antique paper dress it replaced sits above it.
+
+The logo mark (`public/img/ranlanka-mark.svg`) is a vector redraw of the gold drop on
+ranlankanegombo.com; it is also the browser-tab icon. Social links live in `SOCIAL` in
+`src/lib/data.ts`.
+
+35 FTR and Liferdas were supplied as demo fonts; keep commercial licences for both on file
+(ifonts.xyz, befonts.com) while they are on the public site.
 
 The home hero photograph (`public/img/em-gown.jpg`) is a placeholder from a third-party campaign
 set. Replace it with a licensed Ranlanka photograph before the site goes public.

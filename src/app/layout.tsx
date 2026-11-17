@@ -2,9 +2,6 @@ import type { Metadata, Viewport } from "next";
 import "@fontsource/bodoni-moda/400.css";
 import "@fontsource/bodoni-moda/400-italic.css";
 import "@fontsource/bodoni-moda/500.css";
-import "@fontsource/jost/300.css";
-import "@fontsource/jost/400.css";
-import "@fontsource/jost/500.css";
 import "@fontsource/pinyon-script/400.css";
 import "@fontsource/abhaya-libre/600.css";
 import "@fontsource/abhaya-libre/700.css";
@@ -18,7 +15,7 @@ export const metadata: Metadata = {
   title: { default: "Ranlanka · 22 karat gold, Negombo", template: "%s · Ranlanka" },
   description:
     "Ranlanka, 22 karat gold jewellery, bespoke pieces and money exchange at 192 Main Street, Negombo. Weighed in front of you since 2008.",
-  icons: { icon: "/img/logo.png" },
+  icons: { icon: "/img/ranlanka-mark.svg" },
 };
 
 export const viewport: Viewport = {

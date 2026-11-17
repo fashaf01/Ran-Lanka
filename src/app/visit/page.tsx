@@ -18,7 +18,7 @@ export default function VisitPage() {
           <div className="vi-col">
             <h3>Showroom</h3>
             <address>Ranlanka Jewellery<br />192 Main Street<br />Negombo 11500, Sri Lanka</address>
-            <div className="acts" style={{ "marginTop": "28px" }}><a className="btn solid" href="https://www.google.com/maps/search/?api=1&amp;query=Ranlanka%2C%20192%20Main%20Street%2C%20Negombo" target="_blank" rel="noopener">Get directions</a><a className="btn" href="https://www.instagram.com/ranlankanegombo/" target="_blank" rel="noopener">Instagram</a></div>
+            <div className="acts" style={{ "marginTop": "28px" }}><a className="btn solid" href="https://www.google.com/maps/search/?api=1&amp;query=Ranlanka%2C%20192%20Main%20Street%2C%20Negombo" target="_blank" rel="noopener">Get directions</a><a className="btn" href="https://www.facebook.com/Ranlankanegombo/" target="_blank" rel="noopener">Facebook</a><a className="btn" href="https://www.instagram.com/ranlankanegombo/" target="_blank" rel="noopener">Instagram</a></div>
           </div>
           <div className="vi-col">
             <h3>Opening hours</h3>

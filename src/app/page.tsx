@@ -165,22 +165,24 @@ export default function Home() {
       </section>
 
       {/* ---------- at the counter ---------- */}
-      <section className="sec raise rule" aria-label="At the counter">
-        <div className="wrap">
-          <div className="sec-head">
+      <section className="sec counter" aria-label="At the counter">
+        <div className="wrap ct-grid">
+          <div className="ct-intro">
             <div className="rv"><p className="kicker">At the counter</p><h2 className="d2"><span className="ln"><span>More than</span></span><span className="ln"><span>the <em>jewellery case.</em></span></span></h2></div>
             <p className="body fade">Ranlanka is a working gold shop. Alongside the collection we post the day&apos;s rates, change money, buy old gold and make pieces to order.</p>
+            <a className="ct-rate fade" href="/gold-rate"><small>22K today · sample</small><b>LKR {pawn22}</b><span>per pawn of 8 grams</span></a>
           </div>
-          <div className="svc fade">
-            {SERVICES.map((s) => (
-              <a key={s.name} href={s.href}>
-                <Icon n={s.icon} />
-                <h3>{s.name}</h3>
-                <p>{s.text}</p>
-                <span className="go">{s.go} <Icon n="right" /></span>
-              </a>
+          <ol className="ct-list">
+            {SERVICES.map((s, i) => (
+              <li key={s.name} className="fade" data-d={String(Math.min(i, 2))}>
+                <a href={s.href}>
+                  <span className="ct-ic"><Icon n={s.icon} /></span>
+                  <span className="ct-t"><b>{s.name}</b><small>{s.text}</small></span>
+                  <span className="ct-go">{s.go} <Icon n="right" /></span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 

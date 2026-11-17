@@ -877,3 +877,42 @@ body.leaving main{opacity:0;transition-duration:.18s}
 .at-visual .compare{max-width:560px}
 .at-visual{grid-template-columns:minmax(0,1fr);justify-items:center}
 .at-visual .compare{width:min(100%,560px)}
+
+/* gentle colour: sage and warm ivory grounds so no stretch of the page is plain white for long */
+:root{--sage:#EDF2EE;--sage-deep:#DCE7E0;--ivory-warm:#F8F3E7}
+.favs{background:var(--ivory-warm)}
+.favs .pc-img{background:#FFFFFF}
+.sec[aria-label="Today's rates"]{background:linear-gradient(180deg,#FFFFFF 0%,var(--sage) 100%)}
+.sec[aria-label="Visit"].raise{background:var(--ivory-warm)}
+.page:not([data-page="home"])>header.phead{box-shadow:0 0 0 100vmax var(--sage);clip-path:inset(0 -100vmax);background:var(--sage)}
+.page:not([data-page="home"])>header.phead + section{border-top:1px solid var(--sage-deep)}
+[data-page="collection"] .catbar{background:rgba(237,242,238,.97)}
+.raise{background:var(--ivory-warm)}
+/* at the counter: a quiet list on sage, emerald medallions, gold hairlines */
+.counter{background:var(--sage)}
+.ct-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(40px,6vw,96px);align-items:start}
+.ct-intro{display:grid;gap:22px;position:sticky;top:calc(var(--head-h) + 32px)}
+.ct-rate{display:grid;gap:4px;justify-self:start;margin-top:6px;padding:20px 26px;background:#0B3B32;color:#F4F1E8;border-left:3px solid #D9B66A;transition:background-color .2s ease}
+.ct-rate small{font:500 10.5px/1.3 var(--f-text);letter-spacing:.22em;text-transform:uppercase;color:#D9B66A}
+.ct-rate b{font:400 clamp(30px,3vw,40px)/1.05 var(--f-display);color:#FFFFFF;font-variant-numeric:lining-nums}
+.ct-rate span{font-size:13px;color:rgba(244,241,232,.75)}
+.ct-list{display:grid;border-top:1px solid rgba(138,106,31,.35)}
+.ct-list li{border-bottom:1px solid rgba(138,106,31,.35)}
+.ct-list a{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:6px 22px;align-items:center;padding:22px 14px;margin-inline:-14px;transition:background-color .2s ease}
+.ct-ic{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#0B3B32;color:#D9B66A;box-shadow:0 0 0 1px rgba(217,182,106,.5),0 0 0 4px var(--sage);transition:background-color .2s ease}
+.ct-ic .ic{font-size:22px;stroke-width:1.4}
+.ct-t{display:grid;gap:4px;min-width:0}
+.ct-t b{font:400 clamp(20px,1.7vw,24px)/1.2 var(--f-display);color:#0B1512}
+.ct-t small{font-size:14.5px;line-height:1.55;font-weight:300;color:#44504A;max-width:34em}
+.ct-go{display:inline-flex;align-items:center;gap:8px;font:500 10.5px/1 var(--f-text);letter-spacing:.2em;text-transform:uppercase;color:#7A5C14;white-space:nowrap}
+.ct-go .ic{font-size:13px;transition:translate .25s var(--ease-out)}
+@media (hover:hover) and (pointer:fine){
+  .ct-list a:hover{background:rgba(255,255,255,.6)}
+  .ct-list a:hover .ct-ic{background:#062A24}
+  .ct-list a:hover .ct-go .ic{translate:4px 0}
+  .ct-rate:hover{background:#062A24}
+}
+@media (max-width:900px){.ct-grid{grid-template-columns:1fr}.ct-intro{position:static}}
+@media (max-width:560px){.ct-list a{grid-template-columns:44px minmax(0,1fr);margin-inline:0;padding-inline:0}.ct-ic{width:44px;height:44px}.ct-go{grid-column:2}}
+.at-visual{background:#FFFFFF}
+.page:not([data-page="home"])>header.phead + section{padding-top:clamp(44px,5vw,72px)!important}
